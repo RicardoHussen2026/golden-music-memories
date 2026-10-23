@@ -51,5 +51,23 @@ export async function runSimulation(pub,scenario='success'){
 }
 export async function cancelDelivery(pub){const fresh=(await snapshot(pub)).pub;if(!fresh.delivery)throw Error('Nenhuma preparação para cancelar.');if(fresh.delivery.state==='simulated_complete')throw Error('A simulação já foi concluída. Seu resultado foi preservado.');return persist(fresh,{...fresh.delivery,state:'cancelled',cancelledAt:now()},'simulation_cancelled');}
 // Constrói o contrato explícito; nenhuma transferência ou autenticação remota é executada aqui.
-export async function transferManifest(pub){pub=await validateCurrent(pub);return {...pub.delivery.envelope,mode:'simulation',idempotencyKey:pub.delivery.idempotencyKey,rightsConfirmed:true};}
-export async function reconcileDelivery(pub,result){const fresh=(await snapshot(pub)).pub,d=fresh.delivery;if(!d||result.mode!=='simulation'||result.publicationId!==pub.id||result.idempotencyKey!==d.idempotencyKey)throw Error('Resultado não corresponde à tarefa simulada.');if(result.serverRevision<=Number(d.serverRevision||0))return fresh;if(d.sourceRevision!==revisionOf(fresh))return persist(fresh,{...d,state:'conflict',conflict:{receivedAt:now(),serverRevision:result.serverRevision,message:'Alterações locais preservadas; revise antes de aceitar o resultado.'}},'simulation_conflict');if(d.state==='cancelled')return fresh;if(!['simulated_complete','failed','processing'].includes(result.state))throw Error('Estado externo inválido.');return persist(fresh,{...d,state:result.state,serverRevision:result.serverRevision,result:result.state==='simulated_complete'?{simulated:true,externalId:null,url:null,completedAt:now()}:null,error:result.state==='failed'?{code:'SIMULATED_FAILURE',message:'O provedor simulado falhou.',retryable:true}:null},'simulation_reconciled');}
+export async function transferManifest(pub){
+  pub=await validateCurrent(pub);
+  if(pub.delivery.state!=='simulation_ready'&&!(pub.delivery.state==='failed'&&pub.delivery.error?.retryable))throw Error('Somente uma tarefa preparada ou com falha transitória pode ser transferida.');
+  return {...pub.delivery.envelope,mode:'simulation',idempotencyKey:pub.delivery.idempotencyKey,rightsConfirmed:true};
+}
+export async function reconcileDelivery(pub,result){
+  const fresh=(await snapshot(pub)).pub,d=fresh.delivery;
+  if(!d||d.mode!=='simulation'||result?.mode!=='simulation'||result.publicationId!==pub.id||result.idempotencyKey!==d.idempotencyKey)throw Error('Resultado não corresponde à tarefa simulada.');
+  if(!Number.isSafeInteger(result.serverRevision)||result.serverRevision<1)throw Error('Revisão do resultado inválida.');
+  if(!['simulated_complete','failed','processing'].includes(result.state))throw Error('Estado externo inválido.');
+  if(result.serverRevision<=Number(d.serverRevision||0)||d.state==='cancelled')return fresh;
+  // O recibo é evidência separada: não altera métricas/URL, nem substitui resultado anterior em conflito.
+  const receipt={mode:'simulation',publicationId:result.publicationId,idempotencyKey:result.idempotencyKey,serverRevision:result.serverRevision,state:result.state,receivedAt:now()};
+  let conflictReason='';
+  try{await validateCurrent(fresh);}catch(error){conflictReason=error.message||'A preparação local mudou.';}
+  if(conflictReason)return persist(fresh,{...d,state:'conflict',serverRevision:result.serverRevision,conflict:{receivedAt:receipt.receivedAt,serverRevision:result.serverRevision,receivedResult:receipt,previousState:d.state,message:'Dados locais e resultado anterior preservados. '+conflictReason}},'simulation_conflict');
+  // Um resultado terminal já confirmado não volta a processamento ou falha por resposta tardia.
+  if(d.state==='simulated_complete')return fresh;
+  return persist(fresh,{...d,state:result.state,serverRevision:result.serverRevision,lastReceipt:receipt,result:result.state==='simulated_complete'?{simulated:true,externalId:null,url:null,completedAt:now()}:null,error:result.state==='failed'?{code:'SIMULATED_FAILURE',message:'O provedor simulado falhou.',retryable:true}:null},'simulation_reconciled');
+}

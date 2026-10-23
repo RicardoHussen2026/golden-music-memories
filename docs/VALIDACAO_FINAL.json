@@ -1,0 +1,27 @@
+{
+  "version": "2.1.0",
+  "validatedAt": "2026-10-23T21:02:13.816048+00:00",
+  "command": "npm test",
+  "exitCode": 0,
+  "checksPassed": 189,
+  "suites": {
+    "search": 22,
+    "catalog": 12,
+    "acceptance": 31,
+    "repertorio": 15,
+    "templates": 15,
+    "publishing": 29,
+    "ux": 33,
+    "publication-ui": 10,
+    "post-audit": 22
+  },
+  "environment": "Windows / Chrome headless / Playwright 1.62.1 / contextos isolados",
+  "initialCheckpoint": "97d54cb",
+  "implementationCheckpoint": "98fb962",
+  "branch": "desenvolvimento/ux-publicacoes",
+  "realPublications": false,
+  "realConnections": false,
+  "publicDeployment": false,
+  "remoteMigrations": false,
+  "paidServices": false
+}

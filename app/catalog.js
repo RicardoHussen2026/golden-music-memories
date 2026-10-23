@@ -1,12 +1,32 @@
 import {normalizeSearch,searchSongs,suggestSongs} from './search.js';
+// Metadados importados podem usar string, lista ou objetos com nome/título.
+function textValues(...values){
+ return values.flatMap(value=>Array.isArray(value)?textValues(...value):typeof value==='string'?[value]:value&&typeof value==='object'?textValues(value.name,value.title):[]);
+}
+const containsMetadata=(query,...values)=>!query||textValues(...values).some(value=>normalizeSearch(value).includes(normalizeSearch(query)));
+const finalRoles=new Set(['tiktok','youtube']);
+const dateValue=value=>{const parsed=Date.parse(value);return Number.isFinite(parsed)?parsed:Number.NEGATIVE_INFINITY;};
 export function filteredCatalog(state,{usageOf,assetsOf,pubsOf,canonicalKey}){
- const f=state.filters||{},ranked=searchSongs(state.searchIndex,state.search),contains=(a,b)=>!b||normalizeSearch(a).includes(normalizeSearch(b));
- const rows=ranked.filter(({song:s})=>{const ps=state.canonIndex.get(canonicalKey(s))||[],active=ps.filter(p=>!p.cancelled),assets=active.flatMap(p=>assetsOf(p.id)),pubs=active.flatMap(p=>pubsOf(p.id)),posted=pubs.filter(p=>p.status==='published'),platforms=new Set(posted.map(p=>p.platform));
- return (!state.decade||s.decade==state.decade)&&(!state.repertoire||usageOf(s)===state.repertoire||(state.repertoire==='conflicts'&&s.similarityPending))&&(!state.favorites||s.favorite)&&(!state.unused||(!active.length&&!(state.reservations||[]).some(r=>r.id===canonicalKey(s)&&r.status!=='cancelled')))&&(!f.year||s.year==f.year)&&(!f.yearFrom||s.year>=+f.yearFrom)&&(!f.yearTo||s.year<=+f.yearTo)&&contains(s.artist,f.artist)&&contains(s.genre,f.genre)&&contains(s.album||s.release,f.album)&&contains(s.versionName||s.version||s.disambiguation||s.title,f.version)&&(!f.asset||(f.asset==='cover'?assets.some(a=>a.role==='cover'):f.asset==='final'?assets.some(a=>['tiktok','youtube'].includes(a.role)):f.asset==='files'?!!assets.length:active.some(p=>p.status>=6)))&&(!f.platform||(f.platform==='both'?platforms.size===2:f.platform==='none'?platforms.size===0:f.platform==='one'?platforms.size===1:platforms.has(f.platform)))&&(!f.publication||(f.publication==='review'?pubs.some(p=>p.delivery?.state==='awaiting_review')||active.some(p=>!p.approval):f.publication==='connection'?pubs.some(p=>p.delivery?.state==='awaiting_connection'):f.publication==='scheduled'?pubs.some(p=>p.status==='planned'||p.delivery?.state==='scheduled'):pubs.some(p=>p.delivery?.state==='failed')));
+ const f=state.filters||{},ranked=searchSongs(state.searchIndex,state.search);
+ const rows=ranked.filter(({song:s})=>{
+ const key=canonicalKey(s),ps=state.canonIndex.get(key)||[],active=ps.filter(p=>!p.cancelled),assets=active.flatMap(p=>assetsOf(p.id)),pubs=active.flatMap(p=>pubsOf(p.id)),posted=pubs.filter(p=>p.status==='published'),platforms=new Set(posted.map(p=>p.platform));
+ // Condições independentes preservam uma versão arquivada quando existe publicação ou nova produção.
+ let repertoireMatches=true;
+ switch(state.repertoire){
+  case 'conflicts':repertoireMatches=!!s.similarityPending;break;
+  case 'archived':repertoireMatches=active.some(p=>p.status===7);break;
+  case 'published':repertoireMatches=posted.length>0;break;
+  case 'produced':repertoireMatches=active.some(p=>p.historical)||assets.some(a=>finalRoles.has(a.role));break;
+  case 'inproduction':repertoireMatches=active.some(p=>!p.historical&&p.status<6&&!assetsOf(p.id).some(a=>finalRoles.has(a.role))&&!pubsOf(p.id).some(q=>q.status==='published'));break;
+  case 'reserved':repertoireMatches=(state.reservations||[]).some(r=>r.id===key&&r.status==='reserved');break;
+  default:repertoireMatches=!state.repertoire||usageOf(s)===state.repertoire;
+ }
+ return (!state.decade||s.decade==state.decade)&&repertoireMatches&&(!state.favorites||s.favorite)&&(!state.unused||(!active.length&&!(state.reservations||[]).some(r=>r.id===key&&r.status!=='cancelled')))&&(!f.year||s.year==f.year)&&(!f.yearFrom||s.year>=+f.yearFrom)&&(!f.yearTo||s.year<=+f.yearTo)&&containsMetadata(f.artist,s.artist,s.artistAliases,s.alternativeNames)&&containsMetadata(f.genre,s.genre,s.genres)&&containsMetadata(f.album,s.album,s.albums,s.release,s.releaseTitles)&&containsMetadata(f.version,s.versionName,s.version,s.disambiguation,s.title)&&(!f.asset||(f.asset==='cover'?assets.some(a=>a.role==='cover'):f.asset==='final'?assets.some(a=>finalRoles.has(a.role)):f.asset==='files'?!!assets.length:active.some(p=>p.status>=6)))&&(!f.platform||(f.platform==='both'?platforms.size===2:f.platform==='none'?platforms.size===0:f.platform==='one'?platforms.size===1:platforms.has(f.platform)))&&(!f.publication||(f.publication==='review'?pubs.some(p=>p.delivery?.state==='awaiting_review')||active.some(p=>!p.approval):f.publication==='connection'?pubs.some(p=>p.delivery?.state==='awaiting_connection'):f.publication==='scheduled'?pubs.some(p=>p.status==='planned'||p.delivery?.state==='scheduled'):pubs.some(p=>p.delivery?.state==='failed')));
  });
  const last=(s,kind)=>{const ps=state.canonIndex.get(canonicalKey(s))||[];return Math.max(0,...(kind==='production'?ps.map(p=>Date.parse(p.updatedAt||p.createdAt)||0):ps.flatMap(p=>pubsOf(p.id).filter(q=>q.status==='published').map(q=>Date.parse(q.publishedAt)||0))));};
  const compare=(a,b)=>String(a||'').localeCompare(String(b||''),'pt-BR',{sensitivity:'base',numeric:true});
- rows.sort((a,b)=>{const x=a.song,y=b.song;switch(state.sort){case 'title':return compare(x.title,y.title);case 'artist':return compare(x.artist,y.artist)||compare(x.title,y.title);case 'year':case 'decade':return x[state.sort]-y[state.sort]||compare(x.title,y.title);case 'added':return compare(y.createdAt,x.createdAt);case 'production':case 'publication':return last(y,state.sort)-last(x,state.sort);case 'used':return (state.canonIndex.get(canonicalKey(x))||[]).length-(state.canonIndex.get(canonicalKey(y))||[]).length;default:return b.score-a.score||compare(x.title,y.title);}});
+ const stable=(x,y)=>compare(x.title,y.title)||compare(x.artist,y.artist)||compare(x.id,y.id);
+ rows.sort((a,b)=>{const x=a.song,y=b.song;switch(state.sort){case 'title':return compare(x.title,y.title);case 'artist':return compare(x.artist,y.artist)||compare(x.title,y.title);case 'year':case 'decade':return x[state.sort]-y[state.sort]||compare(x.title,y.title);case 'added':return dateValue(y.createdAt)-dateValue(x.createdAt)||stable(x,y);case 'production':case 'publication':return last(y,state.sort)-last(x,state.sort);case 'used':return (state.canonIndex.get(canonicalKey(x))||[]).length-(state.canonIndex.get(canonicalKey(y))||[]).length;default:return b.score-a.score||compare(x.title,y.title);}});
  return rows.map(r=>r.song);
 }
 export function catalogView(state,h){
@@ -22,4 +42,3 @@ export function catalogView(state,h){
  <div class="${state.layout==='cards'?'grid':'song-results'}">${page.map(s=>`<article class="song-card ${state.layout==='list'?'result-row':''}"><label class="result-select"><input aria-label="Selecionar ${esc(s.title)}" type="checkbox" data-song-select="${s.id}" ${state.selected.has(s.id)?'checked':''}></label><div class="result-song"><h3>${esc(s.title)}</h3><span>${esc(s.artist)}</span></div><small class="result-year">${s.year} · ${s.decade}s</small><span class="tag">${USAGE[usageOf(s)]}</span><div class="actions">${btn('start-song','Produzir',`data-id="${s.id}"`,'small')}${btn('song-info','Detalhes',`data-id="${s.id}"`,'secondary small')}<button class="favorite" data-action="favorite" data-id="${s.id}" aria-label="Favoritar ${esc(s.title)}" aria-pressed="${!!s.favorite}">${s.favorite?'★':'☆'}</button></div></article>`).join('')}</div>
  ${!page.length?`<div class="empty">Nenhuma música encontrada. Ajuste os filtros ou consulte a fonte para cadastrar uma gravação verificada.</div>`:''}<div class="toolbar">${btn('prev-page','← Anterior','','secondary small')}<span>Página ${state.page+1} de ${Math.max(1,Math.ceil(filtered.length/30))}</span>${btn('next-page','Próxima →','','secondary small')}</div>`;
 }
-

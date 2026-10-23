@@ -8,12 +8,14 @@
   },
   "source": "MusicBrainz core metadata CC0",
   "humanReviewed": 0,
-  "automatedChecksPassed": 61,
+  "automatedChecksPassed": 189,
   "additionalOfflineRootCheck": "passed",
-  "branch": "desenvolvimento/painel-v2",
-  "productionChanged": true,
+  "branch": "desenvolvimento/ux-publicacoes",
+  "productionChanged": false,
   "cloudSyncActive": false,
   "paidApiCalls": 0,
   "officialTemplates": 7,
-  "publicationTarget": "GitHub Pages existente, branch main"
+  "publicationTarget": "Somente branch de desenvolvimento; sem deploy público",
+  "version": "2.1.0",
+  "finalReport": "docs/RELATORIO_FINAL_UX_AUDITORIA.md"
 }

@@ -1,5 +1,7 @@
 # Golden Music Memories
 
+**Nesta branch: V2.1 validada localmente, sem deploy público.** Veja [relatório final e evidências](docs/RELATORIO_FINAL_UX_AUDITORIA.md). O link do site continua na versão publicada anterior.
+
 Central de produção do canal musical nostálgico. Aplicação estática V2 com catálogo real, organização de produções, capas editáveis, revisão, acervo e backup.
 
 - [Abrir aplicativo](https://ricardohussen2026.github.io/golden-music-memories/)

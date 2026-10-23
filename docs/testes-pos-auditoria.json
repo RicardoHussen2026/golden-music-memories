@@ -1,0 +1,117 @@
+{
+  "testedAt": "2026-10-23T20:58:53.516Z",
+  "environment": "Chrome headless · bancos isolados · sem publicação real",
+  "results": [
+    {
+      "name": "Retomar produção conserva rascunho não aprovado",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Alternar produções conserva os dois rascunhos",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Recarregar conserva rascunho atual",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Trocar associação recupera rascunho da produção escolhida",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Navegar antes do temporizador preserva a edição",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Editar rascunho não aprova nem cria mídia",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Rascunho legado é recuperado sem migração destrutiva",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Filtro arquivada inclui produção também publicada",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Filtro publicada preserva produção arquivada",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Paginação não cobre ações em 360px",
+      "result": "PASSOU",
+      "details": "{\"overlaps\":0,\"overflow\":false}"
+    },
+    {
+      "name": "Sem transbordamento horizontal em 360px",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Paginação não cobre ações em 390px",
+      "result": "PASSOU",
+      "details": "{\"overlaps\":0,\"overflow\":false}"
+    },
+    {
+      "name": "Sem transbordamento horizontal em 390px",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Backup válido mantém mídia e hash coerentes",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Backup recusa hash de metadados divergente dos bytes",
+      "result": "PASSOU",
+      "details": "Arquivo corrompido ou hash inconsistente: fixture-auditoria.mp4"
+    },
+    {
+      "name": "Backup recusa mídia ligada à música de outra produção",
+      "result": "PASSOU",
+      "details": "Mídia sem produção ou música."
+    },
+    {
+      "name": "Backup recusa vídeo final da plataforma incorreta",
+      "result": "PASSOU",
+      "details": "Vídeo final pertence a outra produção."
+    },
+    {
+      "name": "Backup recusa publicação vinculada a arquivo de outra produção",
+      "result": "PASSOU",
+      "details": "Vídeo final pertence a outra produção."
+    },
+    {
+      "name": "Recusas preservam banco local existente",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Nova importação registra data de inclusão",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Importação duplicada não altera data de inclusão",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Sem erro JavaScript nos fluxos corrigidos",
+      "result": "PASSOU",
+      "details": "[]"
+    }
+  ],
+  "errors": []
+}

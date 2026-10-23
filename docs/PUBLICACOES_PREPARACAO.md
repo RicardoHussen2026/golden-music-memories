@@ -65,6 +65,18 @@ Direct Post exige aplicação destinada a público amplo e considera inadequada 
 
 ## Testes e custos
 
-Com a prévia local iniciada: `node tests/publishing.cjs` e `node tests/publication-ui.cjs`. Utilizam as mesmas dependências Playwright e configurações `GMM_BASE_URL` / `GMM_BROWSER_CHANNEL` já presentes. Foram aprovadas 24 verificações de contrato, persistência, concorrência, cancelamento, falha/retomada, integridade, validade das licenças, OAuth simulado e separação entre plataformas; mais 10 verificações do fluxo real da interface, com edição de opções, prévia, revisão, simulação, falha/repetição após recarga e preservação do registro manual. Contexto de navegador isolado e diretório temporário são descartados; o banco pessoal não é utilizado.
+Com a prévia local iniciada: `node tests/publishing.cjs` e `node tests/publication-ui.cjs`. Utilizam as mesmas dependências Playwright e configurações `GMM_BASE_URL` / `GMM_BROWSER_CHANNEL` já presentes. Foram aprovadas 29 verificações de contrato, persistência, concorrência, cancelamento, falha/retomada, integridade, validade das licenças, OAuth simulado e separação entre plataformas; mais 10 verificações do fluxo real da interface, com edição de opções, prévia, revisão, simulação, falha/repetição após recarga e preservação do registro manual. Contexto de navegador isolado e diretório temporário são descartados; o banco pessoal não é utilizado.
 
 Custos incrementais nesta etapa: nenhuma chamada paga, conta conectada, hospedagem alterada ou gasto contratado. Backend, armazenamento, tráfego, quotas, eventual auditoria e operação real precisam de dimensionamento e autorização em etapa própria. Variáveis preenchidas não comprovam conexão nem autorização.
+
+## Auditoria posterior ao checkpoint principal
+
+Rodada delimitada após o checkpoint `98fb962`, em 23/10/2026. Três achados P2 foram reproduzidos em banco descartável e corrigidos, sem mudança de stores ou registro manual:
+
+| Achado e impacto | Correção de baixo risco | Evidência de validação |
+|---|---|---|
+| Resposta sem revisão era aceita; um sucesso podia voltar a processamento. Isso tornava inconsistente a situação simulada. | Revisão deve ser inteiro positivo; resposta tardia não regride sucesso terminal. | Revisões ausentes, zero, negativas, fracionárias, string e não finitas recusadas sem alterar tarefa; processamento/falha posterior preservam sucesso e resultado. |
+| Conciliação não verificava aprovação, direitos ou bytes atuais. Resultado antigo podia aparecer como válido após revogação. | Revalidar a preparação inclusive ao conciliar estados terminais. Divergências geram conflito. | Revogação e corrupção real do Blob geram conflito; recibo com estado/revisão recebidos e resultado anterior são preservados; métricas e situação manual não mudam. |
+| Manifesto podia ser construído para uma tentativa cancelada. | Somente tarefa preparada ou falha transitória repetível pode gerar manifesto. | Manifesto válido na preparação; após cancelar, operação recusada e cancelamento preservado. |
+
+Risco e complexidade: baixos, restritos à validação e transições do módulo local; não introduzem rede, credenciais ou novas tabelas. A evidência externa é mantida em `delivery.conflict.receivedResult` quando há conflito, permitindo revisão sem reescrever textos, métricas ou o resultado anterior. As cinco regressões adicionais estão no teste de publicação, que totaliza 29 verificações.

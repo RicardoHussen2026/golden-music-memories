@@ -1,5 +1,7 @@
 # Validação V2 — 23/10/2026
 
+> Registro da entrega V2 original. A revalidação V2.1 está em RELATORIO_FINAL_UX_AUDITORIA.md e VALIDACAO_FINAL.json.
+
 ## Resultado
 
 **61 verificações automatizadas passaram**, em Chrome headless, com servidor local e contextos de banco isolados. A raiz do aplicativo também foi reaberta offline em uma verificação adicional direcionada. O comando reproduzível é `npm test` com o servidor em execução.

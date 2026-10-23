@@ -1,0 +1,172 @@
+{
+  "testedAt": "2026-10-23T20:58:41.783Z",
+  "environment": "Playwright · banco e contextos isolados · sem contas externas",
+  "results": [
+    {
+      "name": "Pesquisa universal com instrução clara",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Lista compacta é padrão",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Campos com identificadores únicos",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Combinação artista e ano recupera resultados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Ano solicitado respeitado",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Título e artista fora da concatenação recuperam música",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Título artista e ano combinados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Pequeno erro de digitação é tolerado",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Consulta sem correspondência não inventa resultados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Caixa e espaços normalizados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Busca e década podem ser combinadas",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Filtros avançados recolhidos inicialmente",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Ano específico combina com busca e década",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Alterar filtro mantém painel aberto",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Filtros ativos funcionam com painel recolhido",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Diálogo possui nome acessível",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Detalhes preservam pesquisa e filtro",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Limpeza única remove busca década e filtros avançados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Sugestões nativas disponíveis",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Enter registra pesquisa recente",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Ficha acessível usando teclado",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Escape fecha ficha",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Seleção mantém identidade da música na produção",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Capa recebe dados sem redigitação",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Modelo original e seis extensões preservados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Aprovar outra capa preserva a configuração anterior",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Retomar capa recupera a versão aprovada mais recente",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Retomar publicação conserva texto anterior",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Rascunhos independentes sem duplicação ao retomar",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Catálogo cabe na largura de celular",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Pesquisa identificada para leitores de tela",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Pesquisa e catálogo funcionam offline após carga",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Sem erro JavaScript não tratado",
+      "result": "PASSOU",
+      "details": "[]"
+    }
+  ],
+  "errors": []
+}

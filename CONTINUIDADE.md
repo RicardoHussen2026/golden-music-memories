@@ -116,3 +116,7 @@ Leia docs/TEMPLATES.md. O modelo cassete original é oficial e não deve ser sub
 ## Etapa UX/publicações local
 
 Branch desenvolvimento/ux-publicacoes: consulte docs/IMPLEMENTACAO_UX_PUBLICACOES.md, docs/PESQUISA.md e docs/PUBLICACOES_PREPARACAO.md. Nenhum deploy autorizado nesta etapa. A base publicada continua 97d54cb. Após o checkpoint principal, executar a rodada em docs/PROXIMA_ETAPA_AUDITORIA.md.
+
+## Estado final da rodada 2.1
+
+Implementação principal e auditoria posterior concluídas. Leia docs/RELATORIO_FINAL_UX_AUDITORIA.md e docs/VALIDACAO_FINAL.json: 189 verificações passaram. Branch desenvolvimento/ux-publicacoes, checkpoint principal 98fb962. Main/site permanecem 97d54cb: nenhum deploy autorizado nesta etapa. O código da branch inclui app/search.js, catalog.js, metadata.js, publishing.js e componentes simulados em server/. A auditoria posterior já foi executada, não deve ser repetida automaticamente. Rascunhos por produção ficam em settings (coverDraft:<ID>), com fallback compatível; o banco continua versão2.
