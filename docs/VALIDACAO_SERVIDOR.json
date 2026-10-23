@@ -1,0 +1,33 @@
+{
+  "version": "2.2.0",
+  "validatedAt": "2026-10-23T22:29:05.612728+00:00",
+  "baseCommit": "d8d0aaf",
+  "branch": "desenvolvimento/publicacao-servidor",
+  "regression": {
+    "checks": 189,
+    "command": "npm test (suíte preexistente + testes novos disponíveis naquele momento)",
+    "exitCode": 0
+  },
+  "server": {
+    "tests": 28,
+    "command": "node --test tests/server.test.mjs",
+    "exitCode": 0
+  },
+  "serverUI": {
+    "checks": 9,
+    "command": "node tests/server-ui.cjs",
+    "exitCode": 0
+  },
+  "environment": "Windows, Node 24.19.0, Chrome headless, Playwright 1.62.1",
+  "externalProviderCalls": false,
+  "realCredentialsConfigured": false,
+  "realPublications": false,
+  "deployment": false,
+  "productionReadyVerified": false,
+  "pending": [
+    "Configuração de ambiente e contas",
+    "Elegibilidade e aprovação TikTok",
+    "Homologação privada autorizada nas APIs",
+    "Medição com vídeos grandes e política de retenção"
+  ]
+}

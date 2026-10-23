@@ -120,3 +120,11 @@ Branch desenvolvimento/ux-publicacoes: consulte docs/IMPLEMENTACAO_UX_PUBLICACOE
 ## Estado final da rodada 2.1
 
 Implementação principal e auditoria posterior concluídas. Leia docs/RELATORIO_FINAL_UX_AUDITORIA.md e docs/VALIDACAO_FINAL.json: 189 verificações passaram. Branch desenvolvimento/ux-publicacoes, checkpoint principal 98fb962. Main/site permanecem 97d54cb: nenhum deploy autorizado nesta etapa. O código da branch inclui app/search.js, catalog.js, metadata.js, publishing.js e componentes simulados em server/. A auditoria posterior já foi executada, não deve ser repetida automaticamente. Rascunhos por produção ficam em settings (coverDraft:<ID>), com fallback compatível; o banco continua versão2.
+
+## Estado mais recente: V2.2 — publicação com servidor
+
+Branch desenvolvimento/publicacao-servidor, baseada em d8d0aaf. Leia docs/PUBLICACAO_SERVIDOR.md e docs/VALIDACAO_SERVIDOR.json. O núcleo e o IndexedDB continuam compatíveis. app/service.js integra a interface; server/runtime/ contém HTTP, SQLite, OAuth, transferências, worker e adaptadores com transporte real implementado e desativado por padrão. O SQL local não aplica o esquema Supabase proposto.
+
+O serviço requer Node 24+, abre em 8877 e não depende de credenciais para servir o painel. Autenticação do operador, chave de cifragem e provedores são configuração posterior. Nenhuma conta conectada, upload externo ou deploy nesta etapa. TikTok Direct Post pessoal continua bloqueado; existe adaptador de upload assistido condicionado à elegibilidade e aprovação.
+
+Não substituir este trabalho pela versão estática antiga. Preservar IDs, hashes, dados privados e tarefas recebidas. O ZIP local não recupera o banco do serviço: usar o backup SQLite próprio, com chave guardada separadamente. Mudanças locais não revogam tarefas imutáveis já autorizadas; consultar/cancelar no servidor e conferir agendamentos externos antes de substituí-las.

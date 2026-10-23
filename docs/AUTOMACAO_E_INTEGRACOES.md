@@ -1,3 +1,5 @@
+> Registro das etapas anteriores. A implementação atual de publicação com serviço está em [PUBLICACAO_SERVIDOR.md](PUBLICACAO_SERVIDOR.md); conexões e execução externa continuam desativadas.
+
 # Evolução audiovisual e integrações — 23/10/2026
 
 ## O que funciona sem API

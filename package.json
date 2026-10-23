@@ -1,14 +1,21 @@
 {
   "name": "golden-music-memories",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "test": "node tests/search.cjs && node tests/catalog.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs && node tests/post-audit.cjs"
+    "test": "node tests/search.cjs && node tests/catalog.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs && node tests/post-audit.cjs && node --test tests/server.test.mjs && node tests/server-ui.cjs",
+    "service": "node --env-file-if-exists=.env server/runtime/http.mjs",
+    "test:service": "node --test tests/server.test.mjs",
+    "test:service:ui": "node tests/server-ui.cjs",
+    "service:backup": "node --env-file-if-exists=.env server/runtime/backup.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",
     "jszip": "3.10.1"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }

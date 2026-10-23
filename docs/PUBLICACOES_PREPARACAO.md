@@ -1,3 +1,5 @@
+> Registro das etapas anteriores. A implementação atual de publicação com serviço está em [PUBLICACAO_SERVIDOR.md](PUBLICACAO_SERVIDOR.md); conexões e execução externa continuam desativadas.
+
 # Publicações: preparação local e contratos de integração
 
 Implementação de 23/10/2026. A interface continua estática, sem novo framework, cadastro duplicado ou migração do IndexedDB. Nenhuma conta foi conectada, credencial solicitada, aplicativo externo cadastrado ou publicação realizada.

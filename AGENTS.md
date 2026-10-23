@@ -10,3 +10,6 @@
 - Preserve operações transacionais e referências em backup/restauração.
 - Execute testes proporcionais à mudança e registre limitações reais.
 - Gastos, integrações com envio real, migrações e alterações de produção dependem da autorização pertinente do usuário.
+
+- A V2.2 acrescenta serviço opcional em server/runtime/. Leia docs/PUBLICACAO_SERVIDOR.md antes de alterar publicação. A origem estática continua funcional; o banco local não foi migrado para nuvem.
+- Não ativar as flags de rede/publicação/worker nem inserir credenciais reais como parte de testes. Preserve a separação entre simulação, rascunho manual e resultado confirmado.

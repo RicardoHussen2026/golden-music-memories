@@ -1,0 +1,20 @@
+import {resolve} from 'node:path';
+
+export function configuration(env=process.env){
+  const port=Number(env.GMM_PORT||8877),origin=env.GMM_PUBLIC_ORIGIN||`http://127.0.0.1:${port}`;
+  const url=new URL(origin);
+  if(!['https:','http:'].includes(url.protocol)||url.origin!==origin)throw Error('GMM_PUBLIC_ORIGIN deve conter somente a origem.');
+  if(url.protocol==='http:'&&!['127.0.0.1','localhost','[::1]'].includes(url.hostname))throw Error('Use HTTPS fora do computador local.');
+  const encryptionKey=env.GMM_ENCRYPTION_KEY||'';
+  if(encryptionKey&&!/^[a-f\d]{64}$/i.test(encryptionKey))throw Error('Chave de cifragem: 64 caracteres hexadecimais.');
+  return {port,host:'127.0.0.1',origin,secure:url.protocol==='https:',directory:resolve(env.GMM_DATA_DIR||'.cache/publishing-private'),
+    password:env.GMM_OPERATOR_PASSWORD||'',encryptionKey:encryptionKey?Buffer.from(encryptionKey,'hex'):null,
+    network:env.GMM_ALLOW_NETWORK==='true',publishing:env.GMM_ALLOW_PUBLISH==='true',worker:env.GMM_WORKER_ENABLED==='true',
+    maxBytes:500*1024*1024,chunkBytes:4*1024*1024,maxAttempts:5,
+    youtube:{clientId:env.YOUTUBE_CLIENT_ID||'',clientSecret:env.YOUTUBE_CLIENT_SECRET||'',redirectUri:origin+'/api/oauth/youtube/callback',manageSchedules:env.YOUTUBE_MANAGE_SCHEDULES==='true'},
+    tiktok:{clientId:env.TIKTOK_CLIENT_KEY||'',clientSecret:env.TIKTOK_CLIENT_SECRET||'',redirectUri:origin+'/api/oauth/tiktok/callback',uploadApproved:env.TIKTOK_UPLOAD_APPROVED==='true'}};
+}
+export function enabled(config,platform){const p=config[platform];return Boolean(config.network&&config.encryptionKey&&p?.clientId&&p?.clientSecret&&(platform!=='tiktok'||config.secure&&p.uploadApproved));}
+export function availability(config){return {networkEnabled:config.network,publishingEnabled:config.publishing,workerEnabled:config.worker,authenticationConfigured:config.password.length>=16,encryptionConfigured:!!config.encryptionKey,
+  providers:['youtube','tiktok'].map(platform=>({platform,configured:!!config[platform].clientId&&!!config[platform].clientSecret,oauthEnabled:enabled(config,platform),
+    directPostEnabled:false,automaticScheduling:platform==='youtube',message:platform==='tiktok'?'Direct Post indisponível para este painel pessoal. Upload assistido depende de aprovação; finalização no aplicativo.':'Upload e agendamento disponíveis após configuração e autorização.'}))};}
