@@ -3,3 +3,17 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+.cache/
+acervo/
+uploads/
+backups/
+*.backup.zip
+
+# Segredos e configurações particulares
+*.pem
+*.key
+credentials*.json
+client_secret*.json
+token*.json
+.env.local

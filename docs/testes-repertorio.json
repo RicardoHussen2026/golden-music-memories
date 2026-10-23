@@ -1,0 +1,66 @@
+{
+  "testedAt": "2026-10-23T19:58:37.296Z",
+  "environment": "Chrome headless · contextos isolados",
+  "results": [
+    {
+      "name": "Importações simultâneas não duplicam catálogo",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Reserva concorrente atômica",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Produção simultânea não cria duplicidade",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Reserva ativa não é liberada por exclusão",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Liberação preserva a produção e permite nova reserva",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Remasterização ligada à identidade-base",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Artistas diferentes não são fundidos automaticamente",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Importação inválida não grava lote parcialmente",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Gravações reais distintas são mantidas separadas",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Mesmo identificador de fonte não duplica sem nome da fonte",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Identidade preserva caracteres não latinos",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Cancelamento operacional não apaga histórico",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Uso anterior registrado sem inventar vídeo",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Lote configurável de 15 sem limite fixo de cinco",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PWA reabre catálogo offline após carga inicial",
+      "result": "PASSOU"
+    }
+  ]
+}

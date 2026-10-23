@@ -1,0 +1,19 @@
+{
+  "catalog": 2009,
+  "byDecade": {
+    "1970": 514,
+    "1980": 498,
+    "1990": 490,
+    "2000": 507
+  },
+  "source": "MusicBrainz core metadata CC0",
+  "humanReviewed": 0,
+  "automatedChecksPassed": 61,
+  "additionalOfflineRootCheck": "passed",
+  "branch": "desenvolvimento/painel-v2",
+  "productionChanged": true,
+  "cloudSyncActive": false,
+  "paidApiCalls": 0,
+  "officialTemplates": 7,
+  "publicationTarget": "GitHub Pages existente, branch main"
+}

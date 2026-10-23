@@ -1,37 +1,38 @@
 # Golden Music Memories
 
-Guia, materiais do canal e criador de capas em português.
+Central de produção do canal musical nostálgico. Aplicação estática V2 com catálogo real, organização de produções, capas editáveis, revisão, acervo e backup.
 
-## Acesso
+- [Abrir aplicativo](https://ricardohussen2026.github.io/golden-music-memories/)
+- [Continuidade em outro computador ou Work na nuvem](CONTINUIDADE.md)
+- [Arquitetura e auditoria](docs/AUDITORIA_V2.md)
+- [Testes e limitações](docs/VALIDACAO_V2.md)
+- [Família oficial de templates](docs/TEMPLATES.md)
+- [Plano de automação e integrações](docs/AUTOMACAO_E_INTEGRACOES.md)
 
-Site: https://ricardohussen2026.github.io/golden-music-memories/
+## Executar
 
-Criador de capas: abra `05_modelo_capa.html`, altere música/artista/ano e baixe o PNG. O botão **Copiar link desta capa** permite continuar os mesmos textos em qualquer computador. Não existe banco de dados nem sincronização automática de arquivos pessoais; os materiais do projeto ficam versionados neste repositório.
-
-## Atualizar em qualquer computador
-
-Você pode editar arquivos pelo GitHub e fazer commit na branch `main`. O GitHub Pages publica os arquivos dessa branch automaticamente.
-
-Para editar localmente:
+Requer Node.js para a prévia local. Não há build nem dependências para servir o aplicativo.
 
 ```sh
 git clone https://github.com/RicardoHussen2026/golden-music-memories.git
 cd golden-music-memories
-git pull
-# Faça suas alterações
-git add .
-git commit -m "Atualiza materiais do canal"
-git push origin main
+npm run dev
 ```
 
-O projeto é HTML/CSS/JavaScript estático, sem instalação nem etapa de build. Para abrir localmente, abra `index.html` no navegador ou use um servidor estático.
+Abra http://127.0.0.1:8765/painel.html. Use HTTP local ou HTTPS; não abra apenas o arquivo HTML. O GitHub Pages publica a raiz de `main`.
 
-## Arquivos
+Para testar, com o servidor ativo: `npm ci` e `npm test`. O Windows usa Chrome instalado; Linux usa Chromium do Playwright (`npx playwright install chromium`, se necessário). Configurações opcionais: `GMM_BASE_URL` e `GMM_BROWSER_CHANNEL`. Consulte CONTINUIDADE.md antes de desenvolver.
 
-- `index.html`: guia online e acesso aos materiais.
-- `05_modelo_capa.html`: editor e exportação PNG 1080 × 1920.
-- `02_video_adicionar_audio.mp4`: vídeo vertical de 30 segundos, sem áudio; adicione música permitida na própria plataforma.
-- `04_guia_do_canal.md`: guia textual de operação.
-- `09_projeto_video_editavel.zip`: fontes editáveis do vídeo.
+## Recursos implementados
 
-Não há credenciais neste repositório. As artes foram criadas para o projeto com IA. Disponibilidade de músicas e regras de monetização precisam ser verificadas nas plataformas antes de publicar. Publicar este site não publica vídeos no TikTok ou YouTube.
+Catálogo de 2.009 metadados reais de gravações MusicBrainz entre 1970 e 2009, busca e importação, favoritos, reservas com prevenção de repetição e criação de produções em lote configurável. Sete templates oficiais — base preservada e seis extensões — com textos editáveis e exportação PNG/JPG em 1080×1920 e 1280×720. Os estilos anteriores continuam disponíveis.
+
+Arquivos versionados, direitos independentes, revisão editorial, finais distintos para TikTok e YouTube, registro manual de publicação e métricas, Kanban, calendário, acervo, novas versões, ZIP para edição no CapCut, CSV para Canva e estrutura para Drive manual. Backup completo com arquivos e validação de integridade. PWA offline após a primeira carga concluída.
+
+**Os dados e arquivos pessoais ficam no navegador (IndexedDB). Não são sincronizados pelo GitHub.** Para mudar de computador, baixe o backup ZIP pelo painel, guarde de forma privada e restaure no outro navegador. Localhost e site público são origens separadas.
+
+Drive OAuth, banco compartilhado, renderização MP4 automática e publicação por APIs ainda não estão ativos. O site não publica vídeos nas redes. Nenhuma chave é necessária para usar os recursos locais. Não comite credenciais, backups pessoais ou músicas comerciais.
+
+## Preservação
+
+O guia e os materiais V1 permanecem em `00_comece_aqui.html`, `guia-v1.html`, `05_modelo_capa.html` e demais arquivos numerados. O vídeo demonstrativo é silencioso; o projeto editável continua no ZIP original. Metadados musicais não conferem autorização para usar gravações ou letras.
