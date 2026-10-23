@@ -128,3 +128,7 @@ Branch desenvolvimento/publicacao-servidor, baseada em d8d0aaf. Leia docs/PUBLIC
 O serviço requer Node 24+, abre em 8877 e não depende de credenciais para servir o painel. Autenticação do operador, chave de cifragem e provedores são configuração posterior. Nenhuma conta conectada, upload externo ou deploy nesta etapa. TikTok Direct Post pessoal continua bloqueado; existe adaptador de upload assistido condicionado à elegibilidade e aprovação.
 
 Não substituir este trabalho pela versão estática antiga. Preservar IDs, hashes, dados privados e tarefas recebidas. O ZIP local não recupera o banco do serviço: usar o backup SQLite próprio, com chave guardada separadamente. Mudanças locais não revogam tarefas imutáveis já autorizadas; consultar/cancelar no servidor e conferir agendamentos externos antes de substituí-las.
+
+## Publicação do painel V2.2 autorizada
+
+Em 23/10/2026, o proprietário solicitou commit, push e deploy desta entrega. O destino continua sendo a raiz de main no GitHub Pages existente. As notas anteriores de ausência de autorização/deploy registram o estado das respectivas etapas. Publicar o painel estático não hospeda server/runtime/, não configura credenciais nem habilita publicações reais. O serviço Node/SQLite continua dependendo de ambiente próprio e configuração posterior. Preservar a cópia de desenvolvimento/ux-publicacoes usada pelo outro trabalho.

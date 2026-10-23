@@ -1,6 +1,6 @@
 # Golden Music Memories
 
-**Nesta branch: V2.2, serviço de publicação preparado para configuração, sem deploy público.** Leia [configuração e limites da publicação](docs/PUBLICACAO_SERVIDOR.md). A V2.1 anterior foi preservada. Veja [relatório final e evidências](docs/RELATORIO_FINAL_UX_AUDITORIA.md). O link do site continua na versão publicada anterior.
+**V2.2: painel estático para GitHub Pages e serviço opcional de publicação preparado para configuração.** Leia [configuração e limites da publicação](docs/PUBLICACAO_SERVIDOR.md). O deploy do painel não executa o servidor, conecta contas ou ativa uploads. Veja [relatório final e evidências](docs/RELATORIO_FINAL_UX_AUDITORIA.md).
 
 Central de produção do canal musical nostálgico. Aplicação estática V2 com catálogo real, organização de produções, capas editáveis, revisão, acervo e backup.
 
