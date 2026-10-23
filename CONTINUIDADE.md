@@ -112,3 +112,7 @@ Para condições, fontes oficiais e custos ainda a definir, leia `docs/AUTOMACAO
 ## Expansão de templates
 
 Leia docs/TEMPLATES.md. O modelo cassete original é oficial e não deve ser substituído. Seis extensões estão integradas ao editor, com fundos em templates/ e configuração em app/cover.js. A geração e os campos editáveis são locais; não dependem de API. Testes em tests/templates.cjs.
+
+## Etapa UX/publicações local
+
+Branch desenvolvimento/ux-publicacoes: consulte docs/IMPLEMENTACAO_UX_PUBLICACOES.md, docs/PESQUISA.md e docs/PUBLICACOES_PREPARACAO.md. Nenhum deploy autorizado nesta etapa. A base publicada continua 97d54cb. Após o checkpoint principal, executar a rodada em docs/PROXIMA_ETAPA_AUDITORIA.md.

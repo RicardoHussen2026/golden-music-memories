@@ -1,0 +1,63 @@
+const assert=require('node:assert/strict');
+const {mkdtemp,rm,readFile}=require('node:fs/promises');
+const {tmpdir}=require('node:os');
+const path=require('node:path');
+const {randomBytes,createHash}=require('node:crypto');
+const {pathToFileURL}=require('node:url');
+const {chromium}=require('playwright');
+const root=path.resolve(__dirname,'..'),importFile=p=>import(pathToFileURL(path.join(root,p)).href);
+const checks=[];
+const check=(name,fn)=>Promise.resolve().then(fn).then(()=>{checks.push(name);console.log('OK '+name);});
+(async()=>{
+ const {SimulationService}=await importFile('server/simulation-service.mjs'),providers=await importFile('server/provider-adapters.mjs'),{OAuthSimulation}=await importFile('server/oauth-simulation.mjs');
+ const directory=await mkdtemp(path.join(tmpdir(),'gmm-simulation-'));
+ let browser;
+ try{
+  const sessionToken=randomBytes(32).toString('hex'),ownerId='isolated-test',auth={token:sessionToken,ownerId};
+  let service=new SimulationService({directory,sessionToken,ownerId});
+  const bytes=await readFile(path.join(__dirname,'fixtures/youtube-teste.mp4')),fileHash=createHash('sha256').update(bytes).digest('hex');
+  const envelope={schemaVersion:1,mode:'simulation',publicationId:'pub-test',productionId:'prod-test',platform:'youtube',account:{id:'simulation:youtube',platform:'youtube',mode:'simulation'},assetId:'final-test',fileHash,fileSize:bytes.length,fileVersion:1,productionVersion:1,idempotencyKey:'test:'+fileHash,metadata:{title:'Fixture de teste',description:'Simulação isolada',options:{privacy:'private'}},approval:{at:new Date().toISOString(),files:[{id:'final-test',hash:fileHash}]},rightsConfirmed:true};
+  let task;
+  await check('Servidor recusa sessão inválida e modo real',async()=>{await assert.rejects(()=>service.accept({token:'invalid',ownerId},envelope,bytes),/Sessão/);await assert.rejects(()=>service.accept(auth,{...envelope,mode:'real'},bytes),/simulação/);});
+  await check('Servidor recusa direitos, aprovação e hash ausentes',async()=>{await assert.rejects(()=>service.accept(auth,{...envelope,rightsConfirmed:false},bytes),/direitos/);await assert.rejects(()=>service.accept(auth,{...envelope,approval:null},bytes),/Revisão/);await assert.rejects(()=>service.accept(auth,envelope,Buffer.from('corrupt')),/Integridade/);});
+  await check('Transferência persiste bytes e metadados uma única vez',async()=>{task=await service.accept(auth,envelope,bytes);const duplicate=await service.accept(auth,envelope,bytes);assert.equal(duplicate.id,task.id);assert.equal((await service.read()).tasks.length,1);});
+  await check('Conflito na chave de idempotência não sobrescreve a tarefa',async()=>{await assert.rejects(()=>service.accept(auth,{...envelope,metadata:{title:'Changed'}},bytes),/conteúdo diferente/);assert.equal((await service.get(auth,task.id)).metadata.title,envelope.metadata.title);});
+  await check('Reinício conserva tarefa; execução exige consentimento explícito',async()=>{service=new SimulationService({directory,sessionToken,ownerId});assert.equal((await service.get(auth,task.id)).fileHash,fileHash);await assert.rejects(()=>service.process(auth,task.id,task.revision),/não autorizada/);await assert.rejects(()=>service.authorize(auth,task.id,task.revision,{approved:false}),/explícita/);task=await service.authorize(auth,task.id,task.revision,{approved:true,idempotencyKey:task.idempotencyKey});});
+  await check('Falha de rede permite retomada; revisão obsoleta é recusada',async()=>{const old=task.revision;task=await service.process(auth,task.id,task.revision,'network');assert.equal(task.error.retryable,true);await assert.rejects(()=>service.process(auth,task.id,old),/Conflito/);task=await service.process(auth,task.id,task.revision);assert.equal(task.state,'simulated_complete');assert.equal(task.result.externalId,null);assert.equal(task.attempts,2);});
+  await check('Falha TikTok não altera o sucesso YouTube; cancelamento é persistido',async()=>{const tt={...envelope,publicationId:'pub-tt',platform:'tiktok',account:{id:'simulation:tiktok',platform:'tiktok',mode:'simulation'},idempotencyKey:'tt:'+fileHash};let other=await service.accept(auth,tt,bytes);other=await service.authorize(auth,other.id,other.revision,{approved:true,idempotencyKey:other.idempotencyKey});other=await service.process(auth,other.id,other.revision,'rejected');assert.equal(other.error.retryable,false);await assert.rejects(()=>service.process(auth,other.id,other.revision),/não autorizada/);other=await service.cancel(auth,other.id,other.revision);assert.equal(other.state,'cancelled');assert.equal((await service.get(auth,task.id)).state,'simulated_complete');});
+  await check('YouTube: planos de escopo e agendamento sem transporte real',()=>{const plan=providers.youtubeUploadPlan(envelope);assert.equal(plan.disabled,true);assert.equal(plan.scope,providers.YOUTUBE_SCOPES.upload);assert.equal(providers.youtubeChannelPlan().scope,providers.YOUTUBE_SCOPES.read);assert.equal(providers.youtubeProcessingPlan('video-test').scope,providers.YOUTUBE_SCOPES.read);assert.throws(()=>providers.youtubeUploadPlan({...envelope,metadata:{title:'Teste',plannedAt:'2099-01-01T12:00:00Z',options:{privacy:'public'}}}),/privada/);assert.throws(()=>providers.disabledProvider.publish(),/desabilitada/);assert.equal(providers.tiktokCapabilities().directPostPersonalUseAllowed,false);});
+  await check('YouTube: sessão retomável, revogação e rejeição de processamento',()=>{const session={total:1000,offset:0};assert.equal(providers.resumeUpload(session,{status:308,range:'bytes=0-255'}).offset,256);assert.equal(providers.resumeUpload(session,{status:401}).state,'reconnect');assert.equal(providers.resumeUpload(session,{status:404}).requiresReconciliation,true);assert.equal(providers.processingResult({status:{uploadStatus:'rejected',rejectionReason:'copyright'}}).state,'rejected');});
+  const entries=new Map(),store={get:async k=>entries.get(k),put:async(k,v)=>entries.set(k,v)},oauth=new OAuthSimulation({store,encryptionKey:randomBytes(32)});
+  await check('OAuth simulado: state vinculado, uso único e consentimento negado',async()=>{let start=await oauth.begin(ownerId);await assert.rejects(()=>oauth.callback({ownerId:'different',state:start.state,code:'test'}),/State/);assert.equal((await oauth.callback({ownerId,state:start.state,error:'access_denied'})).reason,'consent_denied');await assert.rejects(()=>oauth.callback({ownerId,state:start.state,code:'test'}),/State/);start=await oauth.begin(ownerId);const result=await oauth.callback({ownerId,state:start.state,code:'test'});assert.equal(result.connected,false);});
+  await check('OAuth simulado: cifra, renovação e revogação sem token no frontend',async()=>{const refreshToken=randomBytes(24).toString('hex');await oauth.storeTestTokens(ownerId,{mode:'simulation',refreshToken,accessToken:randomBytes(24).toString('hex')});assert.equal(JSON.stringify([...entries]).includes(refreshToken),false);assert.equal((await oauth.refresh(ownerId)).connected,false);await oauth.revoke(ownerId);await assert.rejects(()=>oauth.refresh(ownerId),/revogado/);await assert.rejects(()=>oauth.storeTestTokens(ownerId,{mode:'real'}),/reais/);});
+  browser=await chromium.launch({headless:true,channel:process.env.GMM_BROWSER_CHANNEL||(process.platform==='win32'?'chrome':undefined)});
+  const context=await browser.newContext(),page=await context.newPage();await page.goto(process.env.GMM_BASE_URL||'http://127.0.0.1:8765');await page.waitForFunction(()=>document.querySelector('#main'));
+  const tests=await page.evaluate(async()=>{
+   const db=await import('./app/db.js'),mod=await import('./app/publishing.js');const passed=[];
+   const ok=(v,name)=>{if(!v)throw Error(name);passed.push(name);},reject=async(fn)=>{try{await fn();return false;}catch{return true;}};
+   const blob=new Blob(['fixture sem gravação comercial'],{type:'video/mp4'}),hash=await db.digest(blob);
+   const production={id:'prod-simulation',version:1,rights:{recording:'confirmed',composition:'confirmed',visual:'confirmed',youtube:'confirmed',tiktok:'confirmed'},approval:{at:db.now(),files:[{id:'yt-test',hash},{id:'tt-test',hash}]}};
+   const assets=['youtube','tiktok'].map(platform=>({id:platform==='youtube'?'yt-test':'tt-test',productionId:production.id,role:platform,type:'video/mp4',blob,hash,rights:'confirmed',size:blob.size,version:1}));
+   let pub={id:'pub-simulation',productionId:production.id,platform:'youtube',title:'Teste isolado',description:'Não publicar',status:'draft',finalAssetId:'yt-test',metrics:{views:14}},account={id:'simulation:youtube',platform:'youtube',mode:'simulation'};
+   await db.batch([{store:'productions',value:production},...assets.map(value=>({store:'assets',value})),{store:'publications',value:pub}]);
+   pub=await mod.prepareDelivery(pub,production,assets);ok(pub.delivery.state==='awaiting_connection','Local: preparação sem credenciais aguarda configuração');
+   pub=await mod.prepareDelivery(pub,production,assets,account);ok(pub.delivery.state==='simulation_ready','Local: direitos e aprovação conferidos antes da simulação');
+   const start=pub;pub=await mod.runSimulation(pub,'network');ok(pub.delivery.error.retryable&&pub.status==='draft','Local: falha simulada não vira publicação real');
+   pub=await mod.runSimulation(pub);ok(pub.delivery.state==='simulated_complete'&&pub.metrics.views===14&&!pub.url,'Local: retomada preserva métricas e status manual');
+   const again=await mod.runSimulation(pub);ok(again.delivery.revision===pub.delivery.revision&&again.delivery.attempts===2,'Local: repetição idempotente não duplica execução');
+   let tt={...pub,id:'pub-simulation-tt',platform:'tiktok',finalAssetId:'tt-test',delivery:undefined};await db.put('publications',tt);tt=await mod.prepareDelivery(tt,production,assets,{id:'simulation:tiktok',platform:'tiktok',mode:'simulation'});tt=await mod.runSimulation(tt,'rejected');ok(tt.delivery.state==='failed'&&(await db.all('publications')).find(p=>p.id===pub.id).delivery.state==='simulated_complete','Local: plataformas mantêm estados independentes');
+   tt=await mod.cancelDelivery(tt);ok(tt.delivery.state==='cancelled'&&await reject(()=>mod.runSimulation(tt)),'Local: cancelamento bloqueia execução');
+   tt=await mod.prepareDelivery(tt,production,assets,{id:'simulation:tiktok',platform:'tiktok',mode:'simulation'});
+   const changed={...tt,title:'Edição posterior preservada'};await db.put('publications',changed);const reconciled=await mod.reconcileDelivery(changed,{mode:'simulation',publicationId:tt.id,idempotencyKey:tt.delivery.idempotencyKey,serverRevision:8,state:'simulated_complete'});ok(reconciled.title===changed.title&&reconciled.delivery.state==='conflict','Local: conciliação não sobrescreve edição posterior');
+   let fresh={...pub,id:'pub-hash',delivery:undefined};await db.put('publications',fresh);fresh=await mod.prepareDelivery(fresh,production,assets,account);await db.put('assets',{...assets[0],blob:new Blob(['corrompido'],{type:'video/mp4'})});ok(await reject(()=>mod.runSimulation(fresh)),'Local: hash do Blob real é conferido antes de executar');await db.put('assets',assets[0]);
+   await db.put('productions',{...production,rights:{...production.rights,youtube:'unauthorized'}});ok(await reject(()=>mod.runSimulation(fresh)),'Local: direitos alterados após aprovação bloqueiam execução');await db.put('productions',production);
+   await db.put('assets',{...assets[0],until:'2000-01-01'});ok(await reject(()=>mod.runSimulation(fresh)),'Local: licença vencida do arquivo final bloqueia execução');await db.put('assets',assets[0]);
+   const ActualDate=globalThis.Date;globalThis.Date=class extends ActualDate{constructor(...args){super(...(args.length?args:['2026-10-24T01:00:00Z']));}static now(){return new ActualDate('2026-10-24T01:00:00Z').getTime();}};
+   try{ok(!mod.deliveryIssues(fresh,{...production,licenseUntil:'2026-10-23'},[{...assets[0],until:'2026-10-23'}],account).some(x=>x.includes('vencida')),'Local: validade considera a data de São Paulo após 21h');}finally{globalThis.Date=ActualDate;}
+   const result=await Promise.allSettled([mod.runSimulation(fresh),mod.runSimulation(fresh)]);ok(result.filter(x=>x.status==='fulfilled').length===1,'Local: concorrência executa a tarefa uma única vez');
+   return passed;
+  });
+  checks.push(...tests);for(const c of tests)console.log('OK '+c);
+  console.log(JSON.stringify({checks:checks.length,realConnections:false,realPublications:false}));
+ }finally{if(browser)await browser.close();await rm(directory,{recursive:true,force:true});}
+})().catch(e=>{console.error(e);process.exitCode=1;});

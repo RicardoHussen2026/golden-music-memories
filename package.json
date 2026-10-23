@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "test": "node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs"
+    "test": "node tests/search.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",
