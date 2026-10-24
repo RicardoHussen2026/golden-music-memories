@@ -10,11 +10,13 @@ export function configuration(env=process.env){
   return {port,host:'127.0.0.1',origin,secure:url.protocol==='https:',directory:resolve(env.GMM_DATA_DIR||'.cache/publishing-private'),
     password:env.GMM_OPERATOR_PASSWORD||'',encryptionKey:encryptionKey?Buffer.from(encryptionKey,'hex'):null,
     network:env.GMM_ALLOW_NETWORK==='true',publishing:env.GMM_ALLOW_PUBLISH==='true',worker:env.GMM_WORKER_ENABLED==='true',
-    maxBytes:500*1024*1024,chunkBytes:4*1024*1024,maxAttempts:5,
-    youtube:{clientId:env.YOUTUBE_CLIENT_ID||'',clientSecret:env.YOUTUBE_CLIENT_SECRET||'',redirectUri:origin+'/api/oauth/youtube/callback',manageSchedules:env.YOUTUBE_MANAGE_SCHEDULES==='true'},
+    maxBytes:bounded(env.GMM_MAX_FILE_MIB,10240,1,262144)*1024*1024,minFreeBytes:bounded(env.GMM_MIN_FREE_MIB,1024,0,1048576)*1024*1024,chunkBytes:4*1024*1024,maxAttempts:5,
+    drive:{clientId:env.GOOGLE_DRIVE_CLIENT_ID||'',clientSecret:env.GOOGLE_DRIVE_CLIENT_SECRET||'',redirectUri:origin+'/api/oauth/drive/callback',email:env.GOOGLE_DRIVE_EMAIL||'ric.hussen@gmail.com'},
+    youtube:{clientId:env.YOUTUBE_CLIENT_ID||'',clientSecret:env.YOUTUBE_CLIENT_SECRET||'',redirectUri:origin+'/api/oauth/youtube/callback',manageSchedules:env.YOUTUBE_MANAGE_SCHEDULES==='true',maxDurationSeconds:bounded(env.YOUTUBE_MAX_DURATION_SECONDS,900,1,43200)},
     tiktok:{clientId:env.TIKTOK_CLIENT_KEY||'',clientSecret:env.TIKTOK_CLIENT_SECRET||'',redirectUri:origin+'/api/oauth/tiktok/callback',uploadApproved:env.TIKTOK_UPLOAD_APPROVED==='true'}};
 }
 export function enabled(config,platform){const p=config[platform];return Boolean(config.network&&config.encryptionKey&&p?.clientId&&p?.clientSecret&&(platform!=='tiktok'||config.secure&&p.uploadApproved));}
+function bounded(value,fallback,min,max){const n=value===undefined?fallback:Number(value);if(!Number.isSafeInteger(n)||n<min||n>max)throw Error('Limite de armazenamento inválido.');return n;}
 export function availability(config){return {networkEnabled:config.network,publishingEnabled:config.publishing,workerEnabled:config.worker,authenticationConfigured:config.password.length>=16,encryptionConfigured:!!config.encryptionKey,
-  providers:['youtube','tiktok'].map(platform=>({platform,configured:!!config[platform].clientId&&!!config[platform].clientSecret,oauthEnabled:enabled(config,platform),
-    directPostEnabled:false,automaticScheduling:platform==='youtube',message:platform==='tiktok'?'Direct Post indisponível para este painel pessoal. Upload assistido depende de aprovação; finalização no aplicativo.':'Upload e agendamento disponíveis após configuração e autorização.'}))};}
+  providers:['youtube','tiktok','drive'].map(platform=>({platform,configured:!!config[platform].clientId&&!!config[platform].clientSecret,oauthEnabled:enabled(config,platform),
+    directPostEnabled:false,automaticScheduling:platform==='youtube',message:platform==='drive'?'Acervo privado no Drive; requer OAuth próprio e conta autorizada.':platform==='tiktok'?'Direct Post indisponível para este painel pessoal. Upload assistido depende de aprovação; finalização no aplicativo.':'Upload e agendamento disponíveis após configuração e autorização.'}))};}

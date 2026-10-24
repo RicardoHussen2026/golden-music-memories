@@ -4,9 +4,10 @@ import {enabled} from './config.mjs';
 import {youtubeUploadPlan,processingResult} from '../provider-adapters.mjs';
 import {validateEnvelope,canonical} from './contracts.mjs';
 
-const scopes={youtube:['https://www.googleapis.com/auth/youtube.upload','https://www.googleapis.com/auth/youtube.readonly'],tiktok:['user.info.basic','video.upload']};
+const scopes={drive:['https://www.googleapis.com/auth/drive'],youtube:['https://www.googleapis.com/auth/youtube.upload','https://www.googleapis.com/auth/youtube.readonly'],tiktok:['user.info.basic','video.upload']};
 const MANAGE='https://www.googleapis.com/auth/youtube.force-ssl';
 const endpoints={youtube:{auth:'https://accounts.google.com/o/oauth2/v2/auth',token:'https://oauth2.googleapis.com/token',revoke:'https://oauth2.googleapis.com/revoke'},tiktok:{auth:'https://www.tiktok.com/v2/auth/authorize/',token:'https://open.tiktokapis.com/v2/oauth/token/',revoke:'https://open.tiktokapis.com/v2/oauth/revoke/'}};
+endpoints.drive=endpoints.youtube;
 export class ProviderError extends Error{constructor(code,{retryable=false,reconnect=false,ambiguous=false,delay=0}={}){super(code);Object.assign(this,{code,retryable,reconnect,ambiguous,delay,status:502});}}
 export class Providers{
   constructor(store,config,transport=globalThis.fetch){this.store=store;this.config=config;this.transport=transport;}
@@ -28,16 +29,17 @@ export class Providers{
     const p=this.config[platform],state=randomBytes(32).toString('base64url');
     this.store.put('oauth',sha(state),{owner,sessionId,platform,expires:Date.now()+600000});
     const requested=platform==='youtube'&&p.manageSchedules?[MANAGE]:scopes[platform];
-    const url=new URL(endpoints[platform].auth);url.search=new URLSearchParams({[platform==='youtube'?'client_id':'client_key']:p.clientId,response_type:'code',redirect_uri:p.redirectUri,scope:requested.join(platform==='youtube'?' ':','),state,...(platform==='youtube'?{access_type:'offline',prompt:'consent'}:{})}).toString();return {url:url.href};
+    const url=new URL(endpoints[platform].auth);url.search=new URLSearchParams({[platform!=='tiktok'?'client_id':'client_key']:p.clientId,response_type:'code',redirect_uri:p.redirectUri,scope:requested.join(platform!=='tiktok'?' ':','),state,...(platform!=='tiktok'?{access_type:'offline',prompt:'consent'}:{})}).toString();return {url:url.href};
   }
   async callback(owner,sessionId,platform,{state,code,error}){
     const entry=this.store.transaction(()=>{check(typeof state==='string'&&state.length>=32,'State ausente.');const k=sha(state),v=this.store.get('oauth',k);check(v&&v.owner===owner&&v.sessionId===sessionId&&v.platform===platform&&v.expires>Date.now(),'State inválido, expirado ou reutilizado.');this.store.delete('oauth',k);return v;});
     check(!error,'Autorização recusada. Nenhuma conta foi conectada.');check(code&&code.length<4096,'Código OAuth ausente.');check(enabled(this.config,platform),'Conexão desabilitada.',503);
-    const p=this.config[platform],form=new URLSearchParams({[platform==='youtube'?'client_id':'client_key']:p.clientId,client_secret:p.clientSecret,grant_type:'authorization_code',code,redirect_uri:p.redirectUri});
+    const p=this.config[platform],form=new URLSearchParams({[platform!=='tiktok'?'client_id':'client_key']:p.clientId,client_secret:p.clientSecret,grant_type:'authorization_code',code,redirect_uri:p.redirectUri});
     const tokens=await this.json(endpoints[platform].token,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:form.toString()});
     check(tokens.access_token&&Number.isFinite(Number(tokens.expires_in))&&Number(tokens.expires_in)>0,'Token ou validade não recebidos.');const granted=String(tokens.scope||'').split(/[ ,]+/).filter(Boolean);const required=platform==='youtube'&&p.manageSchedules?[MANAGE]:scopes[platform];check(required.every(s=>granted.includes(s)),'Permissões obrigatórias não concedidas.');
     let identity,label;
-    if(platform==='youtube'){const data=await this.json('https://www.googleapis.com/youtube/v3/channels?part=id,snippet&mine=true',{headers:{Authorization:'Bearer '+tokens.access_token}});check(data.items?.length===1,'É necessário autorizar exatamente um canal do YouTube.');identity=data.items[0].id;label=data.items[0].snippet.title;}
+    if(platform==='drive'){const data=await this.json('https://www.googleapis.com/drive/v3/about?fields=user(emailAddress,permissionId,displayName)',{headers:{Authorization:'Bearer '+tokens.access_token}});check(data.user?.emailAddress?.toLowerCase()===p.email.toLowerCase(),'Autorize a conta Drive configurada.');identity=data.user.permissionId;label=data.user.emailAddress;check(identity,'Identidade Drive ausente.');}
+    else if(platform==='youtube'){const data=await this.json('https://www.googleapis.com/youtube/v3/channels?part=id,snippet&mine=true',{headers:{Authorization:'Bearer '+tokens.access_token}});check(data.items?.length===1,'É necessário autorizar exatamente um canal do YouTube.');identity=data.items[0].id;label=data.items[0].snippet.title;}
     else{const data=await this.json('https://open.tiktokapis.com/v2/user/info/?fields=open_id,display_name',{headers:{Authorization:'Bearer '+tokens.access_token}});identity=data.data?.user?.open_id;label=data.data?.user?.display_name;check(identity&&identity===tokens.open_id,'Conta TikTok não confirmada.');}
     const id=platform+':'+identity,old=this.store.get('connection',id),oldTokens=old?.encrypted?this.store.open(old.encrypted):{};
     const refresh=tokens.refresh_token||oldTokens.refresh_token;check(refresh,'Acesso offline ausente; autorize novamente.');
@@ -49,7 +51,7 @@ export class Providers{
     let tokens=this.store.open(c.encrypted);if(tokens.expiresAt>Date.now()+90000)return tokens.access_token;
     const lock='refresh:'+id;this.store.transaction(()=>{const old=this.store.get('lock',lock);if(old?.until>Date.now())throw new ProviderError('REFRESH_BUSY',{retryable:true});this.store.put('lock',lock,{until:Date.now()+40000});});
     try{c=this.store.get('connection',id);tokens=this.store.open(c.encrypted);if(tokens.expiresAt>Date.now()+90000)return tokens.access_token;
-      check(tokens.refresh_token,'Reconexão necessária.',409);const p=this.config[c.platform],form=new URLSearchParams({[c.platform==='youtube'?'client_id':'client_key']:p.clientId,client_secret:p.clientSecret,grant_type:'refresh_token',refresh_token:tokens.refresh_token});
+      check(tokens.refresh_token,'Reconexão necessária.',409);const p=this.config[c.platform],form=new URLSearchParams({[c.platform!=='tiktok'?'client_id':'client_key']:p.clientId,client_secret:p.clientSecret,grant_type:'refresh_token',refresh_token:tokens.refresh_token});
       const updated=await this.json(endpoints[c.platform].token,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:form.toString()});check(updated.access_token,'Renovação não retornou token.');
       if(updated.scope&&!c.scopes.every(s=>String(updated.scope).split(/[ ,]+/).includes(s))||updated.open_id&&updated.open_id!==c.identity)throw new ProviderError('PERMISSIONS_CHANGED',{reconnect:true});
       check(Number.isFinite(Number(updated.expires_in))&&Number(updated.expires_in)>0,'Renovação sem validade.');
@@ -58,7 +60,7 @@ export class Providers{
     }catch(error){if(error.reconnect)this.store.put('connection',id,{...c,state:'reconnect_required'});throw error;}finally{this.store.delete('lock',lock);}
   }
   async disconnect(owner,id){const c=this.store.get('connection',id);check(c?.owner===owner,'Conta não encontrada.',404);let revoked=false;
-    try{if(c.encrypted&&enabled(this.config,c.platform)){const tokens=this.store.open(c.encrypted),p=this.config[c.platform];const form=new URLSearchParams(c.platform==='youtube'?{token:tokens.refresh_token||tokens.access_token}:{client_key:p.clientId,client_secret:p.clientSecret,token:tokens.access_token});await this.json(endpoints[c.platform].revoke,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:form.toString()});revoked=true;}}catch{}
+    try{if(c.encrypted&&enabled(this.config,c.platform)){const tokens=this.store.open(c.encrypted),p=this.config[c.platform];const form=new URLSearchParams(c.platform!=='tiktok'?{token:tokens.refresh_token||tokens.access_token}:{client_key:p.clientId,client_secret:p.clientSecret,token:tokens.access_token});await this.json(endpoints[c.platform].revoke,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:form.toString()});revoked=true;}}catch{}
     this.store.put('connection',id,{id:c.id,owner,identity:c.identity,platform:c.platform,label:c.label,scopes:[],state:'disconnected',disconnectedAt:stamp()});
     return {disconnected:true,remoteRevocationConfirmed:revoked,message:revoked?'Desconectada.':'Acesso local removido. Confira também as permissões na plataforma.'};
   }
@@ -110,7 +112,7 @@ export class Providers{
       const candidate=d.publicaly_available_post_id?.[0],postId=typeof candidate==='string'?candidate:Number.isSafeInteger(candidate)?String(candidate):null;return {state:d.status==='PUBLISH_COMPLETE'?'completed':d.status==='SEND_TO_USER_INBOX'?'awaiting_user':'processing',due:Date.now()+60000,result:{simulated:false,externalId:postId||null,publishId:r.publishId,url:null,visibility:'unknown',requiresUserAction:d.status==='SEND_TO_USER_INBOX'}};
     }
     if(!r.publishId){if(r.phase==='initializing')throw new ProviderError('TIKTOK_INIT_UNKNOWN',{ambiguous:true});job=checkpoint({remote:{phase:'initializing'}});
-      const chunk=e.fileSize<5*1024*1024?e.fileSize:10*1024*1024,total=Math.max(1,Math.floor(e.fileSize/chunk));
+      const chunk=Math.min(e.fileSize,10*1024*1024),total=Math.max(1,Math.floor(e.fileSize/chunk));
       const body=await this.json('https://open.tiktokapis.com/v2/post/publish/inbox/video/init/',{method:'POST',headers:auth,body:JSON.stringify({source_info:{source:'FILE_UPLOAD',video_size:e.fileSize,chunk_size:chunk,total_chunk_count:total}})});
       check(body.data?.publish_id&&body.data?.upload_url&&new URL(body.data.upload_url).origin==='https://open-upload.tiktokapis.com','Sessão TikTok inválida.');return {state:'uploading',remote:{publishId:body.data.publish_id,url:body.data.upload_url,offset:0,chunk,total},due:Date.now()};
     }

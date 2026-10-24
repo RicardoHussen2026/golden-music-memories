@@ -13,3 +13,7 @@
 
 - A V2.2 acrescenta serviço opcional em server/runtime/. Leia docs/PUBLICACAO_SERVIDOR.md antes de alterar publicação. A origem estática continua funcional; o banco local não foi migrado para nuvem.
 - Não ativar as flags de rede/publicação/worker nem inserir credenciais reais como parte de testes. Preserve a separação entre simulação, rascunho manual e resultado confirmado.
+
+- V2.3: leia docs/ESCOPO_ACERVO_PROGRAMACAO.md e docs/ACERVO_PROGRAMACAO.md. O fluxo aprovado usa MP4 finalizados externamente no CapCut. Não ampliar para transcrição/tradução/renderização.
+- O consentimento da rotina e da pasta de prontos autoriza a seleção automática sem revisão humana de cada vídeo. Mantenha verificações técnicas, histórico por destino e limitações TikTok.
+- O controle principal/reserva é manual. Não remover a pausa após importação nem presumir que snapshots antigos provam exclusividade entre máquinas.

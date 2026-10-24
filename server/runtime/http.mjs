@@ -9,14 +9,21 @@ import {configuration,availability} from './config.mjs';
 import {Transfers} from './contracts.mjs';
 import {Providers} from './providers.mjs';
 import {Worker} from './worker.mjs';
+import {MediaLibrary} from './media.mjs';
+import {Drive} from './drive.mjs';
+import {Scheduler} from './scheduler.mjs';
+import {Continuity} from './continuity.mjs';
 
 const root=resolve(fileURLToPath(new URL('../../',import.meta.url)));
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.mp4':'video/mp4','.webmanifest':'application/manifest+json'};
 const cookies=req=>Object.fromEntries((req.headers.cookie||'').split(';').filter(s=>s.includes('=')).map(s=>{const i=s.indexOf('=');return [s.slice(0,i).trim(),s.slice(i+1)];}));
 async function body(req,limit){const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;check(size<=limit,'Corpo da requisição acima do limite.',413);chunks.push(chunk);}return Buffer.concat(chunks);}
-async function jsonBody(req){try{return JSON.parse((await body(req,65536)).toString());}catch(e){if(e.status)throw e;check(false,'JSON inválido.');}}
+async function jsonBody(req,limit=65536){try{return JSON.parse((await body(req,limit)).toString());}catch(e){if(e.status)throw e;check(false,'JSON inválido.');}}
 export function createApplication(config=configuration(),options={}){
   const store=options.store||new Store(config.directory,config.encryptionKey),transfers=new Transfers(store,config),providers=new Providers(store,config,options.transport),worker=new Worker(store,config,providers);
+  const library=new MediaLibrary(store,config),drive=new Drive(store,config,providers,library),scheduler=new Scheduler(store,config,library),continuity=new Continuity(store,config,scheduler);
+  drive.needsCache=()=>['youtube','tiktok'].flatMap(p=>scheduler.candidates(p,Date.now()).slice(0,5).map(m=>m.id));
+  const cycle=async()=>{if(!continuity.status().active)return;const steps=[...(config.network?[()=>drive.tick()]:[]),...(config.worker?[()=>scheduler.tick(),()=>worker.tick()]:[])];for(const step of steps){try{await step();}catch(error){store.put('ops_event','last-error',{id:'last-error',at:stamp(),message:'Uma etapa foi interrompida. Consulte os diagnósticos e as tarefas.',code:error.code||'PROCESSING_ERROR'});}}};
   const salt=randomBytes(32),passwordHash=scryptSync(config.password,salt,32),loginFailures=new Map();let interval,pendingWorker=null;
   const server=createServer(async(req,res)=>{
     const id=randomBytes(8).toString('hex');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Frame-Options','DENY');
@@ -40,12 +47,32 @@ export function createApplication(config=configuration(),options={}){
         const sessionId=sha(cookies(req).gmm_session||''),session=store.get('session',sessionId);check(session&&session.expires>Date.now(),'Entre no serviço para continuar.',401);const owner=session.owner;
         if(path==='/api/session'&&req.method==='DELETE'){store.delete('session',sessionId);res.setHeader('Set-Cookie','gmm_session=; HttpOnly; SameSite=Lax; Path=/api; Max-Age=0');return reply({authenticated:false});}
         if(path==='/api/connections'&&req.method==='GET')return reply({connections:providers.connections(owner),...availability(config)});
-        const oauth=/^\/api\/oauth\/(youtube|tiktok)\/(begin|callback)$/.exec(path);
+        const oauth=/^\/api\/oauth\/(youtube|tiktok|drive)\/(begin|callback)$/.exec(path);
         if(oauth){const [,platform,action]=oauth;
           if(action==='begin'&&req.method==='POST')return reply(providers.begin(owner,sessionId,platform));
           if(action==='callback'&&req.method==='GET'){await providers.callback(owner,sessionId,platform,Object.fromEntries(url.searchParams));res.writeHead(303,{Location:'/painel.html#settings','Cache-Control':'no-store'});return res.end();}
         }
         if(path==='/api/disconnect'&&req.method==='POST')return reply(await providers.disconnect(owner,(await jsonBody(req)).accountId));
+        if(path==='/api/operations'&&req.method==='GET')return reply({...scheduler.dashboard(),diagnostics:continuity.diagnostics(),connections:providers.connections(owner),productions:store.list('production'),publications:store.list('publication'),media:library.list().map(({driveUpload,...m})=>({...m,driveUpload:driveUpload?{state:driveUpload.state,offset:driveUpload.offset}:null})),folders:store.get('drive','folders'),driveScan:store.get('drive','scan'),events:store.list('ops_event')});
+        if(path==='/api/operations/records'&&req.method==='POST')return reply(library.records(await jsonBody(req,16*1024*1024)));
+        if(path==='/api/operations/publications'&&req.method==='POST')return reply(library.record(await jsonBody(req)));
+        if(path==='/api/operations/send'&&req.method==='POST'){const input=await jsonBody(req),job=scheduler.prepareManual(input.mediaId,input);return reply(worker.authorize(owner,job.id,job.revision,{confirm:true,binding:job.envelope.approval.binding,assistedUpload:input.assistedUpload,musicUsage:true}));}
+        if(path==='/api/operations/schedule'&&req.method==='POST')return reply(scheduler.save(await jsonBody(req)));
+        if(path==='/api/operations/pause'&&req.method==='POST')return reply(continuity.pause());
+        if(path==='/api/operations/activate'&&req.method==='POST')return reply(continuity.activate(await jsonBody(req)));
+        if(path==='/api/operations/simulate'&&req.method==='POST'){check(scheduler.settings().mode==='simulation','A rotina precisa estar em simulação.');await scheduler.tick();for(let n=0;n<24;n++){const j=store.jobs(owner).find(j=>j.mode==='simulation'&&j.state==='authorized');if(!j)break;await worker.tick(owner,j.id);}return reply(scheduler.dashboard());}
+        if(path==='/api/operations/backup'&&req.method==='POST'){const input=await jsonBody(req);return reply(continuity.export(input,{handoff:input.handoff===true}));}
+        if(path==='/api/operations/restore'&&req.method==='POST'){const input=await jsonBody(req,32*1024*1024);return reply(continuity.import(input.packet,input));}
+        if(path==='/api/operations/reconciled'&&req.method==='POST')return reply(continuity.reconcile(await jsonBody(req)));
+        if(path==='/api/library'&&req.method==='POST')return reply(library.begin(await jsonBody(req)),201);
+        const media=/^\/api\/library\/([a-f\d-]+)(?:\/(complete|describe|drive|resume|reconcile|evict|download))?$/.exec(path);
+        if(media){const [,mid,action]=media;if(req.method==='PUT'&&!action)return reply(library.append(mid,Number(req.headers['x-upload-offset']),await body(req,config.chunkBytes)));
+          if(req.method==='POST'){if(action==='complete')return reply(library.complete(mid));if(action==='describe')return reply(library.describe(mid,await jsonBody(req)));if(action==='drive')return reply(drive.queueUpload(mid));if(action==='resume')return reply(drive.resume(mid));if(action==='download')return reply(drive.restoreCache(mid));if(action==='reconcile')return reply(await drive.reconcileUpload(mid));if(action==='evict'){const m=library.get(mid),remote=await drive.metadata(m.drive?.id);check(!remote.trashed&&remote.md5Checksum===m.md5&&remote.version===m.drive.version,'A cópia Drive mudou; cache preservado.');return reply(library.evict(mid));}}}
+        if(path==='/api/drive/setup'&&req.method==='POST')return reply(await drive.setup());
+        if(path==='/api/drive/policy'&&req.method==='POST')return reply(drive.policy(await jsonBody(req)));
+        if(path==='/api/drive/backup'&&req.method==='POST')return reply(await drive.backup((await jsonBody(req,32*1024*1024)).packet));
+        if(path==='/api/drive/scan'&&req.method==='POST')return reply(await drive.scan());
+        if(path==='/api/drive/import'&&req.method==='POST'){const input=await jsonBody(req);check(Array.isArray(input.ids)&&input.ids.length<=100,'Selecione até 100 vídeos por lote.');const results=[];for(const id of input.ids){try{results.push({id,media:await drive.importFile(id)});}catch(e){results.push({id,error:e.status<500?e.message:'Não foi possível consultar este vídeo.'});}}return reply({results});}
         if(path==='/api/transfers'&&req.method==='POST')return reply(transfers.begin(owner,await jsonBody(req)),201);
         const transfer=/^\/api\/transfers\/([a-f\d-]+)(\/complete)?$/.exec(path);
         if(transfer){const [,tid,complete]=transfer;
@@ -83,6 +110,6 @@ export function createApplication(config=configuration(),options={}){
     }
   });
   server.requestTimeout=60000;server.headersTimeout=15000;
-  return {server,store,providers,worker,listen:()=>new Promise(resolve=>server.listen(config.port,config.host,()=>{if(config.worker)interval=setInterval(()=>{if(!pendingWorker)pendingWorker=worker.tick().catch(()=>{}).finally(()=>pendingWorker=null);},1000);resolve(server.address());})),close:async()=>{clearInterval(interval);await new Promise(resolve=>server.close(resolve));await pendingWorker;store.close();}};
+  return {server,store,providers,worker,library,drive,scheduler,continuity,listen:()=>new Promise(resolve=>server.listen(config.port,config.host,()=>{interval=setInterval(()=>{if(!pendingWorker)pendingWorker=cycle().finally(()=>pendingWorker=null);},1000);resolve(server.address());})),close:async()=>{clearInterval(interval);await new Promise(resolve=>server.close(resolve));await pendingWorker;store.close();}};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){const config=configuration(),app=createApplication(config,{log:event=>console.error(JSON.stringify(event))});await app.listen();console.log(`Golden Music Memories · ${config.origin}/painel.html · publicação externa ${config.publishing?'habilitada por configuração':'desativada'}`);for(const signal of ['SIGINT','SIGTERM'])process.once(signal,async()=>{await app.close();process.exit(0);});}

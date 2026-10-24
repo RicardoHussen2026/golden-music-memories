@@ -1,6 +1,6 @@
 # Golden Music Memories
 
-**V2.2: painel estático para GitHub Pages e serviço opcional de publicação preparado para configuração.** Leia [configuração e limites da publicação](docs/PUBLICACAO_SERVIDOR.md). O deploy do painel não executa o servidor, conecta contas ou ativa uploads. Veja [relatório final e evidências](docs/RELATORIO_FINAL_UX_AUDITORIA.md).
+**V2.3: capas em lote, biblioteca de MP4 finalizados no CapCut, Google Drive, histórico por destino e programação recorrente no serviço local.** Leia o [guia de acervo e programação](docs/ACERVO_PROGRAMACAO.md) e o [relatório de entrega](docs/ENTREGA_ACERVO_PROGRAMACAO.md). Leia [configuração e limites da publicação](docs/PUBLICACAO_SERVIDOR.md). O deploy do painel não executa o servidor, conecta contas ou ativa uploads. Veja [relatório final e evidências](docs/RELATORIO_FINAL_UX_AUDITORIA.md).
 
 Central de produção do canal musical nostálgico. Aplicação estática V2 com catálogo real, organização de produções, capas editáveis, revisão, acervo e backup.
 
@@ -33,7 +33,7 @@ Arquivos versionados, direitos independentes, revisão editorial, finais distint
 
 **Os dados e arquivos pessoais ficam no navegador (IndexedDB). Não são sincronizados pelo GitHub.** Para mudar de computador, baixe o backup ZIP pelo painel, guarde de forma privada e restaure no outro navegador. Localhost e site público são origens separadas.
 
-Drive OAuth, banco compartilhado e renderização MP4 automática ainda não estão ativos. A V2.2 implementa o serviço opcional de publicação, mas conexões e envios reais continuam desativados. O site não publica vídeos nas redes. Nenhuma chave é necessária para usar os recursos locais. Não comite credenciais, backups pessoais ou músicas comerciais.
+A V2.3 implementa OAuth e transferências Drive, agenda recorrente, cache em disco e transferência manual do controle entre computadores. Contas reais continuam dependendo de configuração e homologação. Renderização e legendas são finalizadas externamente no CapCut. O site não publica vídeos nas redes. Nenhuma chave é necessária para usar os recursos locais. Não comite credenciais, backups pessoais ou músicas comerciais.
 
 ## Preservação
 

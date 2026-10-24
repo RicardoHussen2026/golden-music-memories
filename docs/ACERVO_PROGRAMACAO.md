@@ -1,0 +1,150 @@
+# Acervo pronto e programação — V2.3
+
+O aplicativo organiza capas e produções, recebe os MP4 finalizados no CapCut, conserva referências no Google Drive e seleciona vídeos para a programação. A edição, a legenda e a tradução continuam no CapCut.
+
+## Fluxo diário
+
+1. No Catálogo, reserve as músicas e crie as produções.
+2. Em **Acervo e programação → Gerar lote de capas e pacote CapCut**, escolha de uma a cinco produções. São geradas duas capas por produção (vertical 1080×1920 e horizontal 1280×720), guardadas como novas versões. O ZIP contém os cinco pacotes de edição, textos e identificação.
+3. No CapCut, finalize áudio, clipe, tradução, legenda e chamada adequada ao destino. A aplicação não reconhece letras nem renderiza vídeos.
+4. Use `GMM_ID_COMPLETO_DA_PRODUCAO_YOUTUBE.mp4`, `_TIKTOK.mp4` ou `_AMBOS.mp4` para o arquivo final. O ID está no nome do pacote. Um mesmo arquivo pode atender aos dois destinos; versões diferentes permanecem separadas.
+5. Leve os finais à pasta `02_VIDEOS_PRONTOS` do Drive, ou receba-os no serviço pelo seletor de MP4 e use **Enviar ao Drive**.
+6. Para começar manualmente, publique pelas plataformas e use **Registrar postagem manual**, indicando destino, link e data. **Sincronizar produções e histórico deste navegador** traz os registros antigos para a seleção do serviço.
+7. Quando configurado, habilite a entrada automática da pasta. O consentimento declara que seus arquivos já estão finalizados e autorizados. Somente nomes associados a uma produção inequívoca e MP4 com vídeo, áudio, duração e integridade identificáveis tornam-se elegíveis. Arquivos sem identificação ficam em edição para associação.
+8. Configure dias, horários, fuso e política de repetição. Comece com simulação. O modo real exige configuração e conta autorizada.
+
+Não use a pasta de prontos para exportações parciais. Mantenha o arquivo em `01_EM_EDICAO` e mova-o para a pasta de prontos somente depois de concluir o upload. As chamadas desenhadas no vídeo não se tornam links clicáveis. A miniatura YouTube e o quadro escolhido no TikTok dependem dos recursos de cada conta/formato.
+
+## Serviço local e início no Windows
+
+Requer Node.js 24 ou superior. A instalação não usa Python, FFmpeg, Oracle ou Colab. Na raiz da cópia do repositório:
+
+```powershell
+npm run service:setup
+npm run service:start
+```
+
+O primeiro comando cria `.env` somente se não existir, com senha exclusiva e chave aleatória de cifragem. Não imprime os segredos. Abra esse arquivo localmente para obter a senha do serviço e guarde a chave em lugar seguro. Não envie senhas/chaves por chat e não as comite.
+
+Abra `http://127.0.0.1:8877/painel.html`, entre em **Configurações → Entrar no serviço** e depois vá a **Acervo e programação**. A página GitHub Pages continua entregando o painel estático. O serviço com fila, arquivos e OAuth funciona neste computador, em sua própria origem.
+
+O launcher inicia Node em segundo plano; fechar a aba não encerra o serviço. O computador precisa estar ligado, conectado e sem suspensão. O comando `npm run service:stop` encerra somente o processo registrado pelo launcher, depois de conferir sua identidade. Pause a operação no painel antes de encerrar.
+
+Opcionalmente, `npm run service:startup` cria um atalho na inicialização do usuário Windows. Não instala serviço administrativo nem modifica a política de execução do sistema. Requer sessão do usuário aberta. Para retirar essa opção, remova apenas o atalho **Golden Music Memories** da pasta Inicializar do Windows.
+
+Preparação, início em segundo plano, detecção de processo já iniciado, parada e reinício foram exercitados neste computador. A inicialização automática no login não foi instalada; permanece para configuração de uso. O segundo PC ainda precisa ser homologado. Porta personalizada exige usar o endereço definido em `.env`, em vez do endereço padrão informado pelo launcher.
+
+## Dados e migração
+
+- IndexedDB preservado: catálogo, produções, capas, materiais anteriores e publicações locais.
+- SQLite privado: acervo do serviço, referências Drive, política, slots, tarefas, histórico e conexões.
+- `media/UUID.mp4` no diretório privado: cache em disco, sem colocar vídeos grandes em memória ou no Git.
+- Drive: cópia externa dos arquivos finalizados e pacotes cifrados de controle.
+- **Sincronizar produções e histórico** copia metadados por ID; não apaga nem migra automaticamente o IndexedDB.
+
+GitHub Pages, localhost:8765 e localhost:8877 têm bancos de navegador diferentes. Antes de trocar de origem, exporte o backup ZIP na origem antiga e restaure-o na nova. O backup do navegador e o controle do serviço têm responsabilidades diferentes.
+
+## Google Drive
+
+Configure um cliente OAuth Web do próprio projeto Google Cloud, ative a Drive API e cadastre o retorno exato:
+
+```text
+http://127.0.0.1:8877/api/oauth/drive/callback
+```
+
+Variáveis em `.env`:
+
+```text
+GOOGLE_DRIVE_CLIENT_ID=
+GOOGLE_DRIVE_CLIENT_SECRET=
+GOOGLE_DRIVE_EMAIL=ric.hussen@gmail.com
+GMM_ALLOW_NETWORK=true
+```
+
+O código solicita `https://www.googleapis.com/auth/drive`, pois a rotina deve descobrir arquivos que você colocou manualmente na pasta. Esse é um escopo amplo e restrito do Google; a configuração do consentimento e eventuais exigências de verificação são pendências reais. O aplicativo limita suas operações às pastas do projeto e à conta configurada. O escopo `drive.file` sozinho não concede acesso geral a arquivos colocados manualmente pelo usuário sem seleção/autorização apropriada.
+
+Entre no serviço, use **Conectar Google Drive** e **Preparar pastas do projeto**. A rotina reutiliza pastas de mesmo nome no mesmo pai; nomes duplicados exigem correção explícita. Nada é tornado público.
+
+Estrutura:
+
+```text
+Golden Music Memories/
+  01_EM_EDICAO/
+  02_VIDEOS_PRONTOS/
+  03_CAPAS_E_CAPCUT/
+  04_CONTROLE_E_BACKUPS/
+```
+
+A estrutura foi criada e relida pelo conector autorizado nesta entrega, na conta indicada. Isso não configura o OAuth próprio do aplicativo. IDs e links privados foram entregues ao proprietário fora do repositório público.
+
+O scanner trabalha na pasta imediata de prontos, com paginação. Com a entrada automática ativa, consulta novidades aproximadamente a cada cinco minutos, enquanto a máquina estiver ativa. Arquivos em subpastas não são importados recursivamente. MP4 modificados no Drive recebem nova revisão e são verificados por versão, tamanho e MD5; o cache calcula também SHA-256.
+
+Upload usa sessão retomável com posição consultada antes de repetir blocos. Resposta inicial desconhecida fica para conferência; não cria outro arquivo automaticamente. Download confirma faixa e versão antes e depois. Falhas de Drive não impedem o processador de consultar outras tarefas independentes.
+
+## Programação
+
+Padrão: cinco horários diários por plataforma, configuráveis. YouTube começa habilitado para a simulação; TikTok pode ser incluído na simulação. O modo real do TikTok permanece bloqueado. Dias da semana, período opcional e fuso são salvos no serviço.
+
+A prévia mostra os próximos horários configurados; ela não confirma agendamento externo. O processador prepara arquivos com antecedência (padrão 120 minutos). YouTube recebe vídeos como privados com `publishAt` quando há antecedência suficiente. No modo de recuperação imediata de horário perdido, a opção é publicação pública após processamento.
+
+O estoque considera arquivos prontos, produção válida, destino, licença vigente e histórico daquele destino. Por padrão, uma música já utilizada naquele destino não volta à seleção. Reutilização exige intervalo positivo em dias. Intervalo de artistas e filtro de décadas também afetam a elegibilidade. Simulação não marca o vídeo como publicação real.
+
+Slots têm identidade estável e tarefas persistentes. Reiniciar o serviço não deve duplicar a mesma tarefa. Falhas ambíguas exigem conciliação; não se reinicia um upload arbitrariamente. Se um vídeo candidato não estiver disponível, a política escolhe o próximo elegível ou deixa o slot vazio. Um slot futuro vazio pode ser reavaliado a cada minuto. Slots perdidos são pulados ou recuperados sem rajada, no máximo um por destino a cada retomada.
+
+A recuperação considera no máximo sete dias anteriores. Não se tenta despejar meses de postagem quando um computador retorna. Pausar impede novos envios automáticos. **Agendamentos já aceitos pelo YouTube continuam no provedor**, inclusive com os dois computadores desligados; altere-os na tarefa correspondente ou no Studio.
+
+## YouTube e TikTok
+
+YouTube: OAuth, renovação, upload retomável, consulta do processamento e estados privado/não listado/agendado/público têm adaptadores implementados. Configuração é descrita também em PUBLICACAO_SERVIDOR.md. A rotina permite declarar conteúdo infantil e conteúdo alterado/sintético. Categoria padrão: música.
+
+O limite local inicial é 900 segundos para YouTube. Se a conta estiver verificada e admitir vídeos maiores, ajuste `YOUTUBE_MAX_DURATION_SECONDS` para o limite confirmado, até 43.200. O sistema mede o arquivo e **não corta a música**. Duração de metadados do catálogo não substitui a duração do MP4.
+
+TikTok: existe upload assistido com `video.upload`, condicionado à elegibilidade/aprovação e a retorno OAuth HTTPS. O usuário finaliza no aplicativo. **A publicação automática Direct Post de uma ferramenta limitada às próprias contas não é aceita pelas diretrizes consultadas. Não basta deixar uma aprovação Developer pendente para prometer automação total.** É necessária uma solução oficialmente compatível antes de ampliar esse recurso.
+
+**Enviar pelo serviço** permite um envio pontual a partir da biblioteca, com consentimento específico e recibo. Isso não altera a política da rotina. As credenciais, quotas, limites efetivos de cada conta e um upload real autorizado ainda precisam ser homologados. Clientes Google em Testing podem ter tokens de renovação com validade curta (frequentemente sete dias nesse cenário).
+
+## Cache, retenção e backup
+
+`GMM_MAX_FILE_MIB=10240` permite até 10 GiB por MP4. `GMM_MIN_FREE_MIB=1024` preserva 1 GiB livre. São limites configuráveis, não recomendação de preencher o disco. O navegador anterior conserva seu limite de 500 MB; use a nova biblioteca para arquivos maiores.
+
+Os testes exercitam cabeçalhos/durações e leitura por faixas de arquivo esparso acima de 500 MiB. Eles **não medem desempenho de upload de um MP4 real de 10 GiB**. No início desta entrega havia aproximadamente 5 GB livres no computador; a liberação de espaço segue necessária para um acervo maior.
+
+**Liberar cache** só remove o MP4 local quando a cópia Drive é reconfirmada e não há tarefa que dependa dele. Não apaga original no Drive nem histórico. Retenção é explícita: nenhum expurgo automático do acervo/histórico. A agenda pode restaurar cache de candidatos próximos; **Restaurar cache** permite fazê-lo manualmente. Fila e erros continuam visíveis.
+
+**Baixar controle cifrado** captura metadados e fila em pacote AES-GCM, pausando a operação. **Guardar controle no Drive** também envia esse pacote à pasta de backups; mantém a cópia baixada. Esses pacotes não contêm os MP4 nem o IndexedDB. Use também o ZIP completo do navegador. O backup SQLite existente continua disponível:
+
+```powershell
+npm run service:backup -- C:\CAMINHO_PRIVADO\backup.sqlite
+```
+
+O SQLite da V2.3 referencia MP4 externos ao banco; ele sozinho não leva esses arquivos. Guarde a pasta privada ou confirme as cópias Drive. Preserve a chave de cifragem separadamente. Antes de restaurar controles, o sistema cria uma cópia SQLite local consistente; não sobrescreve a anterior.
+
+## Computador principal e reserva
+
+Cada instalação tem um ID próprio, armazenado fora do snapshot. Não copie um banco em funcionamento para uma pasta sincronizada e não abra o mesmo SQLite nos dois PCs.
+
+1. Prepare o serviço no reserva, com a mesma chave de recuperação protegida; mantenha-o pausado. Anote o ID exibido.
+2. No principal, finalize transferências, confirme as cópias Drive e baixe o backup ZIP do navegador.
+3. Use **Transferir controle**, informando o ID do reserva. A origem fica pausada e não pode reativar pela interface até receber uma devolução do controle.
+4. Leve o pacote cifrado e o ZIP ao reserva; restaure ambos. Reconecte as contas. Restauração fica pausada e marca tarefas em andamento para conciliação.
+5. Confira os resultados externos, restaure caches necessários e conclua a conciliação. Só então ative o reserva e a rotina desejada.
+6. Para voltar, repita a transferência no sentido inverso.
+
+Se a origem falhar antes de transferir, use o último backup disponível, mantenha a origem desligada e confira as plataformas antes de operar. Alterações posteriores ao backup podem estar ausentes. Este é um procedimento manual; não há eleição distribuída nem failover automático. Reaplicar o mesmo pacote na mesma instalação é recusado. Uma instalação restaurada de cópia antiga não pode provar, sozinha, que outro computador está desligado.
+
+## Atualização e recuperação de código
+
+Pause a operação, exporte os backups e pare o serviço. Confira alterações locais e atualize somente com `git pull --ff-only`; não use reset/clean sobre trabalho existente. Reabra o serviço e confira diagnósticos antes de ativar. A V2.3 não muda a versão do IndexedDB nem remove tabelas do SQLite. Uma reversão de código exige também conferir compatibilidade dos objetos e manter backup do banco; o código V2.2 não entende referências de MP4 externos da V2.3.
+
+## Verificação real ainda necessária
+
+OAuth próprio de Drive/YouTube, consentimento Google, conta TikTok elegível, MP4 real finalizado, quotas, espaço liberado, rede da máquina, launcher/login Windows e operação no segundo PC. Não houve postagem pública ou contratação. Notificações funcionam com permissão do navegador enquanto o painel está aberto; com a aba fechada, os eventos permanecem no serviço para consulta.
+
+## Fontes oficiais consultadas
+
+- [Drive: escopos e consentimento](https://developers.google.com/workspace/drive/api/guides/api-specific-auth)
+- [Drive: uploads retomáveis](https://developers.google.com/workspace/drive/api/guides/manage-uploads)
+- [YouTube: upload](https://developers.google.com/youtube/data/reference/rest/v3/videos/insert)
+- [YouTube: estados e agendamento](https://developers.google.com/youtube/data/reference/rest/v3/videos)
+- [Google: expiração OAuth](https://developers.google.com/identity/protocols/oauth2#expiration)
+- [TikTok: diretrizes e uso pretendido](https://developers.tiktok.com/docs/en/content-sharing-guidelines)

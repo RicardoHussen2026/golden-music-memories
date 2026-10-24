@@ -7,7 +7,7 @@ export function validateEnvelope(input,config){
   const e=structuredClone(input);
   for(const field of ['publicationId','productionId','assetId','accountId'])check(typeof e[field]==='string'&&e[field].length>0&&e[field].length<=180,'Identificador inválido: '+field);
   check(['youtube','tiktok'].includes(e.platform),'Plataforma inválida.');
-  check(Number.isSafeInteger(e.fileSize)&&e.fileSize>0&&e.fileSize<=config.maxBytes,'Arquivo vazio ou acima de 500 MB.');
+  check(Number.isSafeInteger(e.fileSize)&&e.fileSize>0&&e.fileSize<=config.maxBytes,'Arquivo vazio ou acima do limite configurado.');
   check(/^[a-f\d]{64}$/.test(e.fileHash),'Hash SHA-256 inválido.');
   check(Number.isSafeInteger(e.fileVersion)&&e.fileVersion>0&&Number.isSafeInteger(e.productionVersion)&&e.productionVersion>0,'Versão inválida.');
   check(e.audioReady===true,'O vídeo ainda depende de áudio no aplicativo. Use o pacote manual.');

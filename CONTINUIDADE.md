@@ -132,3 +132,13 @@ Não substituir este trabalho pela versão estática antiga. Preservar IDs, hash
 ## Publicação do painel V2.2 autorizada
 
 Em 23/10/2026, o proprietário solicitou commit, push e deploy desta entrega. O destino continua sendo a raiz de main no GitHub Pages existente. As notas anteriores de ausência de autorização/deploy registram o estado das respectivas etapas. Publicar o painel estático não hospeda server/runtime/, não configura credenciais nem habilita publicações reais. O serviço Node/SQLite continua dependendo de ambiente próprio e configuração posterior. Preservar a cópia de desenvolvimento/ux-publicacoes usada pelo outro trabalho.
+
+## Estado mais recente: V2.3 — acervo pronto e programação
+
+Escopo aprovado em docs/ESCOPO_ACERVO_PROGRAMACAO.md. Leia docs/ACERVO_PROGRAMACAO.md e docs/ENTREGA_ACERVO_PROGRAMACAO.md. A edição, tradução e legenda ficam no CapCut; o serviço recebe MP4 finalizados. Não implementar uma fábrica automática de vídeos nesta fase.
+
+app/operations.js integra biblioteca, Drive, lotes de capas, rotina, diagnóstico e continuidade. server/runtime/media.mjs, drive.mjs, scheduler.mjs e continuity.mjs preservam o SQLite e acrescentam objetos de controle; o IndexedDB permanece compatível. Arquivos grandes ficam no cache privado em disco. A automação usa consentimento da rotina e da pasta de prontos, sem revisão humana individual; verificações técnicas permanecem.
+
+A operação externa continua desligada por padrão. Configuração local de senha/chave e launcher foram preparados e testados neste computador, sem credenciais OAuth, rede ou publicação habilitadas. Não comitar .env ou .cache. GitHub Pages hospeda somente o painel; serviço local é separado. A troca entre principal/reserva é manual, com snapshot cifrado, origem pausada e conciliação. Não há failover automático.
+
+TikTok Direct Post pessoal permanece indisponível por elegibilidade, não apenas por falta de credenciais. Upload assistido exige finalização no aplicativo. Homologação de Drive/YouTube, vídeo real e segundo PC ainda precisam ocorrer. O proprietário autorizou commit, push e deploy desta entrega depois dos testes.

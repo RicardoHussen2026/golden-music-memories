@@ -9,7 +9,7 @@ export class Worker{
     if(job.mode==='real'){check(this.config.publishing&&enabled(this.config,job.platform),'Publicação real desativada.',409);const connection=this.store.get('connection',job.envelope.accountId);check(connection?.owner===owner&&connection.platform===job.platform&&connection.state==='connected','Conecte a conta de destino.',409);if(job.platform==='tiktok')check(consent.assistedUpload===true&&consent.musicUsage===true,'Confirme o envio assistido e o uso autorizado da música.');}
     return publicJob(this.store.update(job,{state:'authorized',due:Date.now(),authorizedAt:stamp(),scenario:job.mode==='simulation'&&['network','revoked','rejected'].includes(consent.scenario)?consent.scenario:'success',error:null},'authorized'));
   }
-  cancel(owner,id,revision){const job=this.store.job(id,owner);check(job.revision===revision,'Atualize a tarefa.',409);check(!(job.leaseUntil>Date.now()),'Uma execução está em andamento; consulte novamente antes de cancelar.',409);check(!terminal.has(job.state),'Resultado terminal preservado.',409);
+  cancel(owner,id,revision){const job=this.store.job(id,owner);check(job.revision===revision,'Atualize a tarefa.',409);check(!(job.leaseUntil>Date.now()),'Uma execução está em andamento; consulte novamente antes de cancelar.',409);check(!terminal.has(job.state)||job.state==='needs_reconciliation'&&!Object.keys(job.remote||{}).length,'Resultado terminal preservado.',409);
     check(!job.remote?.videoId&&!job.remote?.publishId&&job.remote?.phase!=='initializing'&&!job.remote?.probe&&!(job.remote?.offset>0),'O provedor já pode ter recebido o vídeo. Use conciliação; cancelar localmente não desfaz a operação externa.',409);
     return publicJob(this.store.update(job,{state:'cancelled',cancelledAt:stamp(),lease:null,leaseUntil:0},'cancelled'));
   }
@@ -21,7 +21,7 @@ export class Worker{
       // A tarefa aceita é imutável; licenças precisam cobrir também o dia da execução.
       const today=new Intl.DateTimeFormat('en-CA',{timeZone:e.metadata.timeZone}).format(new Date());
       check([e.rights.productionUntil,e.rights.assetUntil].every(v=>!v||v>=today),'A licença venceu antes da execução.',409);
-      if(!job.remote?.videoId&&!job.remote?.uploadComplete)check(this.store.hashTransfer(job.transferId)===e.fileHash,'Integridade do vídeo persistido inválida.',409);
+      if(!job.remote?.videoId&&!job.remote?.uploadComplete&&!job.integrityValidated){check(this.store.hashTransfer(job.transferId)===e.fileHash,'Integridade do vídeo persistido inválida.',409);save({integrityValidated:true},'integrity_verified');}
       if(job.mode==='simulation'){
         if(job.scenario==='network'&&job.attempts===0)return publicJob(save({state:'retry_wait',attempts:1,error:{code:'SIMULATED_NETWORK',message:'Falha simulada; repetição automática limitada.',retryable:true},due:Date.now()+1000,lease:null,leaseUntil:0},'simulation_retry'));
         const failed=['rejected','revoked'].includes(job.scenario);return publicJob(save({state:failed?'failed':'simulated_complete',attempts:job.attempts+1,result:failed?null:{simulated:true,externalId:null,url:null,completedAt:stamp()},error:failed?{code:'SIMULATED_'+job.scenario.toUpperCase(),message:'Falha de teste. Nenhuma plataforma foi acessada.',retryable:false}:null,lease:null,leaseUntil:0},'simulation_result'));

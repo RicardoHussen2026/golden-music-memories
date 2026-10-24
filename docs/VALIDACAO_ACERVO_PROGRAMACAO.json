@@ -1,0 +1,30 @@
+{
+  "version": "2.3.0",
+  "validatedAt": "2026-10-24T12:47:31.738965+00:00",
+  "baseCommit": "772a2c918073dd163cd0e2108cb453d737c0c897",
+  "checks": 269,
+  "groups": {
+    "existingApplication": 189,
+    "existingServer": 28,
+    "existingServerUI": 9,
+    "operationsServer": 31,
+    "operationsUI": 12
+  },
+  "realPlatformOAuth": false,
+  "realUploads": false,
+  "publicTestPosts": false,
+  "driveFoldersCreatedViaConnector": true,
+  "localLauncherStartedStoppedRestarted": true,
+  "startupInstalled": false,
+  "secondPhysicalComputerTested": false,
+  "freeDiskAtStartGB": 4.9,
+  "largeFileTest": "501 MiB sparse file; range IO only, not full network upload",
+  "mediaFixture": "new structural synthetic MP4; not audiovisual validation",
+  "externalPending": [
+    "Google Drive OAuth client and consent",
+    "YouTube OAuth and authorized media validation",
+    "TikTok eligibility and approved assisted upload",
+    "storage capacity",
+    "second physical computer"
+  ]
+}

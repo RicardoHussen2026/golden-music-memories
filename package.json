@@ -1,15 +1,21 @@
 {
   "name": "golden-music-memories",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "test": "node tests/search.cjs && node tests/catalog.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs && node tests/post-audit.cjs && node --test tests/server.test.mjs && node tests/server-ui.cjs",
+    "test": "node tests/search.cjs && node tests/catalog.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs && node tests/post-audit.cjs && node --test tests/server.test.mjs && node tests/server-ui.cjs && node --test tests/operations.test.mjs && node tests/operations-ui.cjs",
     "service": "node --env-file-if-exists=.env server/runtime/http.mjs",
     "test:service": "node --test tests/server.test.mjs",
     "test:service:ui": "node tests/server-ui.cjs",
-    "service:backup": "node --env-file-if-exists=.env server/runtime/backup.mjs"
+    "service:backup": "node --env-file-if-exists=.env server/runtime/backup.mjs",
+    "service:setup": "node scripts/setup-service.mjs",
+    "service:start": "powershell -NoProfile -File scripts/start-service.ps1",
+    "service:stop": "powershell -NoProfile -File scripts/stop-service.ps1",
+    "service:startup": "powershell -NoProfile -File scripts/install-startup.ps1",
+    "test:operations": "node --test tests/operations.test.mjs",
+    "test:operations:ui": "node tests/operations-ui.cjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",
