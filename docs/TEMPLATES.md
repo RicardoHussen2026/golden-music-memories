@@ -1,5 +1,13 @@
 # Família oficial de templates
 
+## Consulta local de capas históricas por música — 2.9.8
+
+**Catálogo → Detalhes → Consultar capas históricas** lê as associações já confirmadas em `acervo/capas-historicas/indice.json`. Mostra imagem inteira proporcional, álbum/edição, origem e evidência. Linda Williams/Elevate Our Minds/City Living e Jimmie & Vella Cameron/Be Fair to Me/Song Painters estão disponíveis;127 referências continuam em revisão e1880 bináriosV2 ausentes. A associação existente é por songId/RecordingID/ReleaseID, nunca aproximada pelo título. Nenhuma música nova ou produção artificial é criada.
+
+A API usa sessão existente, somente GET e loopback, valida caminho interno e SHA/tamanho do JPEG antes de servir, sem cache. Referência ausente ou alterada não é descartada; há aviso. Não busca imagens externas ao abrir, não atribui licença, não autentica master e não aplica automaticamente capa à montagem. As artes Golden, anexos das produções e MP4 continuam independentes. Não é ferramenta de importar/revisar as127 incertas. Na origem estática ou offline, o catálogo continua funcional e a consulta informa que precisa do serviço local. Nenhum arquivo privado foi colocado no Git.
+
+A biblioteca já existente é um componente local separado: preservar `acervo/capas-historicas/` inteiro, com índice/log/imagens. ZIP do navegador e snapshot padrão do serviço não incluem automaticamente essa pasta. Nesta ativação há cópia recuperável privada da biblioteca e snapshot consistente SQLite, sem alegar um novo backup completo de todas as mídias. Os registros abaixo são históricos e a lacuna de consulta descrita antes está superada para as duas referências confirmadas.
+
 ## Bateria2 — incorporação local limitada,25/10/2026, após2.9.6
 
 Reaproveitada a auditoria existente, sem pesquisar disco/conversa de origem nem repetir a decodificação de129 arquivos. O ZIP no caminho exato fornecido continua com SHA2567e1f8d7e4fbf2102d6cbc24ecf75494364863d3228916a65e47e9beb107fe0ab. São129 imagens reais/95 conteúdos únicos, não2009 imagens recebidas; permanecem ausentes1880 binários descritos pelo manifestoV2. Os dois registros1960 adicionados depois não pertencem a esse manifesto.

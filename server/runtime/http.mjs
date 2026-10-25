@@ -18,6 +18,7 @@ import {Continuity} from './continuity.mjs';
 import {SourceImporter} from './source-import.mjs';
 import {Collections} from './collections.mjs';
 import {StorageBackups,storageUsage} from './storage-backup.mjs';
+import {HistoricalCovers} from './historical-covers.mjs';
 import {VideoAssembler} from './video-assembly.mjs';
 
 const root=resolve(fileURLToPath(new URL('../../',import.meta.url)));
@@ -31,6 +32,7 @@ export function createApplication(config=configuration(),options={}){
   const library=new MediaLibrary(store,config),drive=new Drive(store,config,providers,library),scheduler=new Scheduler(store,config,library),continuity=new Continuity(store,config,scheduler);
   const sourceImporter=new SourceImporter(store,config,options.sourceImporter);
   const assembler=new VideoAssembler(store,config,library,sourceImporter,options.assembler);
+  const historicalCovers=new HistoricalCovers(options.historicalCoversDirectory||resolve(root,'acervo/capas-historicas'));
   const collections=new Collections(store,config,assembler,options.collections);
   let mutations=0;
   const storageBackups=new StorageBackups(store,config,{version:RUNNING_BUILD.version,canStart:()=>mutations<=1&&!config.network&&!config.worker&&!sourceImporter.running.size&&!assembler.running.size&&!collections.running.size&&!collections.preparing&&!store.list('render_input').some(r=>r.state==='receiving')&&!store.list('media').some(m=>['receiving','downloading'].includes(m.state))&&!store.db.prepare('SELECT id FROM jobs WHERE lease_until>? LIMIT 1').get(Date.now())});
@@ -72,6 +74,15 @@ export function createApplication(config=configuration(),options={}){
         }
         const sessionId=sha(cookies(req).gmm_session||''),session=store.get('session',sessionId);check(session&&session.expires>Date.now()&&(session.accessMode!=='local'||config.localAccess===true),'Entre no serviço para continuar.',401);const owner=session.owner;
         if(path==='/api/session'&&req.method==='DELETE'){store.delete('session',sessionId);res.setHeader('Set-Cookie','gmm_session=; HttpOnly; SameSite=Lax; Path=/api; Max-Age=0');return reply({authenticated:false});}
+        if(path.startsWith('/api/historical-covers')){
+          check(config.host==='127.0.0.1'&&['127.0.0.1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress),'Biblioteca disponível somente neste computador.',403);
+          check(!Object.keys(req.headers).some(h=>h==='forwarded'||h.startsWith('x-forwarded-')),'Consulta por proxy não permitida.',403);
+          check(req.method==='GET','Biblioteca histórica é somente leitura.',405);
+          if(path==='/api/historical-covers')return reply(await historicalCovers.list(url.searchParams.get('songId')));
+          const image=/^\/api\/historical-covers\/images\/([a-f\d]{64})$/.exec(path);
+          check(image,'Imagem não encontrada.',404);const bytes=await historicalCovers.image(image[1]);
+          res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':bytes.length,'Cache-Control':'no-store'});return res.end(bytes);
+        }
         if(path.startsWith('/api/storage')){
           check(config.host==='127.0.0.1'&&['127.0.0.1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress),'Backup disponível somente neste computador.',403);
           check(!Object.keys(req.headers).some(h=>h==='forwarded'||h.startsWith('x-forwarded-')),'Backup por proxy não permitido.',403);

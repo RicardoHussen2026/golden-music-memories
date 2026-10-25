@@ -1,5 +1,7 @@
 # Armazenamento e recuperação local — V2.8.0
 
+**Componente local adicional já existente, exposto em2.9.8:** `acervo/capas-historicas/` contém índice, log e imagens por hash das referências discográficas. A consulta no painel é somente leitura, sem copiar para IndexedDB ou para a mídia do serviço. Para restaurar essa biblioteca, preservar a pasta inteira com nomes/hashes e IDs; o ZIP do navegador e snapshot/backup padrão do diretório do serviço não a incluem automaticamente. A cópia local de segurança desta rodada foi verificada por hashes e não substitui o backup composto dos outros componentes; nenhum envio externo ocorreu.
+
 Registro inicial do item 8, 25/10/2026: código então preparado e testado em ambiente isolado, com ativação adiada durante o teste do baixador na 2.7.2. Esse estado inicial é histórico. Na release2.9.3, a atualização local e a verificação dos backups compostos foram concluídas; a cópia externa continua pendente. A lista única de execução permanece em [ORGANIZACAO_PROJETO.md](ORGANIZACAO_PROJETO.md).
 
 ## Destino externo identificado — consulta de 25/10/2026
