@@ -34,6 +34,18 @@ Direção comum dos prompts: fotografia vertical 9:16 dark premium, preto profun
 
 ## Conferência complementar de artes recebidas — 25/10/2026
 
+### Complemento histórico Bateria2 recebido — conjunto separado das artes Golden
+
+Após o titular indicar expressamente o arquivo `Golden_Music_Complemento_Bateria2.zip`, somente esse ZIP foi acessado, sem abrir a conversa nem explorar sua pasta de origem. Tamanho14.216.203bytes; SHA-256 `7e1f8d7e4fbf2102d6cbc24ecf75494364863d3228916a65e47e9beb107fe0ab`. Ele contém129imagens (128JPG+1GIF), quatroCSVs, relatórioV2 e resumoJSON. É complementoV2, não o pacote completo: o manifesto descreve2.009 registros, mas1.880 arquivos referenciados não estão nesse ZIP. As contagens gerais do relatório não foram tratadas como binários recebidos.
+
+CRC, decodificação, todos os frames doGIF, dimensões, bytes e SHA conferiram nas129imagens. São95 conteúdos distintos, guardados uma vez por hash em staging privado;129 referências de gravação preservadas e os originais intactos. Cinco folhas de contato com95imagens distintas inspecionadas. Os129Recording IDs existem no catálogo distribuído, sem inserção/alteração de música. Isso identifica o registro-alvo, mas não autentica a edição da capa.
+
+Conciliação com o índiceV3 recebido:12 hashes iguais,95 diferentes e22 entradas sem hash. Byte diferente não prova capa errada; pode refletir outra fonte/edição/resolução e requer comparação. Um dos12 iguais é alternativa documentada; restam11 referências sem essa ressalva, correspondendo a quatro imagens únicas, preparadas somente para piloto local. Não se sobrescreveu o índiceV3 nem se executou importação operacional. As outras118 referências precisam de revisão de fonte/edição ou conflito antes de uso automático.
+
+O lote declara122 frontais/embalagens frontais, cinco selos de vinil, umCD sem capa frontal e uma capa genérica de gravadora. Três alternativas explícitas: Sylvester/Do Ya Wanna Funk, Loleatta Holloway/Runaway e Da Buzz/Paradise. Manter essas distinções; não rotular tudo como frontal da gravação exata. ConfiançaAlta74/Moderada55 é classificação documental fornecida, não taxa de acerto novamente comprovada. Direito de publicação consta como não comprovado em129 registros; a conferência técnica não o concede.
+
+Piloto estático isolado com Linda Williams/Elevate Our Minds (imagem de hash igual aoV3), mantendo a capa600×600 inteira, sem ampliar, em composição vertical/horizontal com o renderer existente. Não criou produção, não mudou templates Golden, não gerou MP4 nem aprovou uso comercial. A proposta continua separada dos materiais aprovados. Evidências, imagens deduplicadas, manifesto de conciliação e pilotos em `.cache/capas-verificacao/complemento-bateria2/`, fora do Git. Para completar o acervo, receber as1.880 imagens ausentes e os binários/manifestos da mesma consolidaçãoV3; não procurar novamente todo o disco nem acessar a conversa de origem por inferência.
+
 ### Substituição autorizada e ativada localmente — 2.9.4
 
 Após a conferência inicial abaixo, o titular autorizou a troca das artes correspondentes. A correspondência foi feita pela composição visual e pelo motivo representado, não apenas pelo nome do arquivo:
@@ -51,7 +63,7 @@ O motivo de vinil dourado do pacote corresponde ao fundo Minimalista existente. 
 
 A renderização existente mantém a proporção, com preenchimento e recorte no horizontal, sem esticar. O editor agora informa esse comportamento e orienta usar fundo horizontal próprio para preservar a composição inteira. A alternativa de composição inteira demonstrada no piloto continua proposta, não implementação. IDs, tipografia e posições editáveis foram mantidos. Capas já exportadas/aprovadas e MP4 não são regravados pela troca dos fundos; ao reeditar um template, conferir a prévia e salvar nova versão.
 
-Validação atual:15 verificações de templates passaram, cobrindo sete exportaçõesPNG, edição/JPG, persistência, aprovação em dados isolados, celular e offline. Sete exportações horizontais1280×720 tiveram proporção de desenho conferida sem stretch e inspeção visual.10 verificações de versão passaram. Serviço local8877 reiniciado após zerojobs, sem recarregar abas habituais; frontend2.9.4/interface9b2a38a5bd70 e backend2.9.4/9598edb61b77 correspondem, saúde200 e SQLite íntegro/contagens preservadas. Seis hashes servidos e hashes dos dois MP4 aprovados conferidos. Evidências em `.cache/artes-294/`; galeria atual em `familia-templates.png`. Site público continua2.9.3, sem commit/push/deploy nesta etapa.
+Validação atual:15 verificações de templates passaram, cobrindo sete exportaçõesPNG, edição/JPG, persistência, aprovação em dados isolados, celular e offline. Sete exportações horizontais1280×720 tiveram proporção de desenho conferida sem stretch e inspeção visual.10 verificações de versão passaram. Serviço local8877 reiniciado após zerojobs, sem recarregar abas habituais; frontend2.9.4/interface9b2a38a5bd70 e backend2.9.4/9598edb61b77 correspondem, saúde200 e SQLite íntegro/contagens preservadas. Seis hashes servidos e hashes dos dois MP4 aprovados conferidos. Evidências em `.cache/artes-294/`; galeria atual em `familia-templates.png`. Publicação2.9.4 concluída no commit6687a74, Pages40169442979 aprovado; versão pública e seis hashes conferidos.
 
 ### Recepção inicial e piloto — histórico anterior à autorização de troca
 

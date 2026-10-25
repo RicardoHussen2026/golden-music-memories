@@ -1,0 +1,2860 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-25T06:38:59.610650+00:00",
+  "scope": {
+    "annualFrom": 1960,
+    "annualThrough": 2009,
+    "annualSize": 30,
+    "allTimeSize": 100,
+    "market": "GB",
+    "status": "staging_not_imported"
+  },
+  "lists": [
+    {
+      "id": "chartwatch-gb-annual-2000",
+      "kind": "annual",
+      "chartYear": 2000,
+      "market": "GB",
+      "publisher": "CHARTWATCH / Tobias Zywietz",
+      "sourceUrl": "https://www.zobbel.de/cluk/CLUK2000.pdf",
+      "accessedAt": "2026-10-25T06:38:59.610650+00:00",
+      "accessDateMeaning": "PDF checked against accessible publisher source this round; original cache acquisition time not asserted",
+      "sourceSha256": "e4afa0cdd98e093474eb95554a06cec768317c9fb7d0c2540256ceb02e0fbd23",
+      "requestedSize": 30,
+      "sourcePage": 41,
+      "sourceTier": "secondary_reproduction_of_official_positions",
+      "officialColumn": "CIN",
+      "edition": "Contemporary annual booklet, physical singles; official CIN/OCC order reproduced by secondary source",
+      "methodology": "UK annual singles sales ranking: positions from the first CIN/OCC column reproduced in Chartwatch section3.2; not CW/Pos points, not worldwide, not release year. Secondary source of official positions.",
+      "sourceCaveats": [],
+      "rows": [
+        {
+          "position": 1,
+          "title": "Bob The Builder Can We Fix It",
+          "artist": "Bob The Builder",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 1,
+            "CW": 22,
+            "Pos": 3
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "1 22 3 Bob The Builder Can We Fix It (cid:21) Bob The Builder (BBC Worldwide) 1 4 4 853 189 254.28",
+          "sourceTitleExtracted": "Bob The Builder Can We Fix It",
+          "sourceArtistExtracted": "Bob The Builder",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 2,
+          "title": "Pure Shores",
+          "artist": "All Saints",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 2,
+            "CW": 5,
+            "Pos": 4
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "2 5 4 Pure Shores (cid:21) All Saints (London) 1 16 28 685 257 246.34",
+          "sourceTitleExtracted": "Pure Shores",
+          "sourceArtistExtracted": "All Saints",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 3,
+          "title": "It Feels So Good [rm]",
+          "artist": "Sonique",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 3,
+            "CW": 2,
+            "Pos": 2
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "3 2 2 It Feels So Good [rm] (cid:21) Sonique (Serious/Universal-Island) 1 17 30 642 296 268.03",
+          "sourceTitleExtracted": "It Feels So Good [rm]",
+          "sourceArtistExtracted": "Sonique",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 4,
+          "title": "Who Let The Dogs Out?",
+          "artist": "Baha Men",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 4,
+            "CW": 1,
+            "Pos": 1
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "4 1 1 Who Let The Dogs Out? (cid:21) Baha Men (Edel) 2 13 13 618 321 278.06",
+          "sourceTitleExtracted": "Who Let The Dogs Out?",
+          "sourceArtistExtracted": "Baha Men",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 5,
+          "title": "(I Don't Wanna) Rock DJ",
+          "artist": "Robbie Williams",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 5,
+            "CW": 8,
+            "Pos": 10
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "5 8 10 (I Don’t Wanna) Rock DJ (cid:21) Robbie Williams (Chrysalis:EMI) 1 20 22 578 237 202.36",
+          "sourceTitleExtracted": "(I Don’t Wanna) Rock DJ",
+          "sourceArtistExtracted": "Robbie Williams",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 6,
+          "title": "Stan",
+          "artist": "Eminem feat. Dido",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 6,
+            "CW": 41,
+            "Pos": 20
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "6 41 20 Stan (cid:21) Eminem feat. Dido (Aftermath/Interscope) 1 4 4 544 157 173.39",
+          "sourceTitleExtracted": "Stan",
+          "sourceArtistExtracted": "Eminem feat. Dido",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 7,
+          "title": "Toca's Miracle",
+          "artist": "Fragma vs. Coco",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 7,
+            "CW": 6,
+            "Pos": 6
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "7 6 6 Toca’s Miracle (cid:21) Fragma vs. Coco (Positiva) 1 17 29 531 245 224.95",
+          "sourceTitleExtracted": "Toca’s Miracle",
+          "sourceArtistExtracted": "Fragma vs. Coco",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 8,
+          "title": "Groovejet (If This Ain't Love)",
+          "artist": "Spiller feat. Sophie Ellis-Baxtor",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 8,
+            "CW": 12,
+            "Pos": 13
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "8 12 13 Groovejet (If This Ain’t Love) (cid:21) Spiller feat. Sophie Ellis-Baxtor (Positiva) 1 20 20 523 221 186.68",
+          "sourceTitleExtracted": "Groovejet (If This Ain’t Love)",
+          "sourceArtistExtracted": "Spiller feat. Sophie Ellis-Baxtor",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 9,
+          "title": "Never Had A Dream Come True",
+          "artist": "S Club 7",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 9,
+            "CW": 34,
+            "Pos": 25
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "9 34 25 Never Had A Dream Come True (cid:21) S Club 7 (Polydor) 1 5 5 492 162 165.66",
+          "sourceTitleExtracted": "Never Had A Dream Come True",
+          "sourceArtistExtracted": "S Club 7",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 10,
+          "title": "Fill Me In",
+          "artist": "Craig David",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 10,
+            "CW": 9,
+            "Pos": 9
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "10 9 9 Fill Me In (cid:21) Craig David (Wildstar/Telstar) 1 14 20 480 235 215.08",
+          "sourceTitleExtracted": "Fill Me In",
+          "sourceArtistExtracted": "Craig David",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 11,
+          "title": "Reach",
+          "artist": "S Club 7",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 11,
+            "CW": 7,
+            "Pos": 8
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "11 7 8 Reach (cid:21) S Club 7 (Polydor) 2 17 28 464 240 217.01",
+          "sourceTitleExtracted": "Reach",
+          "sourceArtistExtracted": "S Club 7",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 12,
+          "title": "Can't Fight The Moonlight",
+          "artist": "LeAnn Rimes",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 12,
+            "CW": 19,
+            "Pos": 12
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "12 19 12 Can’t Fight The Moonlight (cid:21) LeAnn Rimes (Curb/The Hit Label/London) 1 7 7 451 198 188.94",
+          "sourceTitleExtracted": "Can’t Fight The Moonlight",
+          "sourceArtistExtracted": "LeAnn Rimes",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 13,
+          "title": "Rise",
+          "artist": "Gabrielle",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 13,
+            "CW": 4,
+            "Pos": 7
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "13 4 7 Rise (cid:21) Gabrielle (Go.Beat/Polydor) 1 15 19 448 263 219.19",
+          "sourceTitleExtracted": "Rise",
+          "sourceArtistExtracted": "Gabrielle",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 14,
+          "title": "The Real Slim Shady (EP)",
+          "artist": "Eminem",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 14,
+            "CW": 3,
+            "Pos": 5
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "14 3 5 The Real Slim Shady (EP) (cid:21) Eminem (Aftermath/Interscope) 1 15 25 424 266 239.97",
+          "sourceTitleExtracted": "The Real Slim Shady (EP)",
+          "sourceArtistExtracted": "Eminem",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 15,
+          "title": "Oops! . . . I Did It Again",
+          "artist": "Britney Spears",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 15,
+            "CW": 13,
+            "Pos": 18
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "15 13 18 Oops! . . . I Did It Again (cid:21) Britney Spears (Jive) 1 14 22 423 214 173.53",
+          "sourceTitleExtracted": "Oops! . . . I Did It Again",
+          "sourceArtistExtracted": "Britney Spears",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 16,
+          "title": "Lady (Hear Me Tonight)",
+          "artist": "Modjo",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 16,
+            "CW": 10,
+            "Pos": 16
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "16 10 16 Lady (Hear Me Tonight) (cid:21) Modjo (Sound Of Barclay/Polydor) 1 17 17 419 229 180.58",
+          "sourceTitleExtracted": "Lady (Hear Me Tonight)",
+          "sourceArtistExtracted": "Modjo",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 17,
+          "title": "7 Days",
+          "artist": "Craig David",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 17,
+            "CW": 17,
+            "Pos": 15
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "17 17 15 7 Days (cid:21) Craig David (Wildstar/Telstar) 1 15 23 412 205 182.32",
+          "sourceTitleExtracted": "7 Days",
+          "sourceArtistExtracted": "Craig David",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 18,
+          "title": "Never Be The Same Again",
+          "artist": "Melanie C. feat. Lisa 'Left Eye' Lopes",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 18,
+            "CW": 21,
+            "Pos": 21
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "18 21 21 Never Be The Same Again (cid:21) Melanie C. feat. Lisa ‘Left Eye’ Lopes (Virgin) 1 16 20 400 192 169.33",
+          "sourceTitleExtracted": "Never Be The Same Again",
+          "sourceArtistExtracted": "Melanie C. feat. Lisa ‘Left Eye’ Lopes",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 19,
+          "title": "American Pie",
+          "artist": "Madonna",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 19,
+            "CW": 25,
+            "Pos": 19
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "19 25 19 American Pie (cid:21) Madonna (Maverick/Warner Bros.) 1 14 26 378 180 173.49",
+          "sourceTitleExtracted": "American Pie",
+          "sourceArtistExtracted": "Madonna",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 20,
+          "title": "The Bad Touch",
+          "artist": "Bloodhound Gang",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 20,
+            "CW": 15,
+            "Pos": 14
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "20 15 14 The Bad Touch (cid:21) Bloodhound Gang (Republic/Ge(cid:27)en) 4 14 19 377 210 182.62",
+          "sourceTitleExtracted": "The Bad Touch",
+          "sourceArtistExtracted": "Bloodhound Gang",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 21,
+          "title": "Out Of Your Mind",
+          "artist": "True Steppers & Dane Bowers",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 21,
+            "CW": 45,
+            "Pos": 45
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "21 45 45 Out Of Your Mind (cid:21) True Steppers & Dane Bowers (NuLife/Arista) 2 17 20 376 151 127.25",
+          "sourceTitleExtracted": "Out Of Your Mind",
+          "sourceArtistExtracted": "True Steppers & Dane Bowers",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 22,
+          "title": "Life Is A Rollercoaster",
+          "artist": "Ronan Keating",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 22,
+            "CW": 11,
+            "Pos": 11
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "22 11 11 Life Is A Rollercoaster (cid:21) Ronan Keating (Polydor) 1 14 25 372 225 195.17",
+          "sourceTitleExtracted": "Life Is A Rollercoaster",
+          "sourceArtistExtracted": "Ronan Keating",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 23,
+          "title": "Freestyler",
+          "artist": "Bomfunk MC's",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 23,
+            "CW": 23,
+            "Pos": 24
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "23 23 24 Freestyler (cid:21) Bomfunk MC’s (Dancepool/Sony S2) 2 12 20 359 189 165.83",
+          "sourceTitleExtracted": "Freestyler",
+          "sourceArtistExtracted": "Bomfunk MC’s",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 24,
+          "title": "Music",
+          "artist": "Madonna",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 24,
+            "CW": 14,
+            "Pos": 22
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "24 14 22 Music (cid:21) Madonna (Maverick/Warner Bros.) 1 19 19 359 212 169.00",
+          "sourceTitleExtracted": "Music",
+          "sourceArtistExtracted": "Madonna",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 25,
+          "title": "Independent Woman (Part One)",
+          "artist": "Destiny's Child",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 25,
+            "CW": 29,
+            "Pos": 27
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "25 29 27 Independent Woman (Part One) (cid:21) Destiny’s Child (Columbia) 1 6 6 358 168 162.83",
+          "sourceTitleExtracted": "Independent Woman (Part One)",
+          "sourceArtistExtracted": "Destiny’s Child",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 26,
+          "title": "Sandstorm [ri]",
+          "artist": "Darude",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 26,
+            "CW": 18,
+            "Pos": 17
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "26 18 17 Sandstorm [ri] (cid:21) Darude (Neo) 3 15 29 353 200 178.28",
+          "sourceTitleExtracted": "Sandstorm [ri]",
+          "sourceArtistExtracted": "Darude",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 27,
+          "title": "I Turn To You",
+          "artist": "Melanie C.",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 27,
+            "CW": 31,
+            "Pos": 37
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "27 31 37 I Turn To You (cid:21) Melanie C. (Virgin) 1 12 21 338 164 137.98",
+          "sourceTitleExtracted": "I Turn To You",
+          "sourceArtistExtracted": "Melanie C.",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 28,
+          "title": "Against All Odds",
+          "artist": "Mariah Carey & Westlife",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 28,
+            "CW": 16,
+            "Pos": 26
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "28 16 26 Against All Odds (cid:21) Mariah Carey & Westlife (Columbia) 1 11 15 331 208 165.23",
+          "sourceTitleExtracted": "Against All Odds",
+          "sourceArtistExtracted": "Mariah Carey & Westlife",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 29,
+          "title": "Thong Song",
+          "artist": "Sisqo",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 29,
+            "CW": 26,
+            "Pos": 28
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "29 26 28 Thong Song (cid:21) Sisqo (Def Soul/Def Jam/Mercury) 3 14 30 331 176 160.35",
+          "sourceTitleExtracted": "Thong Song",
+          "sourceArtistExtracted": "Sisqo",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 30,
+          "title": "Movin' Too Fast [rm]",
+          "artist": "Artful Dodger feat. Romina Johnson",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 30,
+            "CW": 53,
+            "Pos": 40
+          },
+          "sourcePage": 41,
+          "sourceRowExtracted": "30 53 40 Movin’ Too Fast [rm] (cid:21) Artful Dodger feat. Romina Johnson (Locked On/XL) 2 12 19 315 136 132.39",
+          "sourceTitleExtracted": "Movin’ Too Fast [rm]",
+          "sourceArtistExtracted": "Artful Dodger feat. Romina Johnson",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        }
+      ],
+      "sourceReview": {
+        "status": "all_30_positions_visually_checked",
+        "checkedAt": "2026-10-25T06:38:59.219Z",
+        "reviewer": "Codex visual comparison of all150 position/title/artist rows against preserved table images"
+      }
+    },
+    {
+      "id": "chartwatch-gb-annual-2001",
+      "kind": "annual",
+      "chartYear": 2001,
+      "market": "GB",
+      "publisher": "CHARTWATCH / Tobias Zywietz",
+      "sourceUrl": "https://www.zobbel.de/cluk/CLUK2001.pdf",
+      "accessedAt": "2026-10-25T06:38:59.610650+00:00",
+      "accessDateMeaning": "PDF checked against accessible publisher source this round; original cache acquisition time not asserted",
+      "sourceSha256": "63a86bf6da550f3035c3bb65ec68965d5ceefae166d851dca6190f32ee747d69",
+      "requestedSize": 30,
+      "sourcePage": 37,
+      "sourceTier": "secondary_reproduction_of_official_positions",
+      "officialColumn": "CIN",
+      "edition": "Contemporary annual booklet, physical singles; official CIN/OCC order reproduced by secondary source",
+      "methodology": "UK annual singles sales ranking: positions from the first CIN/OCC column reproduced in Chartwatch section3.2; not CW/Pos points, not worldwide, not release year. Secondary source of official positions.",
+      "sourceCaveats": [],
+      "rows": [
+        {
+          "position": 1,
+          "title": "It Wasn't Me",
+          "artist": "Shaggy feat. Ricardo 'Rikrok' Ducent",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 1,
+            "CW": 2,
+            "Pos": 2
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "1 2 2 It Wasn’t Me (cid:21) Shaggy feat. Ricardo ‘Rikrok’ Ducent (Universal-Island) 1 20 38 1,151,130 391 367.59",
+          "sourceTitleExtracted": "It Wasn’t Me",
+          "sourceArtistExtracted": "Shaggy feat. Ricardo ‘Rikrok’ Ducent",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 2,
+          "title": "Pure & Simple",
+          "artist": "Hear'Say",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 2,
+            "CW": 8,
+            "Pos": 3
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "2 8 3 Pure & Simple (cid:21) Hear’Say (Polydor) 1 25 37 1,075,840 301 331.50",
+          "sourceTitleExtracted": "Pure & Simple",
+          "sourceArtistExtracted": "Hear’Say",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 3,
+          "title": "Can't Get You Out Of My Head",
+          "artist": "Kylie Minogue",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 3,
+            "CW": 3,
+            "Pos": 4
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "3 3 4 Can’t Get You Out Of My Head (cid:21) Kylie Minogue (Parlophone) 1 15 15 988,830 384 313.62",
+          "sourceTitleExtracted": "Can’t Get You Out Of My Head",
+          "sourceArtistExtracted": "Kylie Minogue",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 4,
+          "title": "Whole Again",
+          "artist": "Atomic Kitten",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 4,
+            "CW": 1,
+            "Pos": 1
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "4 1 1 Whole Again (cid:21) Atomic Kitten (Innocent/Virgin) 1 23 37 934,600 462 400.13",
+          "sourceTitleExtracted": "Whole Again",
+          "sourceArtistExtracted": "Atomic Kitten",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 5,
+          "title": "Hey Baby [UK + D imp]",
+          "artist": "DJ Ötzi",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 5,
+            "CW": 4,
+            "Pos": 5
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "5 4 5 Hey Baby [UK + D imp] (cid:21) DJ (cid:214)tzi (EMI) 1 21 23 747,170 378 293.95",
+          "sourceTitleExtracted": "Hey Baby [UK + D imp]",
+          "sourceArtistExtracted": "DJ (cid:214)tzi",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 6,
+          "title": "Uptown Girl / Angels Wings",
+          "artist": "Westlife",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 6,
+            "CW": 17,
+            "Pos": 8
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "6 17 8 Uptown Girl / Angels Wings (cid:21) Westlife (RCA) 1 16 23 745,580 222 233.49",
+          "sourceTitleExtracted": "Uptown Girl / Angels Wings",
+          "sourceArtistExtracted": "Westlife",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 7,
+          "title": "Don't Stop Movin'",
+          "artist": "S Club 7",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 7,
+            "CW": 5,
+            "Pos": 7
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "7 5 7 Don’t Stop Movin’ (cid:21) S Club 7 (Polydor) 1 19 28 704,230 356 256.84",
+          "sourceTitleExtracted": "Don’t Stop Movin’",
+          "sourceArtistExtracted": "S Club 7",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 8,
+          "title": "Angel",
+          "artist": "Shaggy feat. Rayvon",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 8,
+            "CW": 7,
+            "Pos": 9
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "8 7 9 Angel (cid:21) Shaggy feat. Rayvon (MCA/Universal-Island) 1 16 25 585,520 306 232.13",
+          "sourceTitleExtracted": "Angel",
+          "sourceArtistExtracted": "Shaggy feat. Rayvon",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 9,
+          "title": "Teenage Dirtbag",
+          "artist": "Wheatus",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 9,
+            "CW": 6,
+            "Pos": 6
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "9 6 6 Teenage Dirtbag (cid:21) Wheatus (Columbia) 2 20 20 551,930 310 266.99",
+          "sourceTitleExtracted": "Teenage Dirtbag",
+          "sourceArtistExtracted": "Wheatus",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 10,
+          "title": "Because I Got High",
+          "artist": "Afroman",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 10,
+            "CW": 9,
+            "Pos": 10
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "10 9 10 Because I Got High (cid:21) Afroman (MCA/Universal-Island) 1 11 11 487,240 280 208.62",
+          "sourceTitleExtracted": "Because I Got High",
+          "sourceArtistExtracted": "Afroman",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 11,
+          "title": "Do You Really Like It? [rm]",
+          "artist": "DJ Pied Piper & The Masters Of Ceremonies",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 11,
+            "CW": 12,
+            "Pos": 13
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "11 12 13 Do You Really Like It? [rm] (cid:21) DJ Pied Piper & The Masters Of Ceremonies (Relentless/Ministry Of Sound) 1 14 23 472,960 241 186.18",
+          "sourceTitleExtracted": "Do You Really Like It? [rm]",
+          "sourceArtistExtracted": "DJ Pied Piper & The Masters Of Ceremonies",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 12,
+          "title": "Clint Eastwood [rm]",
+          "artist": "Gorillaz",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 12,
+            "CW": 14,
+            "Pos": 11
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "12 14 11 Clint Eastwood [rm] (cid:21) Gorillaz (Parlophone) 4 17 29 442,970 234 207.78",
+          "sourceTitleExtracted": "Clint Eastwood [rm]",
+          "sourceArtistExtracted": "Gorillaz",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 13,
+          "title": "It's Raining Men",
+          "artist": "Geri Halliwell",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 13,
+            "CW": 15,
+            "Pos": 17
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "13 15 17 It’s Raining Men (cid:21) Geri Halliwell (EMI) 1 15 20 421,670 232 164.82",
+          "sourceTitleExtracted": "It’s Raining Men",
+          "sourceArtistExtracted": "Geri Halliwell",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 14,
+          "title": "Lady Marmalade",
+          "artist": "Christina Aguilera, Lil' Kim, Mya & Pink",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 14,
+            "CW": 11,
+            "Pos": 14
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "14 11 14 Lady Marmalade (cid:21) Christina Aguilera, Lil’ Kim, Mya & Pink (Interscope/Polydor) 1 16 25 404,810 244 176.40",
+          "sourceTitleExtracted": "Lady Marmalade",
+          "sourceArtistExtracted": "Christina Aguilera, Lil’ Kim, Mya & Pink",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 15,
+          "title": "Eternal Flame",
+          "artist": "Atomic Kitten",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 15,
+            "CW": 13,
+            "Pos": 16
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "15 13 16 Eternal Flame (cid:21) Atomic Kitten (Innocent/Virgin) 1 15 19 378,700 235 170.06",
+          "sourceTitleExtracted": "Eternal Flame",
+          "sourceArtistExtracted": "Atomic Kitten",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 16,
+          "title": "Gotta Get Thru This",
+          "artist": "Daniel Bedingfield",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 16,
+            "CW": 22,
+            "Pos": 22
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "16 22 22 Gotta Get Thru This (cid:21) Daniel Beding(cid:28)eld (Relentless) 1 5 5 378,000 207 154.13",
+          "sourceTitleExtracted": "Gotta Get Thru This",
+          "sourceArtistExtracted": "Daniel Beding(cid:28)eld",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 17,
+          "title": "Mambo No. 5",
+          "artist": "Bob The Builder",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 17,
+            "CW": 23,
+            "Pos": 19
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "17 23 19 Mambo No. 5 (cid:21) Bob The Builder (BBC Worldwide) 1 17 17 373,840 206 160.43",
+          "sourceTitleExtracted": "Mambo No. 5",
+          "sourceArtistExtracted": "Bob The Builder",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 18,
+          "title": "What Would You Do?",
+          "artist": "City High",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 18,
+            "CW": 25,
+            "Pos": 23
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "18 25 23 What Would You Do? (cid:21) City High (Booga Basement/Interscope/Polydor) 3 14 14 356,660 196 152.13",
+          "sourceTitleExtracted": "What Would You Do?",
+          "sourceArtistExtracted": "City High",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 19,
+          "title": "21 Seconds",
+          "artist": "So Solid Crew",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 19,
+            "CW": 21,
+            "Pos": 24
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "19 21 24 21 Seconds (cid:21) So Solid Crew (Relentless) 1 15 18 350,130 210 151.79",
+          "sourceTitleExtracted": "21 Seconds",
+          "sourceArtistExtracted": "So Solid Crew",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 20,
+          "title": "Eternity / The Road To Mandalay",
+          "artist": "Robbie Williams",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 20,
+            "CW": 10,
+            "Pos": 12
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "20 10 12 Eternity / The Road To Mandalay (cid:21) Robbie Williams (Chrysalis:EMI) 1 16 22 342,930 260 186.52",
+          "sourceTitleExtracted": "Eternity / The Road To Mandalay",
+          "sourceArtistExtracted": "Robbie Williams",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 21,
+          "title": "Have You Ever",
+          "artist": "S Club 7",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 21,
+            "CW": 30,
+            "Pos": 35
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "21 30 35 Have You Ever (cid:21) S Club 7 (Polydor) 1 6 6 340,850 177 129.45",
+          "sourceTitleExtracted": "Have You Ever",
+          "sourceArtistExtracted": "S Club 7",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 22,
+          "title": "Castles In The Sky",
+          "artist": "Ian van Dahl",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 22,
+            "CW": 19,
+            "Pos": 21
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "22 19 21 Castles In The Sky (cid:21) Ian van Dahl (NuLife/Arista) 3 16 21 311,250 218 159.14",
+          "sourceTitleExtracted": "Castles In The Sky",
+          "sourceArtistExtracted": "Ian van Dahl",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 23,
+          "title": "Queen Of My Heart",
+          "artist": "Westlife",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 23,
+            "CW": 35,
+            "Pos": 44
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "23 35 44 Queen Of My Heart (cid:21) Westlife (RCA) 1 8 8 306,580 162 114.01",
+          "sourceTitleExtracted": "Queen Of My Heart",
+          "sourceArtistExtracted": "Westlife",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 24,
+          "title": "Out Of Reach",
+          "artist": "Gabrielle",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 24,
+            "CW": 24,
+            "Pos": 26
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "24 24 26 Out Of Reach (cid:21) Gabrielle (Go.Beat/Polydor) 4 16 20 297,810 200 147.96",
+          "sourceTitleExtracted": "Out Of Reach",
+          "sourceArtistExtracted": "Gabrielle",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 25,
+          "title": "Touch Me",
+          "artist": "Rui da Silva feat. Cassandra",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 25,
+            "CW": 20,
+            "Pos": 30
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "25 20 30 Touch Me (cid:21) Rui da Silva feat. Cassandra (Kismet/Arista) 1 14 19 291,440 215 139.46",
+          "sourceTitleExtracted": "Touch Me",
+          "sourceArtistExtracted": "Rui da Silva feat. Cassandra",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 26,
+          "title": "Perfect Gentleman",
+          "artist": "Wyclef Jean",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 26,
+            "CW": 27,
+            "Pos": 28
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "26 27 28 Perfect Gentleman (cid:21) Wyclef Jean (Ru(cid:27)house/Columbia) 4 14 21 288,440 193 141.63",
+          "sourceTitleExtracted": "Perfect Gentleman",
+          "sourceArtistExtracted": "Wyclef Jean",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 27,
+          "title": "Rollin' (Urban Assault Vehicle) / (Air Raid Vehicle)",
+          "artist": "Limp Bizkit",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 27,
+            "CW": 16,
+            "Pos": 15
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "27 16 15 Rollin’ (Urban Assault Vehicle) / (Air Raid Vehicle) (cid:21) Limp Bizkit (Interscope/Universal-Island) 1 13 31 284,830 226 174.79",
+          "sourceTitleExtracted": "Rollin’ (Urban Assault Vehicle) / (Air Raid Vehicle)",
+          "sourceArtistExtracted": "Limp Bizkit",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 28,
+          "title": "Follow Me",
+          "artist": "Uncle Kracker",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 28,
+            "CW": 26,
+            "Pos": 25
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "28 26 25 Follow Me (cid:21) Uncle Kracker (Atlantic/East West) 3 18 18 283,530 194 148.61",
+          "sourceTitleExtracted": "Follow Me",
+          "sourceArtistExtracted": "Uncle Kracker",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 29,
+          "title": "Let's Dance",
+          "artist": "5",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 29,
+            "CW": 18,
+            "Pos": 18
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "29 18 18 Let’s Dance (cid:21) 5 (RCA) 1 12 17 275,320 220 161.19",
+          "sourceTitleExtracted": "Let’s Dance",
+          "sourceArtistExtracted": "5",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 30,
+          "title": "Somethin' Stupid",
+          "artist": "Robbie Williams & Nicole Kidman",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 30,
+            "CW": 42,
+            "Pos": 45
+          },
+          "sourcePage": 37,
+          "sourceRowExtracted": "30 42 45 Somethin’ Stupid (cid:21) Robbie Williams & Nicole Kidman (Chrysalis:EMI) 1 3 3 275,260 150 113.73",
+          "sourceTitleExtracted": "Somethin’ Stupid",
+          "sourceArtistExtracted": "Robbie Williams & Nicole Kidman",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        }
+      ],
+      "sourceReview": {
+        "status": "all_30_positions_visually_checked",
+        "checkedAt": "2026-10-25T06:38:59.219Z",
+        "reviewer": "Codex visual comparison of all150 position/title/artist rows against preserved table images"
+      }
+    },
+    {
+      "id": "chartwatch-gb-annual-2002",
+      "kind": "annual",
+      "chartYear": 2002,
+      "market": "GB",
+      "publisher": "CHARTWATCH / Tobias Zywietz",
+      "sourceUrl": "https://www.zobbel.de/cluk/CLUK2002.pdf",
+      "accessedAt": "2026-10-25T06:38:59.610650+00:00",
+      "accessDateMeaning": "PDF checked against accessible publisher source this round; original cache acquisition time not asserted",
+      "sourceSha256": "c4b89fc5be50dc0fd3856e6614427420994dd208f362d04e594b50ee36b20e4f",
+      "requestedSize": 30,
+      "sourcePage": 44,
+      "sourceTier": "secondary_reproduction_of_official_positions",
+      "officialColumn": "CIN",
+      "edition": "Contemporary annual booklet, physical singles; official CIN/OCC order reproduced by secondary source",
+      "methodology": "UK annual singles sales ranking: positions from the first CIN/OCC column reproduced in Chartwatch section3.2; not CW/Pos points, not worldwide, not release year. Secondary source of official positions.",
+      "sourceCaveats": [],
+      "rows": [
+        {
+          "position": 1,
+          "title": "Anything Is Possible / Evergreen",
+          "artist": "Will Young",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 1,
+            "CW": 5,
+            "Pos": 1
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "1 5 1 Anything Is Possible / Evergreen (cid:21) Will Young (S/RCA) 1 16 39 1,784 300 426.62",
+          "sourceTitleExtracted": "Anything Is Possible / Evergreen",
+          "sourceArtistExtracted": "Will Young",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 2,
+          "title": "Unchained Melody",
+          "artist": "Gareth Gates",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 2,
+            "CW": 3,
+            "Pos": 2
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "2 3 2 Unchained Melody (cid:21) Gareth Gates (S/RCA) 1 28 35 333 313.26",
+          "sourceTitleExtracted": "Unchained Melody",
+          "sourceArtistExtracted": "Gareth Gates",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 3,
+          "title": "Hero",
+          "artist": "Enrique Iglesias",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 3,
+            "CW": 1,
+            "Pos": 3
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "3 1 3 Hero (cid:21) Enrique Iglesias (Interscope/Polydor) 1 19 42 398 299.92",
+          "sourceTitleExtracted": "Hero",
+          "sourceArtistExtracted": "Enrique Iglesias",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 4,
+          "title": "Dilemma",
+          "artist": "Nelly feat. Kelly Rowland",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 4,
+            "CW": 4,
+            "Pos": 7
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "4 4 7 Dilemma (cid:21) Nelly feat. Kelly Rowland (Fo’ Real/MCA/Universal-Island) 1 11 11 306 201.14",
+          "sourceTitleExtracted": "Dilemma",
+          "sourceArtistExtracted": "Nelly feat. Kelly Rowland",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 5,
+          "title": "A Little Less Conversation",
+          "artist": "Elvis vs. JXL",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 5,
+            "CW": 7,
+            "Pos": 6
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "5 7 6 A Little Less Conversation (cid:21) Elvis vs. JXL (RCA) 1 12 21 690 293 204.21",
+          "sourceTitleExtracted": "A Little Less Conversation",
+          "sourceArtistExtracted": "Elvis vs. JXL",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 6,
+          "title": "Anyone Of Us (Stupid Mistake)",
+          "artist": "Gareth Gates",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 6,
+            "CW": 10,
+            "Pos": 12
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "6 10 12 Anyone Of Us (Stupid Mistake) (cid:21) Gareth Gates (S/RCA) 1 15 17 288 183.32",
+          "sourceTitleExtracted": "Anyone Of Us (Stupid Mistake)",
+          "sourceArtistExtracted": "Gareth Gates",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 7,
+          "title": "Whenever, Wherever",
+          "artist": "Shakira",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 7,
+            "CW": 2,
+            "Pos": 4
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "7 2 4 Whenever, Wherever (cid:21) Shakira (Epic) 2 19 26 336 291.08",
+          "sourceTitleExtracted": "Whenever, Wherever",
+          "sourceArtistExtracted": "Shakira",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 8,
+          "title": "Aserejé (The Ketchup Song)",
+          "artist": "Las Ketchup",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 8,
+            "CW": 9,
+            "Pos": 9
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "8 9 9 AserejØ (The Ketchup Song) (cid:21) Las Ketchup (Columbia) 1 12 12 560 292 188.19",
+          "sourceTitleExtracted": "AserejØ (The Ketchup Song)",
+          "sourceArtistExtracted": "Las Ketchup",
+          "normalizationNotes": [
+            {
+              "field": "title",
+              "extracted": "AserejØ (The Ketchup Song)",
+              "visible": "Aserejé (The Ketchup Song)",
+              "basis": "Accented glyph checked against table page image"
+            }
+          ],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 9,
+          "title": "Just A Little",
+          "artist": "Liberty X",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 9,
+            "CW": 13,
+            "Pos": 10
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "9 13 10 Just A Little (cid:21) Liberty X (Public Demand/V2) 1 16 24 258 187.97",
+          "sourceTitleExtracted": "Just A Little",
+          "sourceArtistExtracted": "Liberty X",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 10,
+          "title": "Without Me",
+          "artist": "Eminem",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 10,
+            "CW": 12,
+            "Pos": 8
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "10 12 8 Without Me (cid:21) Eminem (Aftermath/Interscope) 1 16 24 264 192.87",
+          "sourceTitleExtracted": "Without Me",
+          "sourceArtistExtracted": "Eminem",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 11,
+          "title": "If Tomorrow Never Comes",
+          "artist": "Ronan Keating",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 11,
+            "CW": 15,
+            "Pos": 13
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "11 15 13 If Tomorrow Never Comes (cid:21) Ronan Keating (Polydor) 1 15 29 249 179.55",
+          "sourceTitleExtracted": "If Tomorrow Never Comes",
+          "sourceArtistExtracted": "Ronan Keating",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 12,
+          "title": "How You Remind Me [ri]",
+          "artist": "Nickelback",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 12,
+            "CW": 8,
+            "Pos": 5
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "12 8 5 How You Remind Me [ri] (cid:21) Nickelback (Roadrunner) 4 21 34 293 240.29",
+          "sourceTitleExtracted": "How You Remind Me [ri]",
+          "sourceArtistExtracted": "Nickelback",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 13,
+          "title": "The Tide Is High (Get The Feeling)",
+          "artist": "Atomic Kitten",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 13,
+            "CW": 6,
+            "Pos": 14
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "13 6 14 The Tide Is High (Get The Feeling) (cid:21) Atomic Kitten (Innocent/Virgin) 1 16 16 297 172.01",
+          "sourceTitleExtracted": "The Tide Is High (Get The Feeling)",
+          "sourceArtistExtracted": "Atomic Kitten",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 14,
+          "title": "Kiss Kiss",
+          "artist": "Holly Valance",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 14,
+            "CW": 17,
+            "Pos": 19
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "14 17 19 Kiss Kiss (cid:21) Holly Valance (London) 1 16 18 219 150.58",
+          "sourceTitleExtracted": "Kiss Kiss",
+          "sourceArtistExtracted": "Holly Valance",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 15,
+          "title": "The Logical Song",
+          "artist": "Scooter",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 15,
+            "CW": 11,
+            "Pos": 11
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "15 11 11 The Logical Song (cid:21) Scooter (She(cid:30)eld Tunes/Edel) 2 15 19 386 277 183.58",
+          "sourceTitleExtracted": "The Logical Song",
+          "sourceArtistExtracted": "Scooter",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 16,
+          "title": "Light My Fire / Ain't No Sunshine",
+          "artist": "Will Young",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 16,
+            "CW": 19,
+            "Pos": 20
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "16 19 20 Light My Fire / Ain’t No Sunshine (cid:21) Will Young (S/RCA) 1 20 30 206 143.23",
+          "sourceTitleExtracted": "Light My Fire / Ain’t No Sunshine",
+          "sourceArtistExtracted": "Will Young",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 17,
+          "title": "Sound Of The Underground",
+          "artist": "Girls Aloud",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 17,
+            "CW": 85,
+            "Pos": 52
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "17 85 52 Sound Of The Underground (cid:21) Girls Aloud (Polydor) 1 2 2 340 100 91.09",
+          "sourceTitleExtracted": "Sound Of The Underground",
+          "sourceArtistExtracted": "Girls Aloud",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 18,
+          "title": "Colourblind",
+          "artist": "Darius",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 18,
+            "CW": 14,
+            "Pos": 18
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "18 14 18 Colourblind (cid:21) Darius (Mercury) 1 16 19 253 154.68",
+          "sourceTitleExtracted": "Colourblind",
+          "sourceArtistExtracted": "Darius",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 19,
+          "title": "Heaven",
+          "artist": "DJ Sammy & Yanou feat. Do",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 19,
+            "CW": 24,
+            "Pos": 26
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "19 24 26 Heaven (cid:21) DJ Sammy & Yanou feat. Do (Data/Ministry Of Sound) 1 9 10 189 123.59",
+          "sourceTitleExtracted": "Heaven",
+          "sourceArtistExtracted": "DJ Sammy & Yanou feat. Do",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 20,
+          "title": "Me Julie",
+          "artist": "Ali G & Shaggy",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 20,
+            "CW": 20,
+            "Pos": 16
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "20 20 16 Me Julie (cid:21) Ali G & Shaggy (Island/Universal-Island) 2 14 22 300 204 162.70",
+          "sourceTitleExtracted": "Me Julie",
+          "sourceArtistExtracted": "Ali G & Shaggy",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 21,
+          "title": "Get The Party Started",
+          "artist": "Pink",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 21,
+            "CW": 16,
+            "Pos": 15
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "21 16 15 Get The Party Started (cid:21) Pink (LaFace/Arista) 2 15 20 237 163.13",
+          "sourceTitleExtracted": "Get The Party Started",
+          "sourceArtistExtracted": "Pink",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 22,
+          "title": "The Long & Winding Road / Suspicious Minds",
+          "artist": "Will Young & Gareth Gates",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 22,
+            "CW": 23,
+            "Pos": 27
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "22 23 27 The Long & Winding Road / Suspicious Minds (cid:21) Will Young & Gareth Gates (S/RCA) 1 14 14 193 116.04",
+          "sourceTitleExtracted": "The Long & Winding Road / Suspicious Minds",
+          "sourceArtistExtracted": "Will Young & Gareth Gates",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 23,
+          "title": "One Step Closer",
+          "artist": "S Club Juniors",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 23,
+            "CW": 22,
+            "Pos": 21
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "23 22 21 One Step Closer (cid:21) S Club Juniors (19/Polydor) 2 16 20 195 130.92",
+          "sourceTitleExtracted": "One Step Closer",
+          "sourceArtistExtracted": "S Club Juniors",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 24,
+          "title": "Cheeky Song (Touch My Bum)",
+          "artist": "The Cheeky Girls",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 24,
+            "CW": 38,
+            "Pos": 33
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "24 38 33 Cheeky Song (Touch My Bum) (cid:21) The Cheeky Girls (Multiply) 2 4 4 280 146 107.58",
+          "sourceTitleExtracted": "Cheeky Song (Touch My Bum)",
+          "sourceArtistExtracted": "The Cheeky Girls",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 25,
+          "title": "If You're Not The One",
+          "artist": "Daniel Bedingfield",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 25,
+            "CW": 37,
+            "Pos": 44
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "25 37 44 If You’re Not The One (cid:21) Daniel Beding(cid:28)eld (Polydor) 1 5 5 146 100.30",
+          "sourceTitleExtracted": "If You’re Not The One",
+          "sourceArtistExtracted": "Daniel Beding(cid:28)eld",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 26,
+          "title": "Something [rm]",
+          "artist": "Lasgo feat. Evi Goffin",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 26,
+            "CW": 29,
+            "Pos": 17
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "26 29 17 Something [rm] (cid:21) Lasgo feat. Evi Go(cid:30)n (Positiva) 4 15 23 172 157.98",
+          "sourceTitleExtracted": "Something [rm]",
+          "sourceArtistExtracted": "Lasgo feat. Evi Go(cid:30)n",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 27,
+          "title": "Hot In Herre",
+          "artist": "Nelly",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 27,
+            "CW": 25,
+            "Pos": 25
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "27 25 25 Hot In Herre (cid:21) Nelly (Fo’ Real/MCA/Universal-Island) 4 15 20 187 123.69",
+          "sourceTitleExtracted": "Hot In Herre",
+          "sourceArtistExtracted": "Nelly",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 28,
+          "title": "Freak Like Me",
+          "artist": "Sugababes",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 28,
+            "CW": 31,
+            "Pos": 29
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "28 31 29 Freak Like Me (cid:21) Sugababes (Island/Universal-Island) 1 14 23 165 110.34",
+          "sourceTitleExtracted": "Freak Like Me",
+          "sourceArtistExtracted": "Sugababes",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 29,
+          "title": "Nu Flow",
+          "artist": "Big Brovaz",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 29,
+            "CW": 36,
+            "Pos": 42
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "29 36 42 Nu Flow (cid:21) Big Brovaz (Epic) 3 11 11 230 152 100.78",
+          "sourceTitleExtracted": "Nu Flow",
+          "sourceArtistExtracted": "Big Brovaz",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 30,
+          "title": "Dirrty",
+          "artist": "Christina Aguilera feat. Redman",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 30,
+            "CW": 27,
+            "Pos": 32
+          },
+          "sourcePage": 44,
+          "sourceRowExtracted": "30 27 32 Dirrty (cid:21) Christina Aguilera feat. Redman (RCA) 1 7 8 180 107.79",
+          "sourceTitleExtracted": "Dirrty",
+          "sourceArtistExtracted": "Christina Aguilera feat. Redman",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        }
+      ],
+      "sourceReview": {
+        "status": "all_30_positions_visually_checked",
+        "checkedAt": "2026-10-25T06:38:59.219Z",
+        "reviewer": "Codex visual comparison of all150 position/title/artist rows against preserved table images"
+      }
+    },
+    {
+      "id": "chartwatch-gb-annual-2003",
+      "kind": "annual",
+      "chartYear": 2003,
+      "market": "GB",
+      "publisher": "CHARTWATCH / Tobias Zywietz",
+      "sourceUrl": "https://www.zobbel.de/cluk/CLUK2003.pdf",
+      "accessedAt": "2026-10-25T06:38:59.610650+00:00",
+      "accessDateMeaning": "PDF checked against accessible publisher source this round; original cache acquisition time not asserted",
+      "sourceSha256": "68acab4f0e07717453071c54958ae8c521327d946e0cdeae0d18b9fe6dbe52bf",
+      "requestedSize": 30,
+      "sourcePage": 43,
+      "sourceTier": "secondary_reproduction_of_official_positions",
+      "officialColumn": "CIN",
+      "edition": "Contemporary annual booklet, physical singles; official CIN/OCC order reproduced by secondary source",
+      "methodology": "UK annual singles sales ranking: positions from the first CIN/OCC column reproduced in Chartwatch section3.2; not CW/Pos points, not worldwide, not release year. Secondary source of official positions.",
+      "sourceCaveats": [],
+      "rows": [
+        {
+          "position": 1,
+          "title": "Where Is The Love?",
+          "artist": "Black Eyed Peas feat. Justin Timberlake",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 1,
+            "CW": 1,
+            "Pos": 1
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "1 1 1 Where Is The Love? (cid:21) Black Eyed Peas feat. Justin Timberlake (Interscope/Polydor) 1 17 17 625,200 447 332.68",
+          "sourceTitleExtracted": "Where Is The Love?",
+          "sourceArtistExtracted": "Black Eyed Peas feat. Justin Timberlake",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 2,
+          "title": "Spirit In The Sky [Comic Relief 2003]",
+          "artist": "Gareth Gates feat. The Kumars",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 2,
+            "CW": 9,
+            "Pos": 2
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "2 9 2 Spirit In The Sky [Comic Relief 2003] (cid:21) Gareth Gates feat. The Kumars (S/RCA) 1 15 31 552,600 270 214.90",
+          "sourceTitleExtracted": "Spirit In The Sky [Comic Relief 2003]",
+          "sourceArtistExtracted": "Gareth Gates feat. The Kumars",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 3,
+          "title": "Ignition – Remix",
+          "artist": "R. Kelly",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 3,
+            "CW": 2,
+            "Pos": 5
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "3 2 5 Ignition (cid:21) Remix (cid:21) R. Kelly (Jive) 1 20 26 478,400 432 180.96",
+          "sourceTitleExtracted": "Ignition (cid:21) Remix",
+          "sourceArtistExtracted": "R. Kelly",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 4,
+          "title": "Mad World",
+          "artist": "Michael Andrews feat. Gary Jules",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 4,
+            "CW": 74,
+            "Pos": 3
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "4 74 3 Mad World (cid:21) Michael Andrews feat. Gary Jules (Adventures In Music/Sanctuary) 1 2 2 394,600 100 202.68",
+          "sourceTitleExtracted": "Mad World",
+          "sourceArtistExtracted": "Michael Andrews feat. Gary Jules",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 5,
+          "title": "Leave Right Now",
+          "artist": "Will Young",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 5,
+            "CW": 25,
+            "Pos": 6
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "5 25 6 Leave Right Now (cid:21) Will Young (S/RCA) 1 5 5 381,100 183 177.90",
+          "sourceTitleExtracted": "Leave Right Now",
+          "sourceArtistExtracted": "Will Young",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 6,
+          "title": "All The Things She Said",
+          "artist": "t.A.T.u.",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 6,
+            "CW": 6,
+            "Pos": 4
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "6 6 4 All The Things She Said (cid:21) t.A.T.u. (Interscope/Polydor) 1 15 16 337,800 307 199.39",
+          "sourceTitleExtracted": "All The Things She Said",
+          "sourceArtistExtracted": "t.A.T.u.",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 7,
+          "title": "Changes",
+          "artist": "Kelly & Ozzy Osbourne",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 7,
+            "CW": 54,
+            "Pos": 14
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "7 54 14 Changes (cid:21) Kelly & Ozzy Osbourne (Sanctuary) 1 3 3 333,900 118 125.93",
+          "sourceTitleExtracted": "Changes",
+          "sourceArtistExtracted": "Kelly & Ozzy Osbourne",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 8,
+          "title": "Breathe",
+          "artist": "Blu Cantrell feat. Sean Paul",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 8,
+            "CW": 4,
+            "Pos": 9
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "8 4 9 Breathe (cid:21) Blu Cantrell feat. Sean Paul (Arista) 1 18 18 330,000 367 153.53",
+          "sourceTitleExtracted": "Breathe",
+          "sourceArtistExtracted": "Blu Cantrell feat. Sean Paul",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 9,
+          "title": "Make Luv",
+          "artist": "Room 5 feat. Oliver Cheatham",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 9,
+            "CW": 8,
+            "Pos": 7
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "9 8 7 Make Luv (cid:21) Room 5 feat. Oliver Cheatham (Positiva) 1 15 24 316,800 286 167.38",
+          "sourceTitleExtracted": "Make Luv",
+          "sourceArtistExtracted": "Room 5 feat. Oliver Cheatham",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 10,
+          "title": "Christmas Time (Don't Let The Bells End)",
+          "artist": "The Darkness",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 10,
+            "CW": 135,
+            "Pos": 47
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "10 135 47 Christmas Time (Don’t Let The Bells End) (cid:21) The Darkness (Must Destroy/Atlantic/East West) 2 2 2 313,500 68 66.21",
+          "sourceTitleExtracted": "Christmas Time (Don’t Let The Bells End)",
+          "sourceArtistExtracted": "The Darkness",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 11,
+          "title": "Bring Me To Life",
+          "artist": "Evanescence",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 11,
+            "CW": 3,
+            "Pos": 10
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "11 3 10 Bring Me To Life (cid:21) Evanescence (Wind-Up/Epic) 1 17 23 298,000 375 151.36",
+          "sourceTitleExtracted": "Bring Me To Life",
+          "sourceArtistExtracted": "Evanescence",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 12,
+          "title": "White Flag",
+          "artist": "Dido",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 12,
+            "CW": 12,
+            "Pos": 18
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "12 12 18 White Flag (cid:21) Dido (Cheeky/Arista) 2 13 13 290,000 241 114.05",
+          "sourceTitleExtracted": "White Flag",
+          "sourceArtistExtracted": "Dido",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 13,
+          "title": "In Da Club",
+          "artist": "50 Cent",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 13,
+            "CW": 5,
+            "Pos": 11
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "13 5 11 In Da Club (cid:21) 50 Cent (Interscope/Polydor) 3 24 30 278,000 316 143.27",
+          "sourceTitleExtracted": "In Da Club",
+          "sourceArtistExtracted": "50 Cent",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 14,
+          "title": "Turn Me On",
+          "artist": "Kevin Lyttle",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 14,
+            "CW": 13,
+            "Pos": 15
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "14 13 15 Turn Me On (cid:21) Kevin Lyttle (Atlantic/East West) 2 11 11 271,000 240 122.83",
+          "sourceTitleExtracted": "Turn Me On",
+          "sourceArtistExtracted": "Kevin Lyttle",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 15,
+          "title": "Crazy In Love",
+          "artist": "Beyoncé",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 15,
+            "CW": 7,
+            "Pos": 17
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "15 7 17 Crazy In Love (cid:21) BeyoncØ (Columbia) 1 15 20 265,000 292 114.96",
+          "sourceTitleExtracted": "Crazy In Love",
+          "sourceArtistExtracted": "BeyoncØ",
+          "normalizationNotes": [
+            {
+              "field": "artist",
+              "extracted": "BeyoncØ",
+              "visible": "Beyoncé",
+              "basis": "Accented glyph checked against table page image"
+            }
+          ],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 16,
+          "title": "Move Your Feet",
+          "artist": "Junior Senior",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 16,
+            "CW": 10,
+            "Pos": 13
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "16 10 13 Move Your Feet (cid:21) Junior Senior (Crunchy Frog/Mercury) 3 17 29 264,000 266 127.62",
+          "sourceTitleExtracted": "Move Your Feet",
+          "sourceArtistExtracted": "Junior Senior",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 17,
+          "title": "I'm Your Man",
+          "artist": "Shane Richie",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 17,
+            "CW": 49,
+            "Pos": 33
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "17 49 33 I’m Your Man (cid:21) Shane Richie (BMG) 2 5 5 250,000 126 81.97",
+          "sourceTitleExtracted": "I’m Your Man",
+          "sourceArtistExtracted": "Shane Richie",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 18,
+          "title": "Stop Living The Lie",
+          "artist": "David Sneddon",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 18,
+            "CW": 16,
+            "Pos": 12
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "18 16 12 Stop Living The Lie (cid:21) David Sneddon (Fontana/Mercury) 1 18 27 245,000 214 130.00",
+          "sourceTitleExtracted": "Stop Living The Lie",
+          "sourceArtistExtracted": "David Sneddon",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 19,
+          "title": "Be Faithful",
+          "artist": "Fatman Scoop feat. Crooklyn Clan",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 19,
+            "CW": 17,
+            "Pos": 8
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "19 17 8 Be Faithful (cid:21) Fatman Scoop feat. Crooklyn Clan (Def Jam/Mercury) 1 10 10 228,000 213 166.24",
+          "sourceTitleExtracted": "Be Faithful",
+          "sourceArtistExtracted": "Fatman Scoop feat. Crooklyn Clan",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 20,
+          "title": "Shut Up",
+          "artist": "Black Eyed Peas",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 20,
+            "CW": 65,
+            "Pos": 39
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "20 65 39 Shut Up (cid:21) Black Eyed Peas (A&M/Polydor) 2 4 4 223,000 108 74.30",
+          "sourceTitleExtracted": "Shut Up",
+          "sourceArtistExtracted": "Black Eyed Peas",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 21,
+          "title": "Sound Of The Underground",
+          "artist": "Girls Aloud",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 21,
+            "CW": 14,
+            "Pos": 20
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "21 14 20 *Sound Of The Underground (cid:21) Girls Aloud (Polydor) 1 19 35 210,000 236 104.53",
+          "sourceTitleExtracted": "*Sound Of The Underground",
+          "sourceArtistExtracted": "Girls Aloud",
+          "normalizationNotes": [],
+          "sourceRunContinues": true,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 22,
+          "title": "Sweet Dreams My L.A. Ex",
+          "artist": "Rachel Stevens",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 22,
+            "CW": 26,
+            "Pos": 31
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "22 26 31 Sweet Dreams My L.A. Ex (cid:21) Rachel Stevens (19/Polydor) 2 10 13 218,000 177 82.82",
+          "sourceTitleExtracted": "Sweet Dreams My L.A. Ex",
+          "sourceArtistExtracted": "Rachel Stevens",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 23,
+          "title": "Beautiful",
+          "artist": "Christina Aguilera",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 23,
+            "CW": 24,
+            "Pos": 16
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "23 24 16 Beautiful (cid:21) Christina Aguilera (RCA) 1 10 16 200,000 183 115.04",
+          "sourceTitleExtracted": "Beautiful",
+          "sourceArtistExtracted": "Christina Aguilera",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 24,
+          "title": "Pretty Green Eyes",
+          "artist": "Ultrabeat",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 24,
+            "CW": 15,
+            "Pos": 22
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "24 15 22 Pretty Green Eyes (cid:21) Ultrabeat (All Around The World) 2 14 19 197,000 223 96.50",
+          "sourceTitleExtracted": "Pretty Green Eyes",
+          "sourceArtistExtracted": "Ultrabeat",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 25,
+          "title": "Loose Yourself",
+          "artist": "Eminem",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 25,
+            "CW": 11,
+            "Pos": 19
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "25 11 19 *Loose Yourself (cid:21) Eminem (Aftermath/Interscope) 3 17 37 195,000 246 112.26",
+          "sourceTitleExtracted": "*Loose Yourself",
+          "sourceArtistExtracted": "Eminem",
+          "normalizationNotes": [],
+          "sourceRunContinues": true,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 26,
+          "title": "Superstar",
+          "artist": "Jamelia",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 26,
+            "CW": 19,
+            "Pos": 21
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "26 19 21 Superstar (cid:21) Jamelia (Rhythm Series/Parlophone) 3 15 15 185,000 204 98.88",
+          "sourceTitleExtracted": "Superstar",
+          "sourceArtistExtracted": "Jamelia",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 27,
+          "title": "Are You Ready For Love",
+          "artist": "Elton John",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 27,
+            "CW": 28,
+            "Pos": 32
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "27 28 32 Are You Ready For Love (cid:21) Elton John (Southern Fried) 1 13 16 175,000 175 82.51",
+          "sourceTitleExtracted": "Are You Ready For Love",
+          "sourceArtistExtracted": "Elton John",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 28,
+          "title": "Cry Me A River",
+          "artist": "Justin Timberlake",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 28,
+            "CW": 23,
+            "Pos": 25
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "28 23 25 Cry Me A River (cid:21) Justin Timberlake (Jive) 2 12 29 175,000 190 91.88",
+          "sourceTitleExtracted": "Cry Me A River",
+          "sourceArtistExtracted": "Justin Timberlake",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 29,
+          "title": "All I Have",
+          "artist": "Jennifer Lopez feat. LL Cool J",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 29,
+            "CW": 31,
+            "Pos": 28
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "29 31 28 All I Have (cid:21) Jennifer Lopez feat. LL Cool J (Epic) 2 13 13 175,000 171 87.23",
+          "sourceTitleExtracted": "All I Have",
+          "sourceArtistExtracted": "Jennifer Lopez feat. LL Cool J",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 30,
+          "title": "Stole",
+          "artist": "Kelly Rowland",
+          "releaseYear": null,
+          "sourceColumns": {
+            "CIN": 30,
+            "CW": 29,
+            "Pos": 30
+          },
+          "sourcePage": 43,
+          "sourceRowExtracted": "30 29 30 Stole (cid:21) Kelly Rowland (Columbia) 2 14 21 170,000 175 83.86",
+          "sourceTitleExtracted": "Stole",
+          "sourceArtistExtracted": "Kelly Rowland",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        }
+      ],
+      "sourceReview": {
+        "status": "all_30_positions_visually_checked",
+        "checkedAt": "2026-10-25T06:38:59.219Z",
+        "reviewer": "Codex visual comparison of all150 position/title/artist rows against preserved table images"
+      }
+    },
+    {
+      "id": "chartwatch-gb-annual-2004",
+      "kind": "annual",
+      "chartYear": 2004,
+      "market": "GB",
+      "publisher": "CHARTWATCH / Tobias Zywietz",
+      "sourceUrl": "https://www.zobbel.de/cluk/CLUK2004.pdf",
+      "accessedAt": "2026-10-25T06:38:59.610650+00:00",
+      "accessDateMeaning": "PDF checked against accessible publisher source this round; original cache acquisition time not asserted",
+      "sourceSha256": "bc9f52abcca447c610c283d640d3ec48d82439b0625327603657dce39b0d64b6",
+      "requestedSize": 30,
+      "sourcePage": 45,
+      "sourceTier": "secondary_reproduction_of_official_positions",
+      "officialColumn": "OCC",
+      "edition": "Contemporary annual booklet, physical singles; official CIN/OCC order reproduced by secondary source",
+      "methodology": "UK annual singles sales ranking: positions from the first CIN/OCC column reproduced in Chartwatch section3.2; not CW/Pos points, not worldwide, not release year. Secondary source of official positions.",
+      "sourceCaveats": [
+        "Introduction says 2003 chart year and contains inconsistent dates; cover, section3.2, official column and listed singles identify 2004. Original text retained; do not silently correct."
+      ],
+      "rows": [
+        {
+          "position": 1,
+          "title": "Do They Know It's Christmas?",
+          "artist": "Band Aid 20",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 1,
+            "CW": 14,
+            "Pos": 1
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "1 14 1 Do They Know It’s Christmas? (cid:21) Band Aid 20 (Mercury) 1 5 6 1,065,749 239 229.29",
+          "sourceTitleExtracted": "Do They Know It’s Christmas?",
+          "sourceArtistExtracted": "Band Aid 20",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 2,
+          "title": "Fuck It (I Don't Want You Back)",
+          "artist": "Eamon",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 2,
+            "CW": 2,
+            "Pos": 2
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "2 2 2 Fuck It (I Don’t Want You Back) (cid:21) Eamon (Jive) 1 19 24 552,628 417 173.43",
+          "sourceTitleExtracted": "Fuck It (I Don’t Want You Back)",
+          "sourceArtistExtracted": "Eamon",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 3,
+          "title": "Cha Cha Slide",
+          "artist": "DJ Casper",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 3,
+            "CW": 4,
+            "Pos": 4
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "3 4 4 Cha Cha Slide (cid:21) DJ Casper (All Around The World) 1 18 20 352,367 301 130.44",
+          "sourceTitleExtracted": "Cha Cha Slide",
+          "sourceArtistExtracted": "DJ Casper",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 4,
+          "title": "Call On Me",
+          "artist": "Eric Prydz",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 4,
+            "CW": 1,
+            "Pos": 3
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "4 1 3 Call On Me (cid:21) Eric Prydz (Data/Ministry Of Sound) 1 16 16 316,869 427 141.75",
+          "sourceTitleExtracted": "Call On Me",
+          "sourceArtistExtracted": "Eric Prydz",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 5,
+          "title": "Yeah!",
+          "artist": "Usher feat. Lil' Jon & Ludacris",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 5,
+            "CW": 5,
+            "Pos": 5
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "5 5 5 Yeah! (cid:21) Usher feat. Lil’ Jon & Ludacris (LaFace/Arista) 1 14 28 300,740 295 128.53",
+          "sourceTitleExtracted": "Yeah!",
+          "sourceArtistExtracted": "Usher feat. Lil’ Jon & Ludacris",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 6,
+          "title": "All This Time",
+          "artist": "Michelle McManus",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 6,
+            "CW": 10,
+            "Pos": 11
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "6 10 11 All This Time (cid:21) Michelle McManus (S/RCA) 1 11 14 291,427 257 81.81",
+          "sourceTitleExtracted": "All This Time",
+          "sourceArtistExtracted": "Michelle McManus",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 7,
+          "title": "Left Outside Alone",
+          "artist": "Anastacia",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 7,
+            "CW": 3,
+            "Pos": 12
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "7 3 12 Left Outside Alone (cid:21) Anastacia (Epic) 3 20 20 275,296 308 79.35",
+          "sourceTitleExtracted": "Left Outside Alone",
+          "sourceArtistExtracted": "Anastacia",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 8,
+          "title": "Mysterious Girl [ri]",
+          "artist": "Peter Andre feat. Bubbler Ranx",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 8,
+            "CW": 35,
+            "Pos": 23
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "8 35 23 Mysterious Girl [ri] (cid:21) Peter Andre feat. Bubbler Ranx (Mushroom/East West) 1 11 19 259,691 168 64.19",
+          "sourceTitleExtracted": "Mysterious Girl [ri]",
+          "sourceArtistExtracted": "Peter Andre feat. Bubbler Ranx",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 9,
+          "title": "Toxic",
+          "artist": "Britney Spears",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 9,
+            "CW": 21,
+            "Pos": 6
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "9 21 6 Toxic (cid:21) Britney Spears (Jive) 1 14 22 258,604 213 111.40",
+          "sourceTitleExtracted": "Toxic",
+          "sourceArtistExtracted": "Britney Spears",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 10,
+          "title": "F.U.R.B. (F U Right Back)",
+          "artist": "Frankee",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 10,
+            "CW": 8,
+            "Pos": 9
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "10 8 9 F.U.R.B. (F U Right Back) (cid:21) Frankee (All Around The World) 1 16 20 245,964 281 93.67",
+          "sourceTitleExtracted": "F.U.R.B. (F U Right Back)",
+          "sourceArtistExtracted": "Frankee",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 11,
+          "title": "I Don't Wanna Know",
+          "artist": "Mario Winans feat. Enya & P. Diddy",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 11,
+            "CW": 7,
+            "Pos": 10
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "11 7 10 I Don’t Wanna Know (cid:21) Mario Winans feat. Enya & P. Diddy (MCA/Universal-Island) 1 14 23 284 87.26",
+          "sourceTitleExtracted": "I Don’t Wanna Know",
+          "sourceArtistExtracted": "Mario Winans feat. Enya & P. Diddy",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 12,
+          "title": "Baby Cakes",
+          "artist": "3 Of A Kind",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 12,
+            "CW": 9,
+            "Pos": 14
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "12 9 14 Baby Cakes (cid:21) 3 Of A Kind (Relentless/Virgin) 1 14 16 261 73.87",
+          "sourceTitleExtracted": "Baby Cakes",
+          "sourceArtistExtracted": "3 Of A Kind",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 13,
+          "title": "Take Me To The Clouds Above",
+          "artist": "LMC vs. U2",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 13,
+            "CW": 15,
+            "Pos": 16
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "13 15 16 Take Me To The Clouds Above (cid:21) LMC vs. U2 (All Around The World) 1 12 32 225,150 230 72.54",
+          "sourceTitleExtracted": "Take Me To The Clouds Above",
+          "sourceArtistExtracted": "LMC vs. U2",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 14,
+          "title": "Milkshake",
+          "artist": "Kelis",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 14,
+            "CW": 6,
+            "Pos": 8
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "14 6 8 Milkshake (cid:21) Kelis (Virgin) 2 15 20 287 98.10",
+          "sourceTitleExtracted": "Milkshake",
+          "sourceArtistExtracted": "Kelis",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 15,
+          "title": "Lose My Breath",
+          "artist": "Destiny's Child",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 15,
+            "CW": 11,
+            "Pos": 7
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "15 11 7 Lose My Breath (cid:21) Destiny’s Child (Columbia) 2 9 9 255 110.33",
+          "sourceTitleExtracted": "Lose My Breath",
+          "sourceArtistExtracted": "Destiny’s Child",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 16,
+          "title": "My Band",
+          "artist": "D12",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 16,
+            "CW": 29,
+            "Pos": 17
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "16 29 17 My Band (cid:21) D12 (Shady/Interscope/Polydor) 2 13 28 193 68.44",
+          "sourceTitleExtracted": "My Band",
+          "sourceArtistExtracted": "D12",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 17,
+          "title": "These Words",
+          "artist": "Natasha Bedingfield",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 17,
+            "CW": 22,
+            "Pos": 27
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "17 22 27 These Words (cid:21) Natasha Beding(cid:28)eld (Phonogenic/BMG) 1 13 13 212 58.52",
+          "sourceTitleExtracted": "These Words",
+          "sourceArtistExtracted": "Natasha Beding(cid:28)eld",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 18,
+          "title": "Everytime",
+          "artist": "Britney Spears",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 18,
+            "CW": 12,
+            "Pos": 13
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "18 12 13 Everytime (cid:21) Britney Spears (Jive) 1 14 17 251 76.55",
+          "sourceTitleExtracted": "Everytime",
+          "sourceArtistExtracted": "Britney Spears",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 19,
+          "title": "Thunderbirds (Are Go) / 3AM",
+          "artist": "Busted",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 19,
+            "CW": 18,
+            "Pos": 25
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "19 18 25 Thunderbirds (Are Go) / 3AM (cid:21) Busted (MCA/Universal-Island) 1 13 18 225 60.23",
+          "sourceTitleExtracted": "Thunderbirds (Are Go) / 3AM",
+          "sourceArtistExtracted": "Busted",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 20,
+          "title": "Dry Your Eyes",
+          "artist": "The Streets",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 20,
+            "CW": 17,
+            "Pos": 21
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "20 17 21 Dry Your Eyes (cid:21) The Streets (679/Locked On/WEA) 1 13 13 226 65.58",
+          "sourceTitleExtracted": "Dry Your Eyes",
+          "sourceArtistExtracted": "The Streets",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 21,
+          "title": "Lola's Theme",
+          "artist": "Shapeshifters",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 21,
+            "CW": 13,
+            "Pos": 20
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "21 13 20 Lola’s Theme (cid:21) Shapeshifters (Positiva) 1 15 19 243 67.10",
+          "sourceTitleExtracted": "Lola’s Theme",
+          "sourceArtistExtracted": "Shapeshifters",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 22,
+          "title": "In The Shadows",
+          "artist": "The Rasmus",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 22,
+            "CW": 25,
+            "Pos": 31
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "22 25 31 In The Shadows (cid:21) The Rasmus (MCA/Universal-Island) 3 16 16 178,061 203 53.92",
+          "sourceTitleExtracted": "In The Shadows",
+          "sourceArtistExtracted": "The Rasmus",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 23,
+          "title": "Just Lose It",
+          "artist": "Eminem",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 23,
+            "CW": 32,
+            "Pos": 26
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "23 32 26 Just Lose It (cid:21) Eminem (Aftermath/Interscope) 1 9 9 173 59.31",
+          "sourceTitleExtracted": "Just Lose It",
+          "sourceArtistExtracted": "Eminem",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 24,
+          "title": "Thank You",
+          "artist": "Jamelia",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 24,
+            "CW": 33,
+            "Pos": 33
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "24 33 33 Thank You (cid:21) Jamelia (Rhythm Series/Parlophone) 2 14 20 172 50.55",
+          "sourceTitleExtracted": "Thank You",
+          "sourceArtistExtracted": "Jamelia",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 25,
+          "title": "Hey Ya!",
+          "artist": "Outkast",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 25,
+            "CW": 16,
+            "Pos": 30
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "25 16 30 *Hey Ya! (cid:21) Outkast (LaFace/Arista) 3 14 38 227 55.29",
+          "sourceTitleExtracted": "*Hey Ya!",
+          "sourceArtistExtracted": "Outkast",
+          "normalizationNotes": [],
+          "sourceRunContinues": true,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 26,
+          "title": "My Place / Flap Your Wings",
+          "artist": "Nelly feat. Jaheim",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 26,
+            "CW": 26,
+            "Pos": 19
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "26 26 19 My Place / Flap Your Wings (cid:21) Nelly feat. Jaheim (MCA/Universal-Island) 1 11 15 197 67.46",
+          "sourceTitleExtracted": "My Place / Flap Your Wings",
+          "sourceArtistExtracted": "Nelly feat. Jaheim",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 27,
+          "title": "Burn",
+          "artist": "Usher",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 27,
+            "CW": 20,
+            "Pos": 22
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "27 20 22 Burn (cid:21) Usher (LaFace/Arista) 1 12 18 159,952 222 64.23",
+          "sourceTitleExtracted": "Burn",
+          "sourceArtistExtracted": "Usher",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 28,
+          "title": "Dragostea Din Tei",
+          "artist": "O-Zone",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 28,
+            "CW": 19,
+            "Pos": 35
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "28 19 35 Dragostea Din Tei (cid:21) O-Zone (Jive) 3 17 21 157,991 225 47.24",
+          "sourceTitleExtracted": "Dragostea Din Tei",
+          "sourceArtistExtracted": "O-Zone",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 29,
+          "title": "Mad World",
+          "artist": "Michael Andrews feat. Gary Jules",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 29,
+            "CW": 27,
+            "Pos": 28
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "29 27 28 *Mad World (cid:21) Michael Andrews feat. Gary Jules (Adventures In Music/Sanctuary) 1 13 33 197 58.16",
+          "sourceTitleExtracted": "*Mad World",
+          "sourceArtistExtracted": "Michael Andrews feat. Gary Jules",
+          "normalizationNotes": [],
+          "sourceRunContinues": true,
+          "recordingIdentityStatus": "not_verified"
+        },
+        {
+          "position": 30,
+          "title": "Against All Odds",
+          "artist": "Steve Brookstein",
+          "releaseYear": null,
+          "sourceColumns": {
+            "OCC": 30,
+            "CW": 87,
+            "Pos": 47
+          },
+          "sourcePage": 45,
+          "sourceRowExtracted": "30 87 47 Against All Odds (cid:21) Steve Brookstein (SyCo/RCA) 1 2 2 153,770 89 37.12",
+          "sourceTitleExtracted": "Against All Odds",
+          "sourceArtistExtracted": "Steve Brookstein",
+          "normalizationNotes": [],
+          "sourceRunContinues": false,
+          "recordingIdentityStatus": "not_verified"
+        }
+      ],
+      "sourceReview": {
+        "status": "all_30_positions_visually_checked",
+        "checkedAt": "2026-10-25T06:38:59.219Z",
+        "reviewer": "Codex visual comparison of all150 position/title/artist rows against preserved table images"
+      }
+    }
+  ],
+  "gaps": [],
+  "operationalImport": false,
+  "validationStatus": "reviewed_source_facts_only_recordings_unverified",
+  "review": "150 positions/credits checked against five table images; original transcription and normalizations preserved. Recording identities, release years and catalog imports remain unverified.",
+  "reviewManifestSha256": "f97f873825e2ac4fe66c9ba39c18cbe2401bbab59655753175763f742cc80085"
+}
