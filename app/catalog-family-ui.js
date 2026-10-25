@@ -1,0 +1,6 @@
+import {catalogFamilies} from './catalog-families.js';import {changeFamilyPresentation} from './catalog-family-store.js';
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function mountCatalogFamilies({state,showDialog,refresh,render,signal,toast}){
+ for(const b of document.querySelectorAll('[data-family-mode]'))b.onclick=async()=>{b.disabled=true;try{await changeFamilyPresentation(b.dataset.familyId,b.dataset.familyMode);await refresh();signal();await render();toast('Apresentação alterada. IDs, versões e históricos preservados.');}catch(e){b.disabled=false;toast(e.message);}};
+ for(const b of document.querySelectorAll('[data-related-records]'))b.onclick=()=>{const f=catalogFamilies(state.songs,{tables:state}).find(g=>g.id===b.dataset.relatedRecords);if(!f)return;showDialog(`<h2>Cadastros relacionados — revisão pendente</h2><p>O crédito é semelhante, mas não há comprovação suficiente para agrupamento automático. Nenhum registro foi fundido ou excluído.</p><ul>${f.members.map(s=>`<li><strong>${esc(s.title)}</strong> — ${esc(s.artist)} · ano informado ${esc(s.year)}<br><small>ID ${esc(s.sourceId||s.id)}</small></li>`).join('')}</ul><p>Obras incompatíveis, covers e identidades incertas permanecem separados. Consulte a fonte em Detalhes de cada cadastro.</p>`);};
+}

@@ -1,5 +1,11 @@
 # Família oficial de templates
 
+## Pacote de aberturas GMM_REVISAO_TOTAL_V02 — somente leitura,25/10/2026
+
+ZIP explicitamente indicado pelo titular localizado no caminho de outputs informado;90.166.595 bytes (cerca86MiB),SHA25696a147f29ba847e090700f5de3853af66cf5baba4317f76a244934f040086cdd,13 arquivos/90.167.722 bytes descompactados. DezMP4:1960/1970/1980/1990/2000, cada qual TikTok_9x16 e YouTube_16x9; mais ASSISTIR.html,LEIA_ME.txt e VERIFICACAO_TECNICA.json. Documentos lidos dentro do ZIP, sem extração, execução, abertura do HTML no navegador ou aplicação de instruções. HTML tem10players e nenhum script/linkexterno.
+
+Segundo os documentos do pacote, são aberturas10s/24fps/H.264 sem áudio,1080×1920/1920×1080, fontes Midjourney próximas720p ampliadas; música/logo seriam adicionados externamente. Relatório interno declara240quadros por arquivo,decodificação integral e nenhum quadro preto. Isso é declaração da origem: nesta inspeção não se reproduziu/decodificou vídeos nem se validou qualidade visual ou se conferiu cadaSHAinterno. São artes/aberturas Golden, não capas históricas de álbuns nem o ZIP500. Nenhum arquivo atual/MP4 aprovado foi substituído; nenhuma implementação do pacote autorizada por esta inspeção.
+
 ## Consulta local de capas históricas por música — 2.9.8
 
 **Catálogo → Detalhes → Consultar capas históricas** lê as associações já confirmadas em `acervo/capas-historicas/indice.json`. Mostra imagem inteira proporcional, álbum/edição, origem e evidência. Linda Williams/Elevate Our Minds/City Living e Jimmie & Vella Cameron/Be Fair to Me/Song Painters estão disponíveis;127 referências continuam em revisão e1880 bináriosV2 ausentes. A associação existente é por songId/RecordingID/ReleaseID, nunca aproximada pelo título. Nenhuma música nova ou produção artificial é criada.
