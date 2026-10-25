@@ -1,5 +1,9 @@
 # Continuidade do Golden Music Memories
 
+**Filtros2.9.6 —25/10/2026:** filtros combináveis e classificação manual entregues/ativos localmente. Busca música/artista, ano, década, gênero cadastrado e tema romântico podem ser combinados; seleção preservada ao navegar/reabrir e Limpar filtros persistente. Não classificados explícitos; listas anuais preliminares separadas de rankings documentados e de Top30 da década (metodologia pendente). Detalhes → Classificar música salva classificação local com histórico/backup, sem mudar identidade/direitos. Base2011 e fila1498 preservadas; gêneros conhecidos em2 registros e tema conhecido em0, sem classificação inventada. Interfaceac709be55499/backendd5d11824ce93 alinhados; publicação do software em andamento. Meta500 músicas distintas1960–1969 e respectivas capas continua prioritária/pesquisa externa separada, não concluída.
+
+**Prioridades atualizadas —25/10/2026, após2.9.5:** titular priorizou meta total de pelo menos500 músicas distintas1960–1969 e respectivas capas; filtros passam ao item3. Acervo continua2011 registros, dois dos anos60, sem nova importação/pesquisa massiva. Filtros tiveram apenas levantamento técnico, sem mudança parcial de código. Contrato de recepção/deduplicação em docs/RANKINGS_CATALOGO.md; lista oficial única em docs/ORGANIZACAO_PROJETO.md. Demais entregas e materiais preservados.
+
 **Publicação2.9.5 confirmada —25/10/2026:** commitbea8d7fafe994b1f20d4bcbb0ca75698144bcb32 nas branches main e desenvolvimento/validacao-local-p6; Pages40175018486 build/deploy/report-build-status success. Navegador público confirmou interface0d6031f842fa e abertura da conciliação; seis arquivos HTTP200/hash idênticos, catálogo publicado2011. Backend local6493c1c0bc6a alinhado. Perfis IndexedDB de outros endereços não foram substituídos automaticamente. Sem dados privados, MP4 ou backups no Git; nenhum upload social/externo.
 
 

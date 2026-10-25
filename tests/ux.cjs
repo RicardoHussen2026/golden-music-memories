@@ -33,7 +33,7 @@ async function savePublication(platform,title){await page.locator(`[data-action=
  await page.locator('#decade-filter').selectOption('1980');await page.waitForTimeout(250);
  check('Busca e década podem ser combinadas',(await rows().allTextContents()).every(t=>/198\d/.test(t))&&await rows().count()>0);
  check('Filtros avançados recolhidos inicialmente',!(await page.locator('#advanced-filters').evaluate(el=>el.open)));
- await page.locator('#advanced-filters summary').click();await page.waitForTimeout(100);await page.locator('#filter-year').fill('1985');await page.locator('#filter-year').dispatchEvent('change');await page.waitForTimeout(350);
+ await page.locator('#advanced-filters summary').click();await page.waitForTimeout(100);await page.locator('#filter-year').selectOption('1985');await page.waitForTimeout(350);
  check('Ano específico combina com busca e década',await rows().count()>0&&(await rows().allTextContents()).every(text=>text.includes('1985')));
  check('Alterar filtro mantém painel aberto',await page.locator('#advanced-filters').evaluate(el=>el.open));
  await page.locator('#advanced-filters summary').click();await page.waitForTimeout(100);check('Filtros ativos funcionam com painel recolhido',!(await page.locator('#advanced-filters').evaluate(el=>el.open))&&await rows().count()>0);

@@ -1,5 +1,7 @@
 # Validação V2 — 23/10/2026
 
+**Validação incremental2.9.6,25/10/2026:**6 lógica/18UI de filtros e classificação,33UX,7busca vazia,16rankings/backup/offline,10versão,12catálogo e22busca passaram em perfis/bancos isolados. Aplicação local conferida sem classificar músicas reais: combinação ano/década/gênero persistiu após recarga, tema romântico vazio coerente com0 classificados, limpar retornou2011. Backups antes/depois: todas tabelas operacionais/cadastros/IDs idênticos, fila1498/8hashes preservados; dois MP4 aprovados intactos. Não é validação de500 músicas, curadoria ou APIs. Detalhes/limites em RANKINGS_CATALOGO.md; testes históricos abaixo preservados.
+
 > Registro da entrega V2 original. A revalidação V2.1 está em RELATORIO_FINAL_UX_AUDITORIA.md e VALIDACAO_FINAL.json.
 
 ## Resultado
