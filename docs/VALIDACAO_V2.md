@@ -1,5 +1,7 @@
 # Validação V2 — 23/10/2026
 
+**Validação incremental2.9.7,25/10/2026:**16 testes backend/render/capa/original/CPU (5novos de movimento com FFmpegreal curto, incluindoFullHD),12UI de movimento com mocks,32montagem e10versão passaram. Falha inicial era duração .2 inválida no teste, corrigida para0.2; nada foi contornado/instalado. Inspeção por amostras não certifica todos os frames, opção explícita apenas para MP4imagemfixa. Backupantes/depois e hashes:2011/fila1498/3produções/8anexos/1publicação/20históricos/3reservas preservados, nenhumMP4 aprovado regenerado. Guia/limites em DESEMPENHO_RENDER.md; aplicação local2.9.7 ativa, publicação bloqueada por revisão automática antes do comando de commit/push, sem CI novo.
+
 **Validação incremental2.9.6,25/10/2026:**6 lógica/18UI de filtros e classificação,33UX,7busca vazia,16rankings/backup/offline,10versão,12catálogo e22busca passaram em perfis/bancos isolados. Aplicação local conferida sem classificar músicas reais: combinação ano/década/gênero persistiu após recarga, tema romântico vazio coerente com0 classificados, limpar retornou2011. Backups antes/depois: todas tabelas operacionais/cadastros/IDs idênticos, fila1498/8hashes preservados; dois MP4 aprovados intactos. Não é validação de500 músicas, curadoria ou APIs. Detalhes/limites em RANKINGS_CATALOGO.md; testes históricos abaixo preservados.
 
 > Registro da entrega V2 original. A revalidação V2.1 está em RELATORIO_FINAL_UX_AUDITORIA.md e VALIDACAO_FINAL.json.

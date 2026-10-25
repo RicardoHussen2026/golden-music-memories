@@ -1,5 +1,26 @@
 # Família oficial de templates
 
+## Bateria2 — incorporação local limitada,25/10/2026, após2.9.6
+
+Reaproveitada a auditoria existente, sem pesquisar disco/conversa de origem nem repetir a decodificação de129 arquivos. O ZIP no caminho exato fornecido continua com SHA2567e1f8d7e4fbf2102d6cbc24ecf75494364863d3228916a65e47e9beb107fe0ab. São129 imagens reais/95 conteúdos únicos, não2009 imagens recebidas; permanecem ausentes1880 binários descritos pelo manifestoV2. Os dois registros1960 adicionados depois não pertencem a esse manifesto.
+
+Três candidatos de confiança declarada Alta, sem alternativa e com hash igual ao índiceV3 foram conferidos pontualmente na API oficial MusicBrainz (três respostasHTTP200 com data/SHA). Não houve nova coleta de imagens, consulta massiva ou API do aplicativo configurada. A ferramenta de leitura de páginas não abriu as três páginas; a API oficial forneceu as tracklists e relações de produto. Resultados:
+
+| Música | Álbum/edição | Resultado |
+|---|---|---|
+| Linda Williams — Elevate Our Minds | [City Living](https://musicbrainz.org/release/a41b7d46-b6c1-4fbe-b32f-3ed7774189eb) | RecordingID exato na tracklist Official e relação explícita para Discogs959746; artista/título da imagem inspecionados, hash idêntico ao V3. Incorporada como referência local |
+| Jimmie & Vella Cameron — Be Fair to Me | [Song Painters](https://musicbrainz.org/release/13b312c2-bf25-4122-ab6e-11571523d5e0) | RecordingID exato na tracklist Official e relação explícita para Discogs1296825; artista/título da imagem inspecionados, hash idêntico ao V3. Incorporada como referência local |
+| Randy Brown — You Says It All | [Intimately](https://musicbrainz.org/release/0872a234-a3c3-4038-8a95-cca33edcc032) | RecordingID/álbum confirmados, mas resposta não contém relação com o produto Discogs2424234 citado no pacote. Correspondência da edição permanece pendente, sem incorporação automática |
+
+Os oito registros de Wilton Felder compartilham uma imagem com confiança moderada e edição a revisar; não foram promovidos por hash igual. As outras118 referências conservam as ressalvas anteriores. Assim, **2 referências incorporadas e127 ainda em revisão**, sem declarar os129 aprovados. Diferença de95 hashes/22 entradas sem hashV3 continua a exigir comparação, não prova erro nem ausência do binário.
+
+Os dois arquivos confirmados e um índice com songId/RecordingID/ReleaseID, origem, SHA, dimensões e prova de associação estão em **acervo/capas-historicas/**, sob a raiz oficial, ignorados pelo Git. Imagens armazenadas por hash uma vez, originais de staging/ZIP preservados; repetição do processo adicionou0 referências/0 arquivos. Índice e log local permitem rastrear adições; nenhum índice anterior foi sobrescrito. Registro de conferência privado em.cache/capas-verificacao/bateria2-confirmados/.
+
+Isso é **incorporação ao acervo local de referências**, não importação automática na UI. O painel atual exige produção associada para anexos e não possui biblioteca de capas históricas por música. Não foram criadas produções artificiais, escritos objetos soltos no IndexedDB ou alterado o esquema de backup para simular integração. Exibição/seleção dessa biblioteca no painel é uma lacuna funcional explícita, preservada no item de capas; depende de evolução própria, sem substituir templates Golden ou aplicar capas aos MP4 aprovados. As duas imagens continuam com direitos de publicação não comprovados; associação discográfica não autentica master nem libera exploração/publicação.
+
+Aplicativo permanece2.9.6, catálogo2011/fila1498, templates e vídeos intactos; não houve restart, render, upload externo ou publicação social. Esta rodada não altera código funcional nem publica imagens no GitHub. Relatórios/documentação anteriores abaixo são históricos.
+
+
 O cassete aprovado continua como base oficial, ID `cassette`, fundo `06_fundo_original.png`. Em25/10/2026 o titular autorizou substituir as artes correspondentes pelo pacote fotográfico; os IDs e as composições editáveis foram preservados. As artes anteriores continuam recuperáveis no backup privado da troca.
 
 | ID | Modelo | Composição |
