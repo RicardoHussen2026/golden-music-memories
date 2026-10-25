@@ -1,6 +1,12 @@
 # Armazenamento e recuperação local — V2.8.0
 
-Entrega do item 8, 25/10/2026. Código preparado e testado em ambiente isolado. A ativação operacional está adiada enquanto Ricardo testa o baixador na versão 2.7.2; não reiniciar serviço nem recarregar suas abas. A lista única de execução permanece em [ORGANIZACAO_PROJETO.md](ORGANIZACAO_PROJETO.md).
+Registro inicial do item 8, 25/10/2026: código então preparado e testado em ambiente isolado, com ativação adiada durante o teste do baixador na 2.7.2. Esse estado inicial é histórico. Na release2.9.3, a atualização local e a verificação dos backups compostos foram concluídas; a cópia externa continua pendente. A lista única de execução permanece em [ORGANIZACAO_PROJETO.md](ORGANIZACAO_PROJETO.md).
+
+## Destino externo identificado — consulta de 25/10/2026
+
+A pasta existente **04_CONTROLE_E_BACKUPS**, dentro de Golden Music Memories no Drive da conta `ric.hussen@gmail.com`, foi confirmada por leitura de perfil, metadados e listagem. Estava vazia nessa consulta. A permissão retornada identifica essa conta como proprietária; nenhuma permissão pública foi retornada. O conector informa capacidade de compartilhar, mas não expôs separadamente capacidade de adicionar arquivos; nenhum envio foi testado. Não houve upload, novo compartilhamento ou alteração de acesso. Identificadores e metadados da consulta estão em `.cache/capas-verificacao/drive-leitura.json`, fora do Git.
+
+Esse acesso do assistente não configura a integração do aplicativo: OAuth do painel continua não configurado. A cópia externa precisa de ação expressamente autorizada, definição dos componentes e tratamento privado da configuração/chave. Não enviar apenas o ZIP do navegador como se fosse backup integral, nem sincronizar SQLite aberto. A existência da pasta e a propriedade confirmada não comprovam uma cópia externa concluída.
 
 ## Onde ficam os dados
 
