@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-25T01:19:09.136Z",
+  "target": "data/catalog.json",
+  "scope": "Somente catálogo distribuído; perfil IndexedDB/SQLite/mídia operacional não alterados.",
+  "beforeSha256": "325359b559d2c3421f6019ff8aad9014bd050fceff0235a6a030bb3e4888a670",
+  "afterSha256": "6f48896fd5b403d2fd942de2811b370588bd340b036a2fa9f0a6f0e3c51e6360",
+  "changed": true,
+  "backup": ".cache\\rankings-backups\\catalog-1792891149080-b9f2700f-4997-460f-88fa-b47707ebc6ab.json",
+  "added": 0,
+  "updatedMemberships": 2,
+  "records": [
+    {
+      "id": "mb-5783394e-a34b-4456-8d6f-7cae379b7b65",
+      "membershipId": "occ-gb-annual-1984:12",
+      "recordingId": "5783394e-a34b-4456-8d6f-7cae379b7b65"
+    },
+    {
+      "id": "mb-9e2769a6-c529-440b-935d-efbc642a50a1",
+      "membershipId": "occ-gb-annual-1990:29",
+      "recordingId": "9e2769a6-c529-440b-935d-efbc642a50a1"
+    }
+  ],
+  "originalFieldsPreserved": true,
+  "idempotenceConfirmed": true,
+  "newSongs": 0
+}

@@ -1,0 +1,158 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=require('node:path'),os=require('node:os');
+
+(async()=>{
+ const {configuration}=await import('../server/runtime/config.mjs');
+ const {createApplication}=await import('../server/runtime/http.mjs');
+ const dir=await fs.mkdtemp(path.join(os.tmpdir(),'gmm-editorial-ui-'));
+ const config=configuration({GMM_PORT:'0',GMM_DATA_DIR:dir,GMM_LOCAL_ACCESS:'true'});
+ const app=createApplication(config),addr=await app.listen();config.origin='http://127.0.0.1:'+addr.port;
+ const output=path.resolve('.cache/editorial-ui'),checks=[],errors=[],blocked=[];let browser,page;
+ const check=(name,value)=>{assert.ok(value,name);checks.push(name);console.log('OK '+name);};
+ const record=()=>page.evaluate(async()=> (await (await import('./app/db.js')).all('publications')).find(p=>p.productionId==='editorial-prod'&&p.platform==='youtube'));
+ const close=async p=>{await p.locator('#dialog').evaluate(d=>d.close());};
+ const open=async(p,platform='youtube',pid='editorial-prod')=>{
+  await p.goto(config.origin+'/painel.html#production/'+pid);
+  await p.locator(`[data-action="edit-publication"][data-platform="${platform}"][data-id="${pid}"]`).click();
+  await p.locator('#post-counts').waitFor();await p.locator('#posting-account').selectOption(platform==='youtube'?'test-yt':'test-tt');
+ };
+ const save=async p=>{await p.locator('#publication-form button[type="submit"]').click();await p.waitForFunction(()=>!document.querySelector('#dialog').open);};
+ try{
+  await fs.mkdir(output,{recursive:true});
+  browser=await chromium.launch({headless:true,channel:process.env.GMM_BROWSER_CHANNEL||(process.platform==='win32'?'chrome':undefined)});
+  const context=await browser.newContext({viewport:{width:1366,height:960},permissions:['clipboard-read','clipboard-write']});
+  context.setDefaultTimeout(15000);
+  let rendersAvailable=true;
+  await context.route('**/*',async route=>{
+   const u=new URL(route.request().url());
+   if(['https://www.youtube.com/upload','https://www.tiktok.com/tiktokstudio/upload'].includes(u.href))return route.fulfill({contentType:'text/html',body:'<h1>Tela de upload simulada — sem login</h1>'});
+   if(u.origin!==config.origin&&!['data:','blob:'].includes(u.protocol)){blocked.push(u.origin);return route.abort();}
+   if(u.pathname==='/api/assembly')return route.fulfill({json:{outputs:rendersAvailable?[{id:'render-yt',jobId:'render-job',productionId:u.searchParams.get('productionId'),destination:'youtube',name:'Artista - Faixa - YouTube - V1.mp4',version:1}]:[]}});
+   if(u.pathname==='/api/assembly/files/render-job')return route.fulfill({contentType:'video/mp4',body:await fs.readFile(path.join(__dirname,'fixtures/youtube-teste.mp4'))});
+   return route.continue();
+  });
+  page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(config.origin+'/painel.html#production');await page.waitForFunction(()=>document.querySelector('#store-status').textContent.includes('Salvo'));
+  await page.evaluate(async base64=>{
+   const db=await import('./app/db.js'),at=db.now(),song={id:'editorial-song',title:'Faixa & Luz <ao vivo>',artist:'Björk / João',year:1996,decade:1990,source:'https://example.test/metadados'};
+   const production={id:'editorial-prod',songId:song.id,version:1,status:4,createdAt:at,notes:'Somente fixture isolada',rights:{}};
+   const blob=new Blob([Uint8Array.from(atob(base64),c=>c.charCodeAt(0))],{type:'video/mp4'});
+   const hash=await db.digest(blob);await db.put('settings',{id:'postingAccounts',accounts:[{id:'test-yt',platform:'youtube',label:'YouTube fixture'},{id:'test-tt',platform:'tiktok',label:'TikTok fixture'}]});
+   await db.batch([{store:'songs',value:song},{store:'productions',value:production},{store:'productions',value:{...production,id:'race-prod'}},...['youtube','tiktok'].map(role=>({store:'assets',value:{id:'final-'+role,productionId:production.id,songId:song.id,role,type:'video/mp4',name:'teste.mp4',originalName:'teste.mp4',blob,hash,size:blob.size,version:1,createdAt:at}}))]);
+  },(await fs.readFile(path.join(__dirname,'fixtures/youtube-teste.mp4'))).toString('base64'));
+  await open(page);
+  check('abrir formulário não abre plataforma automaticamente',context.pages().length===1);
+  const external=page.locator('.external-upload');
+  check('atalho YouTube usa URL oficial sem dados privados',await external.getAttribute('href')==='https://www.youtube.com/upload');
+  check('nova aba isolada e sem referência de origem',await external.getAttribute('target')==='_blank'&&(await external.getAttribute('rel')).includes('noopener')&&await external.getAttribute('referrerpolicy')==='no-referrer');
+  await page.evaluate(()=>window.open=()=>{throw Error('popup JS bloqueado');});
+  const popupPromise=context.waitForEvent('page');await external.click();const popup=await popupPromise;await popup.waitForLoadState();
+  check('link nativo abre por gesto mesmo sem window.open',popup.url()==='https://www.youtube.com/upload'&&await popup.evaluate(()=>window.opener===null));await popup.close();
+  check('abrir plataforma conserva formulário e não marca publicação',await page.locator('#pubStatus').inputValue()==='draft'&&!(await record()));
+  check('download só aparece com MP4 disponível',!await page.locator('#post-download').isVisible());
+  check('abrir preparação não cria publicação ou altera catálogo',!(await record()));
+  check('alternativa de cópia fica oculta até ser necessária',!await page.locator('#post-copy-fallback').isVisible());
+  check('campos gerados omitem ano não confirmado e preservam caracteres especiais',(await page.locator('#pubTitle').inputValue())==='Björk / João - Faixa & Luz <ao vivo>'&&!(await page.locator('#pubDescription').inputValue()).includes('1996')&&await page.locator('#publication-form script').count()===0);
+  check('YouTube sugere três hashtags sem Shorts ou FYP',(await page.locator('#hashtags').inputValue()).split(' ').length===3&&!/Shorts|FYP/.test(await page.locator('#hashtags').inputValue()));
+  await page.screenshot({path:path.join(output,'modelo-desktop.png')});
+  await page.locator('#finalAssetId').selectOption('final-youtube');
+  const downloadPromise=page.waitForEvent('download');await page.locator('#post-download').click();check('MP4 do navegador pode ser baixado junto do texto',(await downloadPromise).suggestedFilename()==='teste.mp4');
+  check('MP4 do navegador tem prévia e destino separado',await page.locator('#publication-video video').count()===1&&!await page.locator('#finalAssetId option[value="final-tiktok"]').count());
+  await page.locator('#pubTitle').fill('Meu título editado');await page.locator('#pubDescription').fill('Minha memória #Nostalgia');await page.locator('#hashtags').fill('#Nostalgia #Memoria');
+  await page.locator('[data-post-copy="title"]').click();
+  check('clipboard copia título editado',await page.evaluate(()=>navigator.clipboard.readText())==='Meu título editado');
+  await page.locator('[data-post-copy="caption"]').click();
+  await page.waitForFunction(async()=> (await navigator.clipboard.readText()).replace(/\r\n/g,'\n')==='Minha memória #Nostalgia\n\n#Memoria');
+  check('clipboard copia descrição completa sem repetir hashtag',true);
+  await page.evaluate(()=>Object.defineProperty(navigator.clipboard,'writeText',{configurable:true,value:async()=>{throw Error('bloqueado para testar fallback');}}));
+  await page.locator('[data-post-copy="hashtags"]').click();
+  check('fallback expõe texto selecionado sem perder edição',await page.locator('#post-copy-text').isVisible()&&await page.locator('#post-copy-text').inputValue()==='#Nostalgia #Memoria');
+  await page.locator('.post-facts summary').click();await page.locator('#post-year').fill('1982');await page.locator('#post-album').fill('Álbum <confirmado>');await page.locator('#post-icon').uncheck();
+  await page.locator('#post-regenerate').click();
+  check('regeneração exige seleção e deixa edição manual desmarcada',!await page.locator('[data-post-apply="title"]').isChecked()&&!await page.locator('[data-post-apply="description"]').isChecked()&&await page.locator('#pubTitle').inputValue()==='Meu título editado');
+  await page.locator('[data-post-apply="hashtags"]').check();await page.locator('#post-apply').click();
+  check('aplica só campos selecionados e omite ícone quando escolhido',await page.locator('#pubTitle').inputValue()==='Meu título editado'&&await page.locator('#pubDescription').inputValue()==='Minha memória #Nostalgia'&&(await page.locator('#hashtags').inputValue()).includes('#Anos80'));
+  await save(page);let pub=await record();const id=pub.id;
+  check('salvamento vincula texto, fatos e MP4 sem publicar',pub.title==='Meu título editado'&&pub.finalAssetId==='final-youtube'&&pub.status==='draft'&&!pub.url);
+  await open(page);
+  check('reabrir preserva edição e reutiliza rascunho',await page.locator('#pubTitle').inputValue()==='Meu título editado'&&await page.locator('#post-year').inputValue()==='1982'&&await page.locator('#finalAssetId').inputValue()==='final-youtube');
+  await page.locator('#pubTitle').fill('x'.repeat(101));await page.locator('#pubDescription').fill('x'.repeat(5000));await page.locator('#publication-form button[type="submit"]').click();
+  check('limites do YouTube impedem salvar título/descrição excedidos',await page.locator('#post-limit').innerText().then(t=>t.includes('100')&&t.includes('5.000'))&&(await record()).title==='Meu título editado');
+  await page.locator('#pubTitle').fill('Meu título editado');await page.locator('#pubDescription').fill('Descrição final');await page.locator('#finalAssetId').selectOption('render:render-yt');
+  check('atalho de download do render usa rota privada local',await page.locator('#post-download').getAttribute('href')==='/api/assembly/files/render-job?download=1');
+  check('MP4 renderizado aparece sem copiar bytes para IndexedDB',(await page.locator('#publication-video video').getAttribute('src'))==='/api/assembly/files/render-job');
+  await save(page);pub=await record();
+  check('render guarda referência do serviço separada do arquivo do navegador',!pub.finalAssetId&&pub.localRenderAssetId==='render-yt'&&pub.localRenderJobId==='render-job');
+  rendersAvailable=false;await open(page);await save(page);pub=await record();
+  check('indisponibilidade de prévia não apaga vínculo do render',pub.localRenderAssetId==='render-yt'&&pub.localRenderJobId==='render-job');rendersAvailable=true;
+  await open(page,'tiktok');
+  check('atalho TikTok usa tela oficial de upload',await page.locator('.external-upload').getAttribute('href')==='https://www.tiktok.com/tiktokstudio/upload');
+  const ttPopupPromise=context.waitForEvent('page');await page.locator('.external-upload').click();const ttPopup=await ttPopupPromise;await ttPopup.waitForLoadState();check('abrir TikTok mantém legenda local e separação de abas',ttPopup.url()==='https://www.tiktok.com/tiktokstudio/upload'&&await ttPopup.evaluate(()=>window.opener===null)&&await page.locator('#pubStatus').inputValue()==='draft');await ttPopup.close();
+  check('TikTok tem texto próprio e cinco hashtags com fatos compartilhados',(await page.locator('#hashtags').inputValue()).split(' ').length===5&&(await page.locator('#pubTitle').inputValue()).includes('1982'));
+  await page.locator('#pubDescription').fill('Legenda TikTok independente');await page.locator('#finalAssetId').selectOption('final-tiktok');await save(page);
+  check('alternar plataforma mantém registros independentes',(await record()).description==='Descrição final'&&await page.evaluate(async()=> (await (await import('./app/db.js')).all('publications')).filter(p=>p.productionId==='editorial-prod').length)===2);
+  await open(page);
+  const other=await context.newPage();other.on('pageerror',e=>errors.push(e.message));await open(other);
+  await other.locator('#pubTitle').fill('Edição da segunda aba');await save(other);
+  await page.locator('#pubTitle').fill('Edição obsoleta');await page.locator('#publication-form button[type="submit"]').click();await page.waitForFunction(()=>document.querySelector('#toast').textContent.includes('outra aba'));
+  check('duas abas não sobrescrevem texto salvo',(await record()).title==='Edição da segunda aba'&&await page.locator('#pubTitle').inputValue()==='Edição obsoleta');await close(page);
+  await open(page);
+  await other.evaluate(async()=>{const db=await import('./app/db.js'),p=(await db.all('publications')).find(p=>p.productionId==='editorial-prod'&&p.platform==='youtube');await db.put('publications',{...p,localRenderAssetId:'render-novo',localRenderJobId:'job-novo'});});
+  await page.locator('#publication-form button[type="submit"]').click();await page.waitForFunction(()=>document.querySelector('#toast').textContent.includes('outra aba'));
+  check('alteração concorrente do MP4 também bloqueia rascunho obsoleto',(await record()).localRenderAssetId==='render-novo');await close(page);
+  await open(page);
+  await other.evaluate(async()=>{const db=await import('./app/db.js'),p=(await db.all('publications')).find(p=>p.productionId==='editorial-prod'&&p.platform==='youtube');await db.put('publications',{...p,delivery:{state:'simulated_complete',result:{externalId:null}},serviceReceipt:{id:'recibo-teste'}});});
+  await page.locator('#pubDescription').fill('Texto com recibo preservado');await save(page);pub=await record();
+  check('salvar texto preserva recibos concorrentes fora do formulário',pub.delivery.state==='simulated_complete'&&pub.serviceReceipt.id==='recibo-teste');
+  await open(page);
+  await other.evaluate(async()=>{const db=await import('./app/db.js'),p=(await db.all('productions')).find(p=>p.id==='editorial-prod');await db.put('productions',{...p,editorialFacts:{year:1983,album:'Outra revisão',origin:'operator'}});});
+  await page.locator('#publication-form button[type="submit"]').click();await page.waitForFunction(()=>document.querySelector('#toast').textContent.includes('dados confirmados'));
+  check('fatos compartilhados editados em outra aba são protegidos',(await record()).description==='Texto com recibo preservado');await close(page);
+  await open(page,'youtube','race-prod');await open(other,'youtube','race-prod');await save(page);
+  await other.locator('#publication-form button[type="submit"]').click();await other.waitForFunction(()=>document.querySelector('#toast').textContent.includes('Já existe um rascunho'));
+  check('rascunhos abertos antes da primeira gravação não duplicam produção/plataforma',await page.evaluate(async()=> (await (await import('./app/db.js')).all('publications')).filter(p=>p.productionId==='race-prod').length)===1);
+  await close(other);await open(page);
+  await page.locator('#pubDescription').fill('');await page.locator('#hashtags').fill('');await page.locator('#pubTitle').fill('');
+  check('campo vazio de título exige preenchimento',!await page.locator('#pubTitle').evaluate(e=>e.checkValidity()));
+  await page.locator('#pubTitle').fill('Somente título');await save(page);
+  check('descrição e hashtags vazias são preservadas sem regeneração automática',(await record()).description===''&&(await record()).hashtags==='');
+  await open(page);await page.screenshot({path:path.join(output,'desktop.png')});
+  await page.setViewportSize({width:390,height:844});await page.locator('#post-regenerate').click();
+  check('formulário e sugestões cabem em 390 px',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth&&document.querySelector('#dialog').scrollWidth<=document.querySelector('#dialog').clientWidth));
+  await page.screenshot({path:path.join(output,'celular.png')});await close(page);
+  // Existing backups carry editorial fields without a new store or migration.
+  const backup=await page.evaluate(async()=>{const b=await import('./app/backup.js'),{blob}=await b.exportBackup(),data=await b.readBackup(blob);return {p:data.tables.publications.find(p=>p.productionId==='editorial-prod'&&p.platform==='youtube'),production:data.tables.productions.find(p=>p.id==='editorial-prod')};});
+  check('backup existente conserva fatos e referências editoriais',backup.p.id===id&&backup.p.localRenderAssetId==='render-novo'&&backup.production.editorialFacts.year===1983);
+  const wrongFinal=await page.evaluate(async()=>{
+   const db=await import('./app/db.js'),{saveEditorialPublication}=await import('./app/editorial-store.js'),p=(await db.all('publications')).find(p=>p.productionId==='editorial-prod'&&p.platform==='youtube'),production=(await db.all('productions')).find(p=>p.id==='editorial-prod');
+   try{await saveEditorialPublication({...p,finalAssetId:'final-tiktok'},p,{year:1999},production);return false;}catch{return (await db.all('productions')).find(p=>p.id==='editorial-prod').editorialFacts.year===1983;}
+  });
+  check('vídeo de outro destino é recusado sem gravar fatos parcialmente',wrongFinal);
+  await page.evaluate(async()=>{const db=await import('./app/db.js'),p=(await db.all('publications')).find(p=>p.productionId==='editorial-prod'&&p.platform==='youtube');await db.put('publications',{...p,status:'published',url:'https://example.test/postagem',publishedAt:'2026-10-24T12:00',metrics:{views:123}});});
+  await page.goto(config.origin+'/painel.html#publications');await page.locator(`[data-action="edit-pub-id"][data-id="${id}"]`).click();await page.locator('#pubDescription').fill('Revisão manual do texto');await save(page);pub=await record();
+  check('edição de registro publicado conserva data, URL, métricas e situação',pub.status==='published'&&pub.url==='https://example.test/postagem'&&Date.parse(pub.publishedAt)===Date.parse('2026-10-24T12:00')&&pub.metrics.views===123);
+  for(const destination of ['shorts','facebook','facebook_reels','instagram','rumble','odysee']){
+   await page.goto(config.origin+'/painel.html#production/editorial-prod');await page.locator('#prepare-destination-other').selectOption(destination);await page.locator('[data-action="prepare-destination"]').click();await page.locator('#post-counts').waitFor();
+   check('formulário específico para '+destination,await page.locator('#publication-form').isVisible());
+   if(destination==='odysee')check('Odysee possui campo de tags/categorias',await page.locator('#pubManualNote').count()===1);
+   await save(page);
+  }
+  const manual=await page.evaluate(async()=> (await (await import('./app/db.js')).all('publications')).filter(p=>p.productionId==='editorial-prod'));
+  check('formatos e plataformas conservam rascunhos separados',manual.some(p=>p.destination==='shorts'&&p.platform==='youtube')&&manual.some(p=>p.destination==='facebook_reels')&&manual.some(p=>p.platform==='rumble'));
+  await page.goto(config.origin+'/painel.html#publications');await page.locator('#pub-platform').selectOption('rumble');check('filtro Rumble não apresenta API de envio fictícia',await page.locator('[data-service-action="submit"]').count()===0&&await page.locator('[data-action="simulate-delivery"]').count()===0);
+  await page.locator('[data-action="edit-pub-id"]').first().click();await page.locator('#finalAssetId').selectOption('final-youtube');await save(page);
+  check('mesmo MP4 é referenciado no novo destino sem duplicação',await page.evaluate(async()=>{const db=await import('./app/db.js');return (await db.all('publications')).some(p=>p.platform==='rumble'&&p.finalAssetId==='final-youtube')&&(await db.all('assets')).length===2;}));
+  const newBackup=await page.evaluate(async()=>{const b=await import('./app/backup.js'),{blob}=await b.exportBackup(),d=await b.readBackup(blob);await b.restoreBackup(d);return d.tables.publications.filter(p=>p.productionId==='editorial-prod').map(p=>p.destination);});check('backup e restauração preservam destinos novos e legados',newBackup.includes('rumble')&&newBackup.includes('shorts'));
+  await page.locator('#pub-platform').selectOption('youtube');await page.locator('[data-action="edit-pub-id"][data-id="'+id+'"]').click();await page.locator('#dialog').evaluate(d=>d.close());
+  const health=await (await fetch(config.origin+'/api/health')).json();
+  check('rede/publicação/worker permanecem desativados',!health.networkEnabled&&!health.publishingEnabled&&!health.workerEnabled);
+  await page.evaluate(()=>navigator.serviceWorker.ready);
+  await context.setOffline(true);await page.reload();await page.locator(`[data-action="edit-pub-id"][data-id="${id}"]`).click();await page.locator('#post-counts').waitFor();
+  check('preparação editorial reabre offline com módulos do shell e texto salvo',await page.locator('#pubDescription').inputValue()==='Revisão manual do texto');
+  await context.setOffline(false);
+  check('nenhum erro JavaScript',errors.length===0);
+  await fs.writeFile(path.join(output,'resultado.json'),JSON.stringify({checks,errors,blockedExternalOrigins:blocked,fixtures:true,renderListingMocked:true,operationalDataUsed:false,externalPublications:false},null,2));
+  console.log(JSON.stringify({checks:checks.length,externalPublications:false,operationalDataUsed:false}));
+ }catch(error){if(page){await page.screenshot({path:path.join(output,'falha.png')}).catch(()=>{});console.error('Estado ao falhar:',await page.locator('#toast').textContent().catch(()=>''));}throw error;}
+ finally{await browser?.close();await app.close();assert.ok(path.resolve(dir).startsWith(path.resolve(os.tmpdir(),'gmm-editorial-ui-')));await fs.rm(dir,{recursive:true,force:true});}
+})().catch(error=>{console.error(error);process.exitCode=1;});

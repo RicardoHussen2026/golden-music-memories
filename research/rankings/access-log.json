@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-25T01:29:49.774Z",
+  "billboardRetried": false,
+  "attempts": [
+    {
+      "action": "GET público via ferramenta web",
+      "url": "https://www.ukchartsplus.co.uk/ChartsPlusYE2001.pdf",
+      "outcome": "not_obtained",
+      "reason": "400 Timeout fetching"
+    },
+    {
+      "action": "GET público via ferramenta web",
+      "url": "https://www.ukchartsplus.co.uk/ChartsPlusYE2002.pdf",
+      "outcome": "not_obtained",
+      "reason": "400 Timeout fetching"
+    },
+    {
+      "action": "GET público via ferramenta web",
+      "url": "https://www.ukchartsplus.co.uk/ChartsPlusYE2003.pdf",
+      "outcome": "not_obtained",
+      "reason": "502 Bad Gateway"
+    },
+    {
+      "action": "GET público via ferramenta web",
+      "url": "https://www.ukchartsplus.co.uk/ChartsPlusYE2004.pdf",
+      "outcome": "not_obtained",
+      "reason": "400 Timeout fetching"
+    },
+    {
+      "action": "GET público via Node",
+      "url": "https://www.ukchartsplus.co.uk/ChartsPlusYE2004.pdf",
+      "outcome": "not_obtained",
+      "reason": "TypeError fetch failed; nenhuma opção de TLS/proxy alterada"
+    },
+    {
+      "action": "GET público via ferramenta web",
+      "url": "https://www.worldradiohistory.com/UK/Music-Week/2004/Music-Week-2004-01-17.pdf",
+      "outcome": "denied_by_source",
+      "reason": "403 Forbidden; sem repetição/contorno"
+    },
+    {
+      "action": "GET público via ferramenta web",
+      "url": "https://www.worldradiohistory.com/UK/Record-Mirror/70s/70/Record-Mirror-1970-12-05.pdf",
+      "outcome": "not_obtained",
+      "reason": "URL não acessível pela ferramenta; sem repetir por outro transporte"
+    },
+    {
+      "action": "Leitura pública",
+      "url": "https://www.everyhit.com/chart2.html",
+      "outcome": "accessible_not_adopted",
+      "reason": "Top Hits só exibe dez posições por ano e não comprova Top30 anual de mesma apuração"
+    },
+    {
+      "action": "Leitura pública",
+      "url": "https://www.everyhit.com/chart3.html",
+      "outcome": "accessible_not_adopted",
+      "reason": "Top Hits só exibe dez posições por ano; não inventar posições11-30"
+    },
+    {
+      "action": "Leitura pública",
+      "url": "https://www.sixtiescity.net/60azall/60artg.htm",
+      "outcome": "accessible_not_adopted",
+      "reason": "Índice de artistas e picos, não ranking anual Top30"
+    }
+  ]
+}

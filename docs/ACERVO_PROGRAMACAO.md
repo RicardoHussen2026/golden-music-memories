@@ -1,5 +1,37 @@
 # Acervo pronto e programação — V2.3
 
+
+## Item 9 — preparação isolada do Drive, 25/10/2026
+
+Estado **parcial**: planejamento/fila testados sem conta, sem upload real e sem integração nova ao painel. O código novo fica somente em scripts/drive-preparation/{plan,queue}.mjs; não é importado por app/ ou server/runtime/. Não altera versão, cache, interface servida ou backend preparado no item 8. Painel operacional permanece 2.7.2 enquanto Ricardo testa o baixador; build 2.8.0 preparada continua sem ativação.
+
+### Destino conhecido, sem inferir acesso
+
+Raiz informada pelo proprietário: https://drive.google.com/drive/folders/1GArPHKjcbMyfEyDi7l8gcaB07mIQtXoH , conta ric.hussen@gmail.com. Não é o e-mail do canal. Os quatro nomes são 01_EM_EDICAO, 02_VIDEOS_PRONTOS, 03_CAPAS_E_CAPCUT e 04_CONTROLE_E_BACKUPS. O conteúdo atual e os IDs das subpastas NÃO foram consultados nesta rodada; não afirmar que continuam vazias.
+
+O runtime existente drive.mjs já prevê upload retomável de MP4, ID reservado, offset/probe, verificação MD5/tamanho, importação, controle cifrado e conta conferida. Providers pede o escopo amplo https://www.googleapis.com/auth/drive e compara o e-mail configurado. A função setup antiga procura/cria a raiz pelo nome: **não usá-la como se já estivesse vinculada ao ID confirmado**. O novo resolvedor isolado exige a raiz exata, o pai e uma única subpasta por nome; não cria pastas, não resolve ambiguidades escolhendo a primeira.
+
+Leitura exclusiva de /api/health em 25/10 às 02:03 UTC confirmou Drive configured=false e oauthEnabled=false, rede/worker/publicação false. Isso é ausência de configuração declarada do aplicativo, não prova de permissão da sessão do navegador ou do conector do assistente. Não foram lidos .env, tokens ou chave, abertos logins, criados clientes ou armazenados acessos.
+
+### Preparação implementada e limites
+
+- Plano local com raiz explícita, arquivos presentes, produção/coletânea por UUID completo, versão positiva, papel, categoria, título/artista fornecidos e destinos. Calcula SHA-256/MD5 em fluxo e recusa alteração do arquivo, links simbólicos, saída da raiz e nomes típicos de segredos/configuração. Mesmo nome não é identidade; conteúdo diferente para a mesma produção/papel/versão exige nova versão.
+- Reutiliza uma cópia por hash/categoria/pasta/conta, preservando referências de várias postagens/produções no manifesto; mesmo MP4 adequado não vira sete uploads. Nome remoto determinístico GMM_UUID_Vn_HASH.ext, sem mudar o original. Manifesto não contém caminho absoluto local, senha ou tokens. Planos repetidos com as mesmas entradas mantêm ID.
+- Fila local com estados not_sent (não enviado), sending (enviando), complete (concluído por recibo), error e cancelled, persistência atômica, progresso, cancelamento e retomada. Antes de enviar, concilia por ID reservado/chave/hash/pai; resposta perdida não autoriza criar outro arquivo. Recibo precisa confirmar ID, MD5, tamanho, SHA registrado e privacidade explícita. Cópia ausente/divergente/ambígua não é sobrescrita ou excluída. Manifesto consolidado é produzido apenas quando todos os recibos conferem.
+- **Transporte real deste fluxo novo ainda NÃO conectado.** A interface de transporte foi exercitada somente em mocks. O mock confirma privacidade; não comprova permissões de uma pasta real. Um adaptador futuro deve conferir permissões efetivas e herança, sem torná-la pública ou alterar permissões silenciosamente. Nenhum botão/API novo foi exposto e nenhum estado de mídia operacional mudou.
+- Fontes podem ir à edição, finais à pasta de prontos, capas/ZIPs à pasta correspondente, controles à pasta de backups. Snapshot do serviço é uma pasta composta: não enviar só manifest.json como se fosse backup recuperável. Upload completo desse bundle, consolidação com o fluxo antigo, UI compacta e teste real continuam pendentes; não foi prometido backup automático no Drive. Não há agendamento novo.
+
+Documentação oficial consultada para o desenho: [uploads retomáveis e IDs pré-gerados](https://developers.google.com/workspace/drive/api/guides/manage-uploads), [propriedades privadas do aplicativo](https://developers.google.com/workspace/drive/api/guides/properties), [escopos Drive](https://developers.google.com/workspace/drive/api/guides/api-specific-auth). A confirmação local de hash não é uma nova API remota de SHA-256: o plano prevê appProperties e confirmação MD5, que precisam ser implementadas/conferidas pelo adaptador autorizado.
+
+### Testes e próximo passo mínimo
+
+node --test tests/drive-preparation.test.mjs: 7 testes passaram; arquivos próprios em diretórios temporários, transporte simulado, nenhum fetch ao Google. Cobertura: plano/dedupe/versionamento, raiz/pastas, persistência/reabertura idempotente, resposta perdida, cancelamento/progresso, conta/pasta/privacidade/checksum divergentes, arquivo alterado e ambiguidade. Regressão existente operations.test.mjs: 33 testes passaram com fixtures/mocks. Logs em .cache/drive9/, incluindo a tentativa inicial EPERM de rename recusada pelo sandbox; a execução específica aprovada passou sem relaxar assertivas. Build do item 8 permaneceu idêntica.
+
+Para avançar ao real, a coordenação precisa obter autorização específica para **configurar/conectar OAuth próprio do aplicativo à conta ric.hussen@gmail.com**, explicando que o código existente pede Drive amplo. Antes da configuração, decidir manter esse escopo aprovado ou implementar seleção de pasta/drive.file compatível com a raiz já existente; não trocar silenciosamente um pelo outro. Depois conectar e conferir conta/raiz/subpastas somente por leitura. O upload de UMA fixture pequena, com nome/destino/tamanho/hash mostrados antes, exige autorização separada. Não pedir senha ou tokens pelo chat. O conector do assistente não substitui esse consentimento do aplicativo.
+
+Nenhuma dessas autorizações foi presumida nesta rodada. A pendência não bloqueia preparação independente do item 10; integrações de publicação também não estão autorizadas a enviar ou publicar. As seções V2.3 abaixo são históricas e não significam ativação/configuração atual.
+
+
 O aplicativo organiza capas e produções, recebe os MP4 finalizados no CapCut, conserva referências no Google Drive e seleciona vídeos para a programação. A edição, a legenda e a tradução continuam no CapCut.
 
 ## Fluxo diário

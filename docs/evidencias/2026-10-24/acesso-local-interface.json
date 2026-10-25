@@ -1,0 +1,15 @@
+{
+  "results": [
+    "acervo abre sem formulário de senha",
+    "sessão local existe sem senha operacional",
+    "pausa desta aba permanece depois da recarga",
+    "outra aba pode entrar sem tornar a pausa uma promessa de bloqueio",
+    "nova sessão de outra aba não remove a pausa escolhida nesta aba",
+    "retomada abre acervo sem digitar senha",
+    "reabertura mantém acesso local",
+    "integrações e execução externa permanecem desligadas",
+    "sem erros JavaScript"
+  ],
+  "errors": [],
+  "externalCalls": false
+}

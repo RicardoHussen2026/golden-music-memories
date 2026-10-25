@@ -1,0 +1,162 @@
+{
+  "testedAt": "2026-10-24T17:09:49.487Z",
+  "environment": "Chrome headless · contextos isolados · localhost",
+  "results": [
+    {
+      "name": "Catálogo real importado",
+      "result": "PASSOU",
+      "details": "2009 músicas"
+    },
+    {
+      "name": "Fontes e intervalo dos anos",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Navegação entre módulos",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Pesquisa por artista",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Pesquisa por ano",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Seleção de cinco músicas",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Seleção persistente após recarga",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "CSV para Canva Pro",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Cinco produções independentes",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Recuperação de produção parcial",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Exportação de capa vertical",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Exportação de thumbnail horizontal",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Capa aprovada e preservada",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Upload de material com vínculo à produção",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Registro independente dos direitos",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Vídeos finais distintos por plataforma",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Revisão editorial explícita",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Pacote de edição e manifesto",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Registro manual de publicação e métricas",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Kanban operacional",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Calendário operacional",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Vídeo localizado no acervo",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Nova versão preserva original e reinicia direitos",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Arquivos anteriores preservados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Backup completo com arquivos e checksums",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Restauração em navegador independente",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Layout responsivo sem transbordamento",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Backup corrompido recusado sem apagar dados",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Importação previne duplicidades",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Conteúdo do operador tratado como texto",
+      "result": "PASSOU",
+      "details": ""
+    },
+    {
+      "name": "Sem erros JavaScript",
+      "result": "PASSOU",
+      "details": "[]"
+    }
+  ],
+  "errors": []
+}

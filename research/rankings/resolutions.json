@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "resolutions": [
+    {
+      "listId": "occ-gb-annual-1984",
+      "position": 12,
+      "sourceSha256": "5effe88a9598335f8df4db95f3411cd7a8cb4e4180c6b0816e415f7e9dccd1dd",
+      "sourceTitle": "I FEEL FOR YOU",
+      "sourceArtist": "CHAKA KHAN",
+      "recordingId": "5783394e-a34b-4456-8d6f-7cae379b7b65",
+      "identityEvidence": {
+        "type": "musicbrainz_recording",
+        "sourceUrl": "https://musicbrainz.org/recording/5783394e-a34b-4456-8d6f-7cae379b7b65",
+        "checkedAt": "2026-10-25T01:12:41.977Z",
+        "confirmedSingle": true,
+        "releaseEvidence": {
+          "sourceUrl": "https://musicbrainz.org/release/37b69a08-fe32-4491-938c-4204854525b2",
+          "apiUrl": "https://musicbrainz.org/ws/2/release/37b69a08-fe32-4491-938c-4204854525b2?inc=recordings+artist-credits+release-groups&fmt=json",
+          "responseSha256": "3207136dfe40fa1a2243f11ec4cc612395ec0109d521aa0f26a984a3ae88d8e5",
+          "date": "1984",
+          "country": "GB",
+          "primaryType": "Single",
+          "trackTitle": "I Feel for You",
+          "recordingId": "5783394e-a34b-4456-8d6f-7cae379b7b65"
+        },
+        "scope": "Associação de metadados da versão single sustentada por edição pública e crédito do ranking; não valida o áudio privado nem muda ano/produção."
+      }
+    },
+    {
+      "listId": "occ-gb-annual-1990",
+      "position": 29,
+      "sourceSha256": "a1c5c364fe5c5b950ed4e5131e7005f42993a7ff408310e805c18cef8fd56fde",
+      "sourceTitle": "I'VE BEEN THINKING ABOUT YOU",
+      "sourceArtist": "LONDONBEAT",
+      "recordingId": "9e2769a6-c529-440b-935d-efbc642a50a1",
+      "identityEvidence": {
+        "type": "musicbrainz_recording",
+        "sourceUrl": "https://musicbrainz.org/recording/9e2769a6-c529-440b-935d-efbc642a50a1",
+        "checkedAt": "2026-10-25T01:13:58.964Z",
+        "confirmedSingle": true,
+        "releaseEvidence": {
+          "sourceUrl": "https://musicbrainz.org/release/39848997-c372-4788-bd91-0f1941df7528",
+          "apiUrl": "https://musicbrainz.org/ws/2/release/39848997-c372-4788-bd91-0f1941df7528?inc=recordings+artist-credits+release-groups&fmt=json",
+          "responseSha256": "123d14766e980c8e7fb0d3b2f28ea816028e2214a5e58a9759d796de9b8bf321",
+          "date": "1990",
+          "country": "XE",
+          "primaryType": "Single",
+          "trackTitle": "I’ve Been Thinking About You (7″ version)",
+          "recordingId": "9e2769a6-c529-440b-935d-efbc642a50a1"
+        },
+        "scope": "Associação de metadados da versão single sustentada por edição pública e crédito do ranking; não valida o áudio privado nem muda ano/produção."
+      }
+    }
+  ]
+}

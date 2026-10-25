@@ -1,5 +1,9 @@
 # Publicação: implementação preparada para configuração
 
+**Revisão do item 10, 25/10/2026:** consulte [matriz atual de integrações e relatório das dez entregas](INTEGRACOES_ESTADO_ATUAL.md). APIs preparadas não são contas conectadas ou publicação homologada; autorizações reais continuam pendentes.
+
+**Atualização local de 25/10/2026:** backup composto e recuperação estão documentados em [ARMAZENAMENTO_BACKUP.md](ARMAZENAMENTO_BACKUP.md). O comando antigo service:backup continua sendo somente SQLite; não inclui mídias nem IndexedDB. V2.8.0 está preparada, sem ativação durante teste de Ricardo. Instruções históricas abaixo não autorizam habilitar flags/contas.
+
 Implementação local de 23/10/2026, baseada no commit `d8d0aaf` da V2.1. O painel e a hospedagem existentes foram preservados em outra cópia. Esta etapa não conecta contas, não publica vídeos e não aplica SQL em nuvem.
 
 ## O que foi acrescentado

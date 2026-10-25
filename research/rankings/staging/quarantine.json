@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "reason": "Página com cabeçalho 2004 contém as mesmas 30 posições/títulos/artistas de 2005. Ano dos dados não confirmado; não contar como cobertura de 2004 nem importar.",
+      "comparedAgainst": "occ-gb-annual-2005",
+      "list": {
+        "id": "occ-gb-annual-2004",
+        "kind": "annual",
+        "chartYear": 2004,
+        "market": "GB",
+        "publisher": "Official Charts Company",
+        "sourceUrl": "https://www.officialcharts.com/charts/end-of-year-singles-chart/20040104/37501/",
+        "accessedAt": "2026-10-25T00:48:53.371Z",
+        "sourceSha256": "2e3a9dcda0f2ceee40651f82224fb411d1a77312f4e96a74f49ef18cafc6b6e1",
+        "requestedSize": 30,
+        "edition": null,
+        "methodology": "Top 30 da tabela anual oficial britânica, janeiro a dezembro. Vendas/formula histórica da fonte; não é ranking mundial nem ano de lançamento.",
+        "sourceDate": null,
+        "rows": [
+          {
+            "position": 1,
+            "title": "(IS THIS THE WAY TO) AMARILLO",
+            "artist": "TONY CHRISTIE FT PETER KAY",
+            "singleUrl": "https://www.officialcharts.com/songs/tony-christie-ft-peter-kay-is-this-the-way-to-amarillo",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 2,
+            "title": "THAT'S MY GOAL",
+            "artist": "SHAYNE WARD",
+            "singleUrl": "https://www.officialcharts.com/songs/shayne-ward-thats-my-goal",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 3,
+            "title": "AXEL F",
+            "artist": "CRAZY FROG",
+            "singleUrl": "https://www.officialcharts.com/songs/crazy-frog-axel-f",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 4,
+            "title": "YOU'RE BEAUTIFUL",
+            "artist": "JAMES BLUNT",
+            "singleUrl": "https://www.officialcharts.com/songs/james-blunt-youre-beautiful",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 5,
+            "title": "DON'T CHA",
+            "artist": "PUSSYCAT DOLLS FT BUSTA RHYMES",
+            "singleUrl": "https://www.officialcharts.com/songs/pussycat-dolls-ft-busta-rhymes-dont-cha",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 6,
+            "title": "ALL ABOUT YOU/YOU'VE GOT A FRIEND",
+            "artist": "MCFLY",
+            "singleUrl": "https://www.officialcharts.com/songs/mcfly-all-about-you",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 7,
+            "title": "LONELY",
+            "artist": "AKON",
+            "singleUrl": "https://www.officialcharts.com/songs/akon-lonely",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 8,
+            "title": "HUNG UP",
+            "artist": "MADONNA",
+            "singleUrl": "https://www.officialcharts.com/songs/madonna-hung-up",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 9,
+            "title": "YOU RAISE ME UP",
+            "artist": "WESTLIFE",
+            "singleUrl": "https://www.officialcharts.com/songs/westlife-you-raise-me-up",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 10,
+            "title": "PUSH THE BUTTON",
+            "artist": "SUGABABES",
+            "singleUrl": "https://www.officialcharts.com/songs/sugababes-push-the-button",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 11,
+            "title": "BAD DAY",
+            "artist": "DANIEL POWTER",
+            "singleUrl": "https://www.officialcharts.com/songs/daniel-powter-bad-day",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 12,
+            "title": "JCB SONG",
+            "artist": "NIZLOPI",
+            "singleUrl": "https://www.officialcharts.com/songs/nizlopi-jcb-song",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 13,
+            "title": "GHETTO GOSPEL",
+            "artist": "2PAC FT ELTON JOHN",
+            "singleUrl": "https://www.officialcharts.com/songs/2pac-ft-elton-john-ghetto-gospel",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 14,
+            "title": "FEEL GOOD INC",
+            "artist": "GORILLAZ",
+            "singleUrl": "https://www.officialcharts.com/songs/gorillaz-feel-good-inc",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 15,
+            "title": "SWITCH",
+            "artist": "WILL SMITH",
+            "singleUrl": "https://www.officialcharts.com/songs/will-smith-switch",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 16,
+            "title": "I LIKE THE WAY",
+            "artist": "BODYROCKERS",
+            "singleUrl": "https://www.officialcharts.com/songs/bodyrockers-i-like-the-way",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 17,
+            "title": "I BET YOU LOOK GOOD ON THE DANCEFLOOR",
+            "artist": "ARCTIC MONKEYS",
+            "singleUrl": "https://www.officialcharts.com/songs/arctic-monkeys-i-bet-you-look-good-on-the-dancefloor",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 18,
+            "title": "LET ME LOVE YOU",
+            "artist": "MARIO",
+            "singleUrl": "https://www.officialcharts.com/songs/mario-let-me-love-you",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 19,
+            "title": "TRIPPING",
+            "artist": "ROBBIE WILLIAMS",
+            "singleUrl": "https://www.officialcharts.com/songs/robbie-williams-tripping",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 20,
+            "title": "WE BELONG TOGETHER",
+            "artist": "MARIAH CAREY",
+            "singleUrl": "https://www.officialcharts.com/songs/mariah-carey-we-belong-together",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 21,
+            "title": "SIGNS",
+            "artist": "SNOOP DOGG/WILSON/TIMBERLAKE",
+            "singleUrl": "https://www.officialcharts.com/songs/snoop-doggwilsontimberlake-signs",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 22,
+            "title": "SHOT YOU DOWN",
+            "artist": "AUDIO BULLYS FT NANCY SINATRA",
+            "singleUrl": "https://www.officialcharts.com/songs/audio-bullys-ft-nancy-sinatra-shot-you-down",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 23,
+            "title": "GET RIGHT",
+            "artist": "JENNIFER LOPEZ",
+            "singleUrl": "https://www.officialcharts.com/songs/jennifer-lopez-get-right",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 24,
+            "title": "DON'T PHUNK WITH MY HEART",
+            "artist": "BLACK EYED PEAS",
+            "singleUrl": "https://www.officialcharts.com/songs/black-eyed-peas-dont-phunk-with-my-heart",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 25,
+            "title": "OVER AND OVER",
+            "artist": "NELLY FT TIM MCGRAW",
+            "singleUrl": "https://www.officialcharts.com/songs/nelly-ft-tim-mcgraw-over-and-over",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 26,
+            "title": "DARE",
+            "artist": "GORILLAZ",
+            "singleUrl": "https://www.officialcharts.com/songs/gorillaz-dare",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 27,
+            "title": "WE BE BURNIN'",
+            "artist": "SEAN PAUL",
+            "singleUrl": "https://www.officialcharts.com/songs/sean-paul-we-be-burnin",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 28,
+            "title": "STICKWITU",
+            "artist": "PUSSYCAT DOLLS",
+            "singleUrl": "https://www.officialcharts.com/songs/pussycat-dolls-stickwitu",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 29,
+            "title": "CANDY SHOP",
+            "artist": "50 CENT",
+            "singleUrl": "https://www.officialcharts.com/songs/50-cent-candy-shop",
+            "releaseYear": null,
+            "recordingId": null
+          },
+          {
+            "position": 30,
+            "title": "SINCE U BEEN GONE",
+            "artist": "KELLY CLARKSON",
+            "singleUrl": "https://www.officialcharts.com/songs/kelly-clarkson-since-u-been-gone",
+            "releaseYear": null,
+            "recordingId": null
+          }
+        ]
+      }
+    }
+  ]
+}

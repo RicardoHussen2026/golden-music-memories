@@ -1,19 +1,21 @@
 # Instruções de continuidade
 
-- Use português brasileiro por padrão.
-- Leia CONTINUIDADE.md, README.md e docs/VALIDACAO_V2.md antes de alterar o projeto.
-- Preserve a aplicação e os materiais existentes. Não recrie o projeto.
-- Confira git status e não sobrescreva alterações do proprietário.
-- O aplicativo é estático; IndexedDB guarda dados privados no navegador, fora do Git.
-- Nunca comite credenciais, backups pessoais ou acervo operacional pesado.
-- Não modifique bancos de outros projetos nem presuma que APIs estejam configuradas.
-- Preserve operações transacionais e referências em backup/restauração.
-- Execute testes proporcionais à mudança e registre limitações reais.
-- Gastos, integrações com envio real, migrações e alterações de produção dependem da autorização pertinente do usuário.
-
-- A V2.2 acrescenta serviço opcional em server/runtime/. Leia docs/PUBLICACAO_SERVIDOR.md antes de alterar publicação. A origem estática continua funcional; o banco local não foi migrado para nuvem.
-- Não ativar as flags de rede/publicação/worker nem inserir credenciais reais como parte de testes. Preserve a separação entre simulação, rascunho manual e resultado confirmado.
-
-- V2.3: leia docs/ESCOPO_ACERVO_PROGRAMACAO.md e docs/ACERVO_PROGRAMACAO.md. O fluxo aprovado usa MP4 finalizados externamente no CapCut. Não ampliar para transcrição/tradução/renderização.
-- O consentimento da rotina e da pasta de prontos autoriza a seleção automática sem revisão humana de cada vídeo. Mantenha verificações técnicas, histórico por destino e limitações TikTok.
-- O controle principal/reserva é manual. Não remover a pausa após importação nem presumir que snapshots antigos provam exclusividade entre máquinas.
+- Use português brasileiro por padrão. Evolua o aplicativo existente; não recrie nem copie soluções de outros projetos.
+- Antes de editar, confira a raiz efetiva do terminal e do Git, a branch, as alterações existentes e a associação do chat ao projeto. Pasta correta não comprova associação na barra lateral. Se houver divergência, registre-a e resolva a continuidade por operação oficial, sem editar metadados internos do Codex.
+- Leia CONTINUIDADE.md, README.md e docs/VALIDACAO_V2.md; consulte docs/ORGANIZACAO_PROJETO.md antes de cada etapa. Sua tabela inicial é a lista oficial única de execução. Seções históricas não substituem essa ordem.
+- Consulte docs/ESCOPO_ACERVO_PROGRAMACAO.md para decisões funcionais atuais e seus limites. Leia os guias do módulo alterado; para publicação, docs/PUBLICACAO_SERVIDOR.md; para montagem local, docs/MONTAR_VIDEO_LOCAL.md.
+- Uma única tarefa deve editar/operar o projeto por vez. Antes de transferir a condução, registre ponto de parada, arquivos alterados, testes realizados e pendências; encerre suas operações mutantes antes da retomada na outra tarefa. Não presuma que o histórico inteiro foi transferido.
+- Preserve funcionalidades, materiais, IDs, vínculos e alterações do proprietário. Não faça rollback, limpeza destrutiva ou sobrescrita para organizar a pasta. Se não conseguir conferir o estado Git, registre o limite antes de alterações de código.
+- Atualize a lista oficial ao concluir, adiar, bloquear ou receber novo item. Registre implementação, teste executado e validação humana separadamente. Validações humanas pendentes não bloqueiam melhorias independentes autorizadas; impedimentos técnicos devem ficar explícitos.
+- Teste proporcionalmente antes de entregar. Relatórios antigos não comprovam código novo. Não afirme integração, qualidade visual, publicação ou recuperação sem a validação correspondente; use dados de teste separados dos reais.
+- O frontend mantém dados privados no IndexedDB da origem do navegador. O serviço Node local mantém SQLite e mídia em disco; nenhum deles é sincronizado automaticamente pelo Git. Não mude a origem/porta operacional sem tratar a continuidade dos dados.
+- Preserve transações e referências em backup/restauração. Não copie/mova SQLite aberto ou seus arquivos WAL isoladamente; backup integral também precisa da mídia, configuração/chave e backup separado do navegador. Preserve a última cópia e nunca renove uma chave necessária a dados existentes sem plano próprio.
+- Nunca comite credenciais, backups pessoais ou acervo operacional pesado. Não exponha segredos em chat, logs, documentos ou capturas. Não modifique bancos de outros projetos nem presuma APIs/OAuth configurados.
+- A operação atual no PC de casa é local, em 127.0.0.1:8877, sem senha manual. Preserve loopback, sessão, Host/Origin/CSRF e chave interna. Acesso privado pelo trabalho/celular é etapa posterior; não reutilize acesso local como bypass remoto.
+- A V2.4 autorizou montagem/renderização local com Node/FFmpeg e artes finais, além do fluxo CapCut da V2.3. Isso supera somente a antiga exclusão de montagem local; transcrição, tradução automática e novas expansões continuam dependentes de escopo próprio.
+- Preserve originais, deduplicação e associação de versões. Catálogo é metadado, não mídia disponível. Não invente ano, versão, álbum, ranking ou direitos; não confunda MP4 derivado com nova música.
+- Não ative flags de rede/publicação/worker nem insira credenciais reais como parte de testes. Separe simulação, preparação/rascunho, registro manual e publicação externa confirmada. O usuário publicou o piloto manualmente; isso não comprova integração automática.
+- O consentimento da rotina e da pasta de prontos, quando configurado e autorizado, permite a seleção automática sem revisão de cada vídeo; verificações técnicas, histórico por destino e limitações TikTok permanecem. Não estenda esse consentimento a novas integrações ou publicação externa não autorizada.
+- O controle principal/reserva é manual. Preserve pausa após importação e conciliação; snapshots antigos não provam exclusividade entre máquinas.
+- Gastos, alterações de acesso/credenciais, integrações com envio real, migrações e mudanças de produção exigem autorização pertinente do usuário. Em 25/10/2026 o proprietário autorizou testes, ativação local, commit, push e deploy do software Golden. Essa autorização não inclui postagem de vídeos, novas credenciais, contratação, abertura de rede ou exclusões permanentes. Preserve jobs e formulários antes de reiniciar.
+- A versão é mantida em package.json; app/build-info.js é gerado por npm run version:build. Versão preparada no disco não é versão validada/carregada. Iniciar dev/service dispara geração: não reinicie durante pausa documental nem interrompa jobs ativos.

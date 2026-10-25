@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "ranking": {
+    "listId": "occ-gb-annual-1990",
+    "position": 29,
+    "sourceUrl": "https://www.officialcharts.com/chart-news/official-top-40-best-selling-songs-of-1990__33128/",
+    "sourceSha256": "a1c5c364fe5c5b950ed4e5131e7005f42993a7ff408310e805c18cef8fd56fde",
+    "title": "I'VE BEEN THINKING ABOUT YOU",
+    "artist": "LONDONBEAT"
+  },
+  "recording": {
+    "sourceUrl": "https://musicbrainz.org/recording/9e2769a6-c529-440b-935d-efbc642a50a1",
+    "apiUrl": "https://musicbrainz.org/ws/2/recording/9e2769a6-c529-440b-935d-efbc642a50a1?inc=artists+releases+release-groups+isrcs&fmt=json",
+    "accessedAt": "2026-10-25T01:11:38.220Z",
+    "title": "I’ve Been Thinking About You (7″ version)",
+    "artistCredit": [
+      "Londonbeat"
+    ],
+    "disambiguation": "",
+    "length": 228786,
+    "isrcs": [
+      "GBARL9000001",
+      "GBARL9000083",
+      "GBARL9000089",
+      "GBARL9000091"
+    ]
+  },
+  "identityEvidence": {
+    "type": "musicbrainz_recording",
+    "sourceUrl": "https://musicbrainz.org/recording/9e2769a6-c529-440b-935d-efbc642a50a1",
+    "checkedAt": "2026-10-25T01:13:58.964Z",
+    "confirmedSingle": true,
+    "releaseEvidence": {
+      "sourceUrl": "https://musicbrainz.org/release/39848997-c372-4788-bd91-0f1941df7528",
+      "apiUrl": "https://musicbrainz.org/ws/2/release/39848997-c372-4788-bd91-0f1941df7528?inc=recordings+artist-credits+release-groups&fmt=json",
+      "responseSha256": "123d14766e980c8e7fb0d3b2f28ea816028e2214a5e58a9759d796de9b8bf321",
+      "date": "1990",
+      "country": "XE",
+      "primaryType": "Single",
+      "trackTitle": "I’ve Been Thinking About You (7″ version)",
+      "recordingId": "9e2769a6-c529-440b-935d-efbc642a50a1"
+    },
+    "scope": "Associação de metadados da versão single sustentada por edição pública e crédito do ranking; não valida o áudio privado nem muda ano/produção."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "ranking": {
+    "listId": "occ-gb-annual-1984",
+    "position": 12,
+    "sourceUrl": "https://www.officialcharts.com/chart-news/the-official-top-40-best-selling-songs-of-1984__32765/",
+    "sourceSha256": "5effe88a9598335f8df4db95f3411cd7a8cb4e4180c6b0816e415f7e9dccd1dd",
+    "title": "I FEEL FOR YOU",
+    "artist": "CHAKA KHAN"
+  },
+  "recording": {
+    "sourceUrl": "https://musicbrainz.org/recording/5783394e-a34b-4456-8d6f-7cae379b7b65",
+    "apiUrl": "https://musicbrainz.org/ws/2/recording/5783394e-a34b-4456-8d6f-7cae379b7b65?inc=artists+releases+release-groups+isrcs&fmt=json",
+    "accessedAt": "2026-10-25T01:11:22.194Z",
+    "title": "I Feel for You",
+    "artistCredit": [
+      "Chaka Khan"
+    ],
+    "disambiguation": "single version",
+    "length": 245733,
+    "isrcs": [
+      "USWB10201493",
+      "USWB10901948",
+      "USWB11202777"
+    ]
+  },
+  "identityEvidence": {
+    "type": "musicbrainz_recording",
+    "sourceUrl": "https://musicbrainz.org/recording/5783394e-a34b-4456-8d6f-7cae379b7b65",
+    "checkedAt": "2026-10-25T01:12:41.977Z",
+    "confirmedSingle": true,
+    "releaseEvidence": {
+      "sourceUrl": "https://musicbrainz.org/release/37b69a08-fe32-4491-938c-4204854525b2",
+      "apiUrl": "https://musicbrainz.org/ws/2/release/37b69a08-fe32-4491-938c-4204854525b2?inc=recordings+artist-credits+release-groups&fmt=json",
+      "responseSha256": "3207136dfe40fa1a2243f11ec4cc612395ec0109d521aa0f26a984a3ae88d8e5",
+      "date": "1984",
+      "country": "GB",
+      "primaryType": "Single",
+      "trackTitle": "I Feel for You",
+      "recordingId": "5783394e-a34b-4456-8d6f-7cae379b7b65"
+    },
+    "scope": "Associação de metadados da versão single sustentada por edição pública e crédito do ranking; não valida o áudio privado nem muda ano/produção."
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "golden-music-memories",
-  "version": "2.3.0",
+  "version": "2.9.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,7 +15,28 @@
     "service:stop": "powershell -NoProfile -File scripts/stop-service.ps1",
     "service:startup": "powershell -NoProfile -File scripts/install-startup.ps1",
     "test:operations": "node --test tests/operations.test.mjs",
-    "test:operations:ui": "node tests/operations-ui.cjs"
+    "test:operations:ui": "node tests/operations-ui.cjs",
+    "test:local-access": "node --test tests/local-access.test.mjs && node tests/local-access-ui.cjs",
+    "test:source-import": "node --test tests/auto-inspection.test.mjs tests/source-import.test.mjs && node tests/source-import-ui.cjs",
+    "version:build": "node scripts/build-version.mjs",
+    "predev": "npm run version:build",
+    "preservice": "npm run version:build",
+    "test:assembly": "node --test tests/cover-opening.test.mjs tests/video-assembly.test.mjs && node tests/video-assembly-ui.cjs",
+    "test:version": "npm run version:build && node tests/version-ui.cjs",
+    "test:editorial": "node --test tests/editorial.test.mjs && node tests/editorial-ui.cjs",
+    "test:destinations": "node --test tests/destinations.test.mjs && node tests/editorial-ui.cjs",
+    "test:collections": "node --test tests/collections.test.mjs && node tests/collections-ui.cjs",
+    "rankings:collect": "node scripts/rankings-collect.mjs",
+    "rankings:stage": "node scripts/rankings-plan.mjs",
+    "test:rankings": "node --test tests/rankings.test.mjs && node tests/rankings-ui.cjs",
+    "rankings:diagnostics": "node scripts/rankings-diagnostics.mjs",
+    "test:search-empty": "node tests/search-empty-ui.cjs",
+    "test:storage": "node --test tests/storage-backup.test.mjs && node tests/storage-ui.cjs",
+    "service:restore": "node scripts/restore-service.mjs",
+    "test:montage-flow": "node tests/montage-flow-ui.cjs",
+    "test:repost": "node --test tests/repost-policy.test.mjs tests/repost-service.test.mjs tests/repost-file.test.mjs && node tests/repost-history-ui.cjs",
+    "test:generated-trash": "node --test tests/generated-trash.test.mjs",
+    "test:original-fit": "node --test tests/original-fit.test.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",

@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GMM Ranking staging v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "scope",
+    "lists",
+    "gaps"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "annualFrom",
+        "annualThrough",
+        "annualSize",
+        "allTimeSize",
+        "market",
+        "status"
+      ],
+      "properties": {
+        "annualFrom": {
+          "const": 1960
+        },
+        "annualThrough": {
+          "const": 2009
+        },
+        "annualSize": {
+          "const": 30
+        },
+        "allTimeSize": {
+          "const": 100
+        },
+        "market": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "status": {
+          "const": "staging_not_imported"
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "lists": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/list"
+      }
+    }
+  },
+  "$defs": {
+    "list": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "chartYear",
+        "market",
+        "publisher",
+        "sourceUrl",
+        "accessedAt",
+        "sourceSha256",
+        "methodology",
+        "requestedSize",
+        "rows"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "kind": {
+          "enum": [
+            "annual",
+            "all_time"
+          ]
+        },
+        "chartYear": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1960,
+          "maximum": 2009
+        },
+        "market": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceUrl": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "accessedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "methodology": {
+          "type": "string",
+          "minLength": 21
+        },
+        "edition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourceDate": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "requestedSize": {
+          "enum": [
+            30,
+            100
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 30,
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/row"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "annual"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "chartYear": {
+                "type": "integer"
+              },
+              "requestedSize": {
+                "const": 30
+              },
+              "rows": {
+                "minItems": 30,
+                "maxItems": 30
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "chartYear": {
+                "type": "null"
+              },
+              "requestedSize": {
+                "const": 100
+              },
+              "rows": {
+                "minItems": 100,
+                "maxItems": 100
+              }
+            }
+          }
+        }
+      ]
+    },
+    "row": {
+      "type": "object",
+      "required": [
+        "position",
+        "title",
+        "artist",
+        "releaseYear",
+        "recordingId"
+      ],
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "artist": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "releaseYear": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "chartEntryYear": {
+          "type": "integer"
+        },
+        "recordingId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}$"
+        },
+        "singleUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://"
+        },
+        "versionName": {
+          "type": "string"
+        },
+        "identityEvidence": {
+          "type": "object",
+          "required": [
+            "type",
+            "sourceUrl",
+            "checkedAt",
+            "confirmedSingle"
+          ],
+          "properties": {
+            "type": {
+              "const": "musicbrainz_recording"
+            },
+            "sourceUrl": {
+              "type": "string",
+              "pattern": "^https://musicbrainz.org/recording/"
+            },
+            "checkedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "confirmedSingle": {
+              "const": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

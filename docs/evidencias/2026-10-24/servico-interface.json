@@ -1,0 +1,15 @@
+{
+  "checks": 9,
+  "results": [
+    "serviço informa publicação externa desativada",
+    "entrada no servidor usa sessão sem persistir senha no painel",
+    "arquivo recebido tem recibo; estado manual e métricas preservados",
+    "simulação do servidor não se transforma em postagem real",
+    "recibo persistido após recarga",
+    "conciliação preserva texto alterado e sinaliza conflito",
+    "fuso São Paulo e horário ambíguo tratados explicitamente",
+    "configuração do serviço cabe no celular",
+    "sem erros JavaScript no fluxo integrado"
+  ],
+  "externalCalls": false
+}

@@ -36,9 +36,9 @@ export function normalizeMusicBrainzRecording(recording, checkedAt=new Date().to
     firstReleaseDate,sourceCheckedAt:String(checkedAt),
     yearMeaning:'Primeiro lançamento conhecido desta gravação no MusicBrainz; não é confirmação da composição original.',
     validation:'metadata_imported',rights:'pending',favorite:false,genre:'',country:'',
-    importable:year!==null&&year>=1970&&year<=2009,
+    importable:year!==null&&year>=1960&&year<=2009,
     reviewNote:year===null?'Ano não informado pela fonte: revisar antes de cadastrar.':
-      year<1970||year>2009?'Gravação fora do período do catálogo (1970–2009).':'Confira artista, gravação e versão na fonte antes de importar.',
+      year<1960||year>2009?'Gravação fora do período do catálogo (1970–2009).':'Confira artista, gravação e versão na fonte antes de importar.',
   };
 }
 

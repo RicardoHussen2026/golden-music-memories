@@ -1,0 +1,65 @@
+{
+  "testedAt": "2026-10-24T17:10:05.914Z",
+  "results": [
+    {
+      "name": "Base oficial mais seis templates selecionáveis",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PNG editável exportado · cassette",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PNG editável exportado · premium-vinyl",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PNG editável exportado · premium-cassette",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PNG editável exportado · premium-neon",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PNG editável exportado · premium-stage",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PNG editável exportado · premium-romance",
+      "result": "PASSOU"
+    },
+    {
+      "name": "PNG editável exportado · premium-minimal",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Composições geradas são distintas",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Template e textos recuperados após recarga",
+      "result": "PASSOU"
+    },
+    {
+      "name": "JPG com título longo",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Template aprovado preserva configuração e arquivo",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Seletor de templates cabe no celular",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Novos fundos disponíveis offline",
+      "result": "PASSOU"
+    },
+    {
+      "name": "Templates sem erros JavaScript",
+      "result": "PASSOU"
+    }
+  ]
+}

@@ -1,4 +1,60 @@
-> Registro das etapas anteriores. A implementação atual de publicação com serviço está em [PUBLICACAO_SERVIDOR.md](PUBLICACAO_SERVIDOR.md); conexões e execução externa continuam desativadas.
+## Destinos e formatos — V2.6.0, 25/10/2026
+
+## Histórico e avisos — candidato isolado 2.9.0
+
+Preparado/testado, sem ativação na operação atual. Publicações reúne registros deste navegador e fatos do serviço local quando acessível, distinguindo legado sem conta. Escolha explicitamente conta/canal (rótulo local, não autorização externa), confira última postagem/data/link, intervalo de aviso e vídeo final já pronto. Reutilizar MP4 não exige render novo. Para repostagem recente, marque a decisão explícita antes de abrir o upload; o aviso não controla ações feitas fora do painel. Padrão inicial editável 7 dias, por plataforma/conta, sem alterar cooldown da rotina.
+
+Registrar como Publicada exige vídeo associado, conta para novos registros, data/hora efetiva sem futuro e link HTTPS; upload/baixar/exportar não fazem isso. Correções preservam histórico anterior e motivo. Contas distintas não recebem o aviso específico de outra conta; registros antigos sem conta continuam como evidência incerta. Ausência de registro não significa nunca publicado. Sem reconhecimento de áudio: usa vínculo canônico e hash quando disponíveis. Detalhes, limitações e testes em [ENTREGA_MONTAGEM_HISTORICO.md](ENTREGA_MONTAGEM_HISTORICO.md).
+
+**Revisão do item 10, 25/10/2026:** consulte [matriz atual de integrações e relatório das dez entregas](INTEGRACOES_ESTADO_ATUAL.md). APIs preparadas não são contas conectadas ou publicação homologada; autorizações reais continuam pendentes.
+
+Na produção, os botões antigos Preparar TikTok/YouTube permanecem. O seletor **Plataforma e formato da postagem → Preparar postagem** acrescenta Shorts, Facebook horizontal/vertical, Instagram Reels, Rumble e Odysee. Rascunhos de YouTube comum e Shorts, ou dos dois formatos Facebook, são independentes. Registros antigos sem destino explícito continuam interpretados pela plataforma; não há migração de banco nem alteração automática de registros pessoais.
+
+| Destino | Preset local de saída | Duração e fluxo |
+|---|---|---|
+| YouTube comum | 1920×1080, 16:9 | Limites da conta devem ser conferidos; motor local aceita até 3 h. Upload manual no Studio. |
+| YouTube Shorts | 1080×1920, 9:16 | Até 180 s; arquivo quadrado/vertical. Incompatibilidade é recusada, sem corte ou troca automática de formato. |
+| TikTok | 1080×1920, 9:16 | Preset conservador de até 60 min; conferir limite efetivo da conta e finalizar no site/app. |
+| Facebook | 1920×1080 ou 1080×1920 | Presets de enquadramento, não dois sistemas de publicação. Meta anunciou unificação de vídeos em Reels, sem restrição geral de tamanho/formato; o fluxo da conta deve ser conferido. |
+| Instagram Reels | 1080×1920, 30 fps | Preset conservador de até 180 s, não um limite universal da plataforma; maior duração exige outro preset ou edição escolhida pelo operador. |
+| Rumble | MP4 H.264/AAC 1920×1080 | Limites da conta e licença escolhida no upload exigem conferência. Não usar limites de anúncios ou lives como limites de vídeo comum. |
+| Odysee | MP4 H.264/AAC 1920×1080 | Ajuda recomenda bitrate inferior a 8 Mbps e informa limite de 16 GB; limite local atual de 10 GiB continua independente. CRF18 não garante bitrate abaixo de 8 Mbps: conferir antes do upload. |
+
+As resoluções acima são escolhas do painel. A montagem conserva a duração integral, capa de 3 s incluindo fade e áudio desde o início. Trocar a plataforma sem alterar a composição reaproveita a exportação base compatível. Nome e ID do MP4 base são preservados; não se criam sete cópias iguais. Vídeo já existente também pode ser selecionado em várias postagens, com referência ao mesmo anexo ou render. A prévia informa dimensões/duração; divergência de enquadramento é avisada. Shorts e presets verticais recusam arquivo horizontal; não o recortam automaticamente. Vídeos verticais legados no YouTube comum continuam aceitos com aviso.
+
+Textos, hashtags e campos de conferência usam a plataforma escolhida. Hashtag Shorts só é sugerida no destino Shorts. Odysee tem campo local para tags/categorias sem #; Rumble, campo para licença/visibilidade a conferir. Esses campos e as opções Meta são notas locais, não configurações aplicadas ao site. Novos destinos ficam fora dos painéis de transferência/rotina do serviço. Seu histórico é mantido no IndexedDB e no backup do navegador; não presumir conciliação/API no SQLite. A sincronização operacional continua limitada aos registros YouTube/TikTok já suportados.
+
+Atalhos: YouTube/TikTok continuam na tela de upload; Rumble usa o endereço de upload publicado na ajuda oficial. Facebook, Instagram e Odysee abrem suas páginas oficiais, onde a conta escolhe criar/enviar. Não foi verificado um diálogo direto de criação universal nessas três páginas. Sem autenticação de novas contas, preenchimento, postagem ou integração API nesta entrega. A experiência efetiva por conta/celular segue pendente.
+
+**YouTube Music:** upload pessoal de áudio permite somente a audição pelo próprio usuário e não aceita o MP4 de produção. Distribuição pública de música requer entrega de áudio/metadados por distribuidor/parceiro e direitos adequados. Nenhum preset ou botão de publicação Music foi criado. Decisão humana pendente: se existe catálogo próprio/licenciado e se haverá distribuição pública. Isso não bloqueia o trabalho dos destinos de vídeo.
+
+Fontes oficiais consultadas (25/10/2026): [Shorts até três minutos e reivindicações musicais](https://support.google.com/youtube/answer/15424877?hl=en), [Shorts no computador](https://support.google.com/youtube/answer/12779649?co=GENIE.Platform%3DDesktop&hl=en), [Meta: unificação dos vídeos Facebook](https://about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/), [Instagram: proporções de Reels](https://www.facebook.com/help/instagram/1038071743007909?locale=en_GB), [Instagram: duração e recomendação](https://www.facebook.com/help/instagram/2720958398006062), [Rumble: envio e licença](https://rumble.support/en/help/how-to-upload-a-video), [Odysee: formatos e tamanho](https://help.odysee.tv/category-uploading/category-fileuploads/fileselection/), [Odysee: encoding e bitrate](https://help.odysee.tv/category-uploading/category-fileuploads/encoding/), [YouTube Music: uploads pessoais](https://support.google.com/youtubemusic/answer/9716522?hl=en), [distribuição musical](https://support.google.com/youtube/answer/9105565?hl=en-GB). As páginas Meta Help redirecionaram para login; o preset Instagram foi mantido conservador e sua aceitação real continua pendente. Não foi feita pesquisa comercial nem contratação.
+
+## Atalhos de upload — histórico V2.5.2
+
+Na ficha Preparar TikTok/Preparar YouTube, ao lado de Copiar título/legenda/hashtags, use **Abrir TikTok · upload** ou **Abrir YouTube · upload**. Abre uma nova aba na página oficial e mantém sua edição local. Confira a conta e o canal da plataforma; o painel não escolhe nem troca contas. O link nativo usa noopener/noreferrer e não depende de popup por JavaScript. Se houver bloqueio, use o menu do link para abrir manualmente. No celular, pode ser solicitado login ou aplicativo.
+
+Selecione o vídeo em **Vídeo final desta plataforma**. Quando disponível, **Baixar MP4 selecionado** fica junto dos controles de cópia. Baixe o arquivo, copie os textos e selecione/cole manualmente na plataforma. **Montar vídeo** gera o MP4; **Preparar** organiza os textos; **Abrir** só navega. Nenhuma dessas ações registra publicação como realizada. Datas/URL e situação continuam sob confirmação manual.
+
+Destinos verificados: [TikTok Studio upload](https://www.tiktok.com/tiktokstudio/upload) e [YouTube upload](https://www.youtube.com/upload), com redirecionamento oficial ao Studio. [Ajuda oficial do YouTube](https://support.google.com/youtube/answer/57407?co=GENIE.Platform%3DDesktop&hl=pt-BR). Nenhum arquivo foi enviado nesta verificação.
+
+Serviço operacional atualizado para 2.5.2 em 127.0.0.1:8877; itens 1–3 disponíveis. Preserve edições abertas: salve antes de atualizar uma aba antiga. Rotinas externas permanecem desligadas.
+
+## Preparação de textos — entrega local V2.5, 24/10/2026
+
+Na produção existente, use **Preparar TikTok** ou **Preparar YouTube**. A primeira abertura sugere título, descrição e hashtags por plataforma. Registros existentes conservam seus textos. O catálogo não fornece áudio nem comprova ano/álbum: a sugestão usa somente dados confirmados da produção, quando existentes. Em **Dados do texto e ícone**, ano/álbum são opcionais e o ícone musical pode ser desmarcado.
+
+Edite livremente. **Atualizar sugestão** mostra uma prévia; marque os campos desejados e use **Aplicar selecionados**. Campos modificados manualmente começam desmarcados. **Salvar registro** guarda texto, opções e vínculo com o vídeo. Fechar sem salvar não guarda a edição. Um rascunho já salvo é reaproveitado ao reabrir a mesma produção/plataforma; dados de TikTok e YouTube são independentes.
+
+Use **Copiar título**, **Copiar legenda** (TikTok), **Copiar descrição completa** (YouTube) e **Copiar hashtags**. A legenda/descrição completa inclui hashtags sem repetir as que já estiverem no texto. Se o navegador negar a cópia automática, o texto aparece selecionado para copiar manualmente. O padrão editorial sugere 3–5 hashtags TikTok e 3 YouTube; não promete alcance. YouTube recusa salvar título acima de 100 caracteres ou descrição completa acima de 5.000.
+
+**Vídeo final desta plataforma** lista anexos do navegador e MP4s exportados pela montagem local para aquele destino. A referência de render permanece no serviço, sem nova cópia no IndexedDB. Uma prévia indisponível conserva o vínculo anterior; confira o serviço antes de publicar manualmente. Conflito com outra aba exige reabrir para conferir a versão atual, sem sobrescrever a edição alheia. Recibos atualizados pelo serviço são preservados.
+
+Salvar prepara/atualiza um registro local. Não envia arquivos ou publica. O proprietário ainda deve conferir dados, tom, hashtags e MP4. Os testes desta entrega usaram Chrome/contextos/bancos isolados e fixtures; resultado e limitações na [lista oficial](ORGANIZACAO_PROJETO.md). O serviço operacional não foi reiniciado para ativar a build. Backup do navegador conserva os textos/fatos; MP4s do serviço, SQLite e chave exigem suas próprias cópias.
+
+---
+
+> Histórico das etapas anteriores abaixo. A implementação de publicação com serviço está em [PUBLICACAO_SERVIDOR.md](PUBLICACAO_SERVIDOR.md); conexões e execução externa continuam desativadas.
 
 # Publicações: preparação local e contratos de integração
 

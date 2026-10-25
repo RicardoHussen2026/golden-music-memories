@@ -41,8 +41,8 @@ export function createSearchIndex(songs) {
 export function parseSearchQuery(query) {
   let text = normalizeSearch(query), decades=[];
   const decadeNumber = n => n === '00' || n === '2000' ? 2000 : Number(n)<100 ? 1900+Number(n) : Number(n);
-  text = text.replace(/\b(?:anos|decada(?: de)?)\s*(1970|1980|1990|2000|70|80|90|00)\b/g, (_,n) => {decades.push(decadeNumber(n));return ' ';});
-  text = text.replace(/\b(1970|1980|1990|2000|70|80|90|00)s\b/g, (_,n) => {decades.push(decadeNumber(n));return ' ';});
+  text = text.replace(/\b(?:anos|decada(?: de)?)\s*(1960|1970|1980|1990|2000|60|70|80|90|00)\b/g, (_,n) => {decades.push(decadeNumber(n));return ' ';});
+  text = text.replace(/\b(1960|1970|1980|1990|2000|60|70|80|90|00)s\b/g, (_,n) => {decades.push(decadeNumber(n));return ' ';});
   const words=text.trim().split(/\s+/).filter(Boolean), years=words.filter(w=>/^(19|20)\d{2}$/.test(w)).map(Number);
   return {text:normalizeSearch(text), words:[...new Set(words.filter(w=>!/^(19|20)\d{2}$/.test(w)))],years:[...new Set(years)],decades:[...new Set(decades)]};
 }

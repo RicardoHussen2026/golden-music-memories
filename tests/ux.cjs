@@ -67,6 +67,7 @@ async function savePublication(platform,title){await page.locator(`[data-action=
  await navigate('production');await action('open-production').click();
  await savePublication('tiktok','Rascunho TikTok isolado');await savePublication('youtube','Rascunho YouTube isolado');
  await page.locator('[data-action="edit-publication"][data-platform="tiktok"]').click();
+ await page.locator('#dialog[open] #pubTitle').waitFor({state:'visible'});
  check('Retomar publicação conserva texto anterior',(await page.locator('#pubTitle').inputValue())==='Rascunho TikTok isolado');
  await page.locator('#publication-form button[type="submit"]').click();await page.waitForFunction(()=>!document.querySelector('#dialog').open);
  const pubs=await waitForStore('publications',rows=>rows.length>=2);check('Rascunhos independentes sem duplicação ao retomar',pubs.length===2&&pubs.every(p=>p.status!=='published')&&new Set(pubs.map(p=>p.platform)).size===2);

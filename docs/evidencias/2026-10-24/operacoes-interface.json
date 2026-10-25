@@ -1,0 +1,20 @@
+{
+  "checks": 12,
+  "results": [
+    "navegação principal e estado pausado honestos",
+    "cinco produções transferidas sem modificar o catálogo",
+    "lote exporta cinco pacotes CapCut",
+    "dez capas guardadas nos dois formatos",
+    "upload mede duração e distingue arquivo em edição",
+    "mesmo arquivo pronto atende dois destinos",
+    "registro manual exclui YouTube e conserva TikTok inédito",
+    "agenda automática simula sem criar publicação real",
+    "pausa persiste após recarga",
+    "acervo e histórico sobrevivem à recarga",
+    "operação cabe em 390 px",
+    "nenhum erro JavaScript no fluxo"
+  ],
+  "errors": [],
+  "externalCalls": false,
+  "fixture": "MP4 estrutural sintético; qualidade audiovisual não avaliada"
+}

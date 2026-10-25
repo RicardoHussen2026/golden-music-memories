@@ -1,0 +1,84 @@
+{
+  "phase": "item6_staging_checkpoint",
+  "completed": false,
+  "generatedAt": "2026-10-25T01:33:01.115Z",
+  "counts": {
+    "requestedPositions": 1600,
+    "filledPositions": 850,
+    "annualPositions": 750,
+    "allTimePositions": 100,
+    "allTimeGoalConfirmedPositions": 0,
+    "allTimeGoalDecision": "editorial_choice_pending",
+    "allTimeSourceYearsOutsideCatalog": 25,
+    "missingAnnualPositions": 750,
+    "missingAllTimeReferencePositions": 0,
+    "missingAllTimeGoalPositions": 100,
+    "totalObjectivePositionsConfirmed": 750,
+    "pendingObjectivePositions": 850,
+    "uniqueCreditedEntries": 797,
+    "confirmedUniqueRecordings": 2,
+    "existingVerifiedPositions": 2,
+    "newVerifiedRecords": 0,
+    "statuses": {
+      "absent_unresolved": 739,
+      "compound_review": 38,
+      "related_review": 41,
+      "exact_credit_review": 29,
+      "existing_verified": 2,
+      "ambiguous_existing_review": 1
+    }
+  },
+  "missingYears": [
+    1960,
+    1961,
+    1962,
+    1963,
+    1964,
+    1965,
+    1966,
+    1967,
+    1968,
+    1969,
+    1970,
+    1971,
+    1972,
+    1973,
+    1974,
+    1975,
+    1976,
+    1977,
+    1978,
+    1979,
+    2000,
+    2001,
+    2002,
+    2003,
+    2004
+  ],
+  "sourceGaps": [
+    {
+      "sourceUrl": "https://www.billboard.com/charts/year-end/2009/hot-100-songs/",
+      "status": 402,
+      "reason": "Payment Required no web; não contornado"
+    },
+    {
+      "sourceUrl": "https://www.billboard.com/charts/greatest-hot-100-singles/",
+      "status": 402,
+      "reason": "Payment Required no web; não contornado"
+    },
+    {
+      "sourceUrl": "https://www.officialcharts.com/charts/end-of-year-singles-chart/20040104/37501/",
+      "reason": "Arquivo de navegação anual acessado termina em 2004; não pressupor ausência de dados históricos em outras fontes."
+    },
+    {
+      "sourceId": "occ-gb-annual-2004",
+      "sourceUrl": "https://www.officialcharts.com/charts/end-of-year-singles-chart/20040104/37501/",
+      "reason": "Conteúdo anual idêntico a occ-gb-annual-2005; ano dos dados não confirmado, em quarentena."
+    }
+  ],
+  "catalogFileHash": "6f48896fd5b403d2fd942de2811b370588bd340b036a2fa9f0a6f0e3c51e6360",
+  "importedSongs": 0,
+  "distributedCatalogMemberships": 2,
+  "operationalProfileApplied": false,
+  "operationalDatabaseTouched": false
+}
