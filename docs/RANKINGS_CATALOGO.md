@@ -1,5 +1,24 @@
 # Rankings e catálogo — staging do item 6
 
+## Conciliação do pacote TOP30 — entrega 2.9.5, 25/10/2026
+
+O ZIP fornecido pelo titular contém 50 seleções anuais preliminares com30 posições cada e20 posições gerais. Há17 entidades compartilhadas: **1.500+20−17=1.503 entidades de pesquisa**. Isso não constitui ranking por década, Top100 geral validado ou1.503 novas músicas. O próprio pacote informa baixa confiança editorial; URLs recebidas são proveniência declarada, não validação automática de cada posição. Algumas podem apontar para conteúdo divergente. Não se copiou o ano da lista como lançamento nem se inferiu tema romântico.
+
+Simulação contra2.009 registros:2 novos com prova discográfica direta,3 identificadores já presentes,39 casos semelhantes/ambíguos,1.456 sem conferência suficiente e3 fora de1960–2009. Os dois novos são [Will You Love Me Tomorrow — The Shirelles, mono](https://musicbrainz.org/recording/0ca12a54-b5b1-4029-b4eb-4824eb210845) e [Only the Lonely (Know the Way I Feel) — Roy Orbison](https://musicbrainz.org/recording/08817236-aafd-4fc6-9f9b-27b85e49b6d7), ambos1960. Identidade/crédito/primeiro ano e edição Official foram conferidos em resposta MusicBrainz registrada com data/SHA e release. Isso não autentica um master de áudio ou concede direitos. A terceira consulta, Georgia on My Mind, retornouHTTP503; lote encerrado, sem repetir/burlar nem iniciar pesquisa massiva.
+
+Aplicado ao catálogo distribuído e ao perfil Chrome habitual com backup anterior: **2.011 registros**. Pós-backup conferiu todos os2.009 registros antigos campo a campo, três produções, oito anexos e seus hashes, uma publicação e três reservas intactos; apenas um evento de auditoria e uma fila adicionados. A repetição real acrescentou0; após recarga segura da aba,2011persistiram. A fila mantém39+1456+3=**1.498 pendências**, sem incluí-las como músicas do acervo. Por década:1960=2;1970=514;1980=498;1990=490;2000–2009=507;outros/sem ano=0. Total é de gravações/versões, não certificação de composições únicas.
+
+### Uso e recuperação
+
+Catálogo → Adicionar e exportar → **Conciliar pesquisa**. Escolha o ZIP ou JSON de pesquisa, revise a simulação e use **Backup e adicionar N confirmados**. O fluxo cria ZIP completo do navegador antes da transação; guarde o download. Nenhum cadastro antigo é substituído. O botão sem novos salva a mesma fila sem duplicá-la; **Filas de revisão salvas** permite baixá-la. A normalização Unicode/acentos/pontuação/conjunções só propõe candidatos. Identificadores, créditos e versões prevalecem; homônimas, covers/live/remix/remaster não são fundidos por fuzzy. Atualização é aditiva e transacional, revalidada contra a base atual; divergência exige nova simulação.
+
+O catálogo distribuído usa o processo reutilizável node scripts/apply-confirmed-catalog.mjs data/catalog.json data/catalog-confirmed-update.json (simulação); --apply cria backup local/hash, verifica concorrência e só então grava novos confirmados. Não atualiza automaticamente outros perfis IndexedDB ou SQLite; cada armazenamento tem seu backup. Não inclui download de mídia ou consultas automáticas de API. Evidências operacionais/ZIPs ficam privados em.cache/catalog-reconcile e Downloads, fora do Git; apenas metadados públicos/provas de dois registros acompanham o software.
+
+Validação:19 testes de lógica/arquivo (identidade, versões, colisões, prova inválida, backup/idempotência);10UI isolada (simulação, transação, campos privados preservados, fila, erro, mobile e restauração);22busca,12catálogo e10versão. No perfil real, aplicação/repetição/recarga e backups com hashes foram conferidos. Sem upload externo, novas credenciais ou alteração dos MP4 aprovados. Serviço2.9.5 alinhado; publicação do software em andamento. A pesquisa antiga1.000posições e suas lacunas permanecem independentes, abaixo; a ampliação editorial não está concluída. Próximo item: filtros com os dados conhecidos, sem inventar classificações ou Top30 de década.
+
+### Histórico anterior preservado
+
+
 ## Estado atual — suplemento2000–2004 conferido em25/10/2026
 
 O staging combinado tem **1.000 posições documentadas:900 anuaisGB (1980–2009) +100 de referência histórica de vendasGB**. Não são1.000 músicas novas nem1.000 gravações autenticadas. O Top100 geral pretendido continua sem fonte/critério aprovado; só900 posições cumprem o objetivo anual. Faltam1960–1979/600posições anuais, a decisão doTop100 e a ampliaçãoTop50.

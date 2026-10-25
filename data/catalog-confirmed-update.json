@@ -1,0 +1,172 @@
+{
+  "sourceArchiveSha256": "c625984dc5c1a21fe8ad5669890fada097d0d02404d780f937a4fddeecf3b640",
+  "songs": [
+    {
+      "id": "mb-0ca12a54-b5b1-4029-b4eb-4824eb210845",
+      "title": "Will You Love Me Tomorrow",
+      "artist": "The Shirelles",
+      "year": 1960,
+      "versionName": "mono",
+      "sourceId": "0ca12a54-b5b1-4029-b4eb-4824eb210845",
+      "sourceName": "MusicBrainz",
+      "source": "https://musicbrainz.org/recording/0ca12a54-b5b1-4029-b4eb-4824eb210845",
+      "researchCandidateId": "mb-0ca12a54-b5b1-4029-b4eb-4824eb210845",
+      "research": {
+        "status": "preliminar",
+        "confidence": "BAIXA",
+        "chartYear": 1960,
+        "annualPosition": 1,
+        "genreLabels": [
+          "Brill Building",
+          "Girl Group",
+          "Pop Soul"
+        ],
+        "sourceUrls": [
+          "https://www.acclaimedmusic.net/year/1960s.htm",
+          "https://www.digitaldreamdoor.com/pages/bg_hits/bg_hits_60.html",
+          "https://www.rollingstone.com/music/music-lists/best-songs-of-all-time-1224767/david-bowie-changes-2-1225138"
+        ]
+      },
+      "decade": 1960,
+      "genre": "",
+      "genres": [
+        "Pop Soul"
+      ],
+      "country": "",
+      "favorite": false,
+      "rights": "pending",
+      "validation": "metadata_imported",
+      "sourceCheckedAt": "2026-10-25T07:01:10.404Z",
+      "yearMeaning": "Primeiro lançamento informado pelo MusicBrainz para esta gravação; não é ano da lista nem certificação de master.",
+      "genreEvidence": {
+        "sourceUrl": "https://musicbrainz.org/recording/0ca12a54-b5b1-4029-b4eb-4824eb210845",
+        "kind": "Coincident labels in provided editorial research and MusicBrainz community tags with at least2votes; not a principal-genre certification",
+        "checkedAt": "2026-10-25T07:01:10.404Z",
+        "reportedEditorialLabels": [
+          "Brill Building",
+          "Girl Group",
+          "Pop Soul"
+        ],
+        "reportedCommunityLabels": [
+          "motown",
+          "pop",
+          "pop soul",
+          "r&b"
+        ]
+      },
+      "moods": [],
+      "recordingVerification": {
+        "type": "direct_musicbrainz_lookup",
+        "recordingId": "0ca12a54-b5b1-4029-b4eb-4824eb210845",
+        "sourceUrl": "https://musicbrainz.org/recording/0ca12a54-b5b1-4029-b4eb-4824eb210845",
+        "responseSha256": "a2ea8e27142f3df5d1da9e105e7efd9d506cbb0d79a5d8960a2d39e058d2339c",
+        "checkedAt": "2026-10-25T07:01:10.404Z",
+        "releaseYear": 1960,
+        "releaseEvidence": {
+          "recordingId": "0ca12a54-b5b1-4029-b4eb-4824eb210845",
+          "releaseId": "6638e36e-96df-45fc-a1d3-7eb4f84601dd",
+          "status": "Official",
+          "date": "1960-11",
+          "sourceUrl": "https://musicbrainz.org/release/6638e36e-96df-45fc-a1d3-7eb4f84601dd"
+        },
+        "sourceCredit": {
+          "title": "Will You Love Me Tomorrow",
+          "artist": "The Shirelles",
+          "disambiguation": "mono"
+        }
+      }
+    },
+    {
+      "id": "mb-08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+      "title": "Only the Lonely (Know the Way I Feel)",
+      "artist": "Roy Orbison",
+      "year": 1960,
+      "versionName": "",
+      "sourceId": "08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+      "sourceName": "MusicBrainz",
+      "source": "https://musicbrainz.org/recording/08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+      "researchCandidateId": "mb-08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+      "research": {
+        "status": "preliminar",
+        "confidence": "BAIXA",
+        "chartYear": 1960,
+        "annualPosition": 2,
+        "genreLabels": [
+          "Pop"
+        ],
+        "sourceUrls": [
+          "https://www.acclaimedmusic.net/year/1960s.htm"
+        ]
+      },
+      "decade": 1960,
+      "genre": "",
+      "genres": [
+        "Pop"
+      ],
+      "country": "",
+      "favorite": false,
+      "rights": "pending",
+      "validation": "metadata_imported",
+      "sourceCheckedAt": "2026-10-25T07:19:02.711Z",
+      "yearMeaning": "Primeiro lançamento informado pelo MusicBrainz para esta gravação; não é ano da lista nem certificação de master.",
+      "genreEvidence": {
+        "sourceUrl": "https://musicbrainz.org/recording/08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+        "kind": "Coincident labels in provided editorial research and MusicBrainz community tags with at least2votes; not a principal-genre certification",
+        "checkedAt": "2026-10-25T07:19:02.711Z",
+        "reportedEditorialLabels": [
+          "Pop"
+        ],
+        "reportedCommunityLabels": [
+          "pop",
+          "rock",
+          "rock and roll"
+        ]
+      },
+      "moods": [],
+      "recordingVerification": {
+        "type": "direct_musicbrainz_lookup",
+        "recordingId": "08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+        "sourceUrl": "https://musicbrainz.org/recording/08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+        "responseSha256": "6d05c39f5a24c5a82b0a323c8a2e06326102d974e5c839ebc0e80795a1f62f55",
+        "checkedAt": "2026-10-25T07:19:02.711Z",
+        "releaseYear": 1960,
+        "releaseEvidence": {
+          "recordingId": "08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+          "releaseId": "f4ed5458-640d-4762-9965-bdd23d641e05",
+          "status": "Official",
+          "date": "1960-05-09",
+          "sourceUrl": "https://musicbrainz.org/release/f4ed5458-640d-4762-9965-bdd23d641e05"
+        },
+        "sourceCredit": {
+          "title": "Only the Lonely (Know the Way I Feel)",
+          "artist": "Roy Orbison",
+          "disambiguation": ""
+        }
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "0ca12a54-b5b1-4029-b4eb-4824eb210845",
+      "title": "Will You Love Me Tomorrow",
+      "sourceMatched": true,
+      "year": 1960,
+      "declared": 1960
+    },
+    {
+      "id": "08817236-aafd-4fc6-9f9b-27b85e49b6d7",
+      "title": "Only the Lonely (Know the Way I Feel)",
+      "sourceMatched": true,
+      "year": 1960,
+      "declared": 1960
+    }
+  ],
+  "scope": {
+    "annualPositions": 1500,
+    "generalPositions": 20,
+    "sharedAnnualAndGeneralRecords": 17,
+    "uniqueResearchRecords": 1503,
+    "rankingStatus": "preliminary",
+    "rankingUnit": "annual_not_decade"
+  }
+}

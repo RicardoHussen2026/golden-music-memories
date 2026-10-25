@@ -24,3 +24,4 @@ aside{width:216px;padding:23px 14px}.workspace{margin-left:216px}.logo{margin-bo
 .destination-picker{display:grid;gap:.55rem}.destination-picker .actions{align-items:end}.destination-picker .field{flex:1;min-width:180px;margin:0}.destination-picker [aria-pressed="true"]{background:#235a56;color:#fff;border-color:#235a56}.destination-picker .actions>button{min-height:42px}.destination-picker [data-destination-label]{color:var(--muted,#506365)}
 
 #assembly-delete-review{overflow-wrap:anywhere}
+#research-import-preview .table-wrap{max-width:100%;overflow-x:auto}#research-import-preview table{width:100%;table-layout:fixed}#research-import-preview th,#research-import-preview td{vertical-align:top;overflow-wrap:anywhere}#research-import-preview th:first-child{width:30%}#research-import-preview th:nth-child(2){width:24%}#research-import-preview .actions{flex-wrap:wrap}#research-import-status{overflow-wrap:anywhere}
