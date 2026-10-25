@@ -5,11 +5,13 @@ export function configuration(env=process.env){
   const url=new URL(origin);
   if(!['https:','http:'].includes(url.protocol)||url.origin!==origin)throw Error('GMM_PUBLIC_ORIGIN deve conter somente a origem.');
   if(url.protocol==='http:'&&!['127.0.0.1','localhost','[::1]'].includes(url.hostname))throw Error('Use HTTPS fora do computador local.');
+  const renderCpuProfile=env.GMM_RENDER_CPU_PROFILE||'auto';
+  if(!['auto','conservative','moderate'].includes(renderCpuProfile))throw Error('Perfil CPU inválido.');
   const localAccess=env.GMM_LOCAL_ACCESS==='true';
   if(localAccess&&origin!==new URL(`http://127.0.0.1:${port}`).origin)throw Error('Acesso local exige origem HTTP 127.0.0.1 na porta do serviço.');
   const encryptionKey=env.GMM_ENCRYPTION_KEY||'';
   if(encryptionKey&&!/^[a-f\d]{64}$/i.test(encryptionKey))throw Error('Chave de cifragem: 64 caracteres hexadecimais.');
-  return {port,host:'127.0.0.1',origin,localAccess,secure:url.protocol==='https:',directory:resolve(env.GMM_DATA_DIR||'.cache/publishing-private'),
+  return {renderCpuProfile,port,host:'127.0.0.1',origin,localAccess,secure:url.protocol==='https:',directory:resolve(env.GMM_DATA_DIR||'.cache/publishing-private'),
     password:env.GMM_OPERATOR_PASSWORD||'',encryptionKey:encryptionKey?Buffer.from(encryptionKey,'hex'):null,
     network:env.GMM_ALLOW_NETWORK==='true',publishing:env.GMM_ALLOW_PUBLISH==='true',worker:env.GMM_WORKER_ENABLED==='true',
     maxBytes:bounded(env.GMM_MAX_FILE_MIB,10240,1,262144)*1024*1024,minFreeBytes:bounded(env.GMM_MIN_FREE_MIB,1024,0,1048576)*1024*1024,chunkBytes:4*1024*1024,maxAttempts:5,

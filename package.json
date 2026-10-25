@@ -1,6 +1,6 @@
 {
   "name": "golden-music-memories",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -36,7 +36,8 @@
     "test:montage-flow": "node tests/montage-flow-ui.cjs",
     "test:repost": "node --test tests/repost-policy.test.mjs tests/repost-service.test.mjs tests/repost-file.test.mjs && node tests/repost-history-ui.cjs",
     "test:generated-trash": "node --test tests/generated-trash.test.mjs",
-    "test:original-fit": "node --test tests/original-fit.test.mjs"
+    "test:original-fit": "node --test tests/original-fit.test.mjs",
+    "test:render-cpu": "node --test tests/render-cpu.test.mjs tests/render-cpu-integration.test.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",

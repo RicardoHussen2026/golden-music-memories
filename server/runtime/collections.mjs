@@ -6,6 +6,7 @@ import {fileHash} from './media.mjs';
 import {runProcess} from './source-import.mjs';
 import {planVideo,videoArguments,artNames} from './video-assembly.mjs';
 import {POST_DESTINATIONS,destinationIssues} from '../../app/destinations.js';
+import {selectRenderCpu,runRenderCpu} from './render-cpu.mjs';
 export function concatArguments(list,output,segments){
  const args=['-hide_banner','-v','error','-y','-filter_complex_threads','1','-protocol_whitelist','file,pipe','-f','concat','-safe','1','-i',list];
  for(const segment of segments)args.push('-i',segment.file);
@@ -67,10 +68,10 @@ export class Collections{
      const source=this.assembler.source(item.sourceKind,item.sourceId,item.productionId);check(fileHash(source.path)===item.sourceHash,'Fonte mudou; confira e salve a seleção novamente.');
      const cover=this.assembler.image(item.coverId,item.productionId,'cover');check(cover&&fileHash(cover.path)===item.coverHash,'Capa mudou ou não está disponível.');
      const arts={};for(const key of Object.keys(item.arts)){arts[key]=join(this.assembler.artDirectory,artNames[key]);check(fileHash(arts[key])===item.arts[key],'Arte de chamada mudou; salve novamente.');}
-     const segment=join(work,i+'.mp4'),args=videoArguments({input:source.path,cover:cover.path,arts,output:segment,plan:item.plan});
+     const cpuProfile=selectRenderCpu(this.config.renderCpuProfile),segment=join(work,i+'.mp4'),buildArgs=cpu=>{const args=videoArguments({input:source.path,cover:cover.path,arts,output:segment,plan:{...item.plan,cpuProfile:cpu}});
      // Consistent AAC sample rate/channel layout for the concatenated stream.
-     args.splice(args.indexOf('-t'),0,'-ar','48000','-ac','2');
-     await this.runner(this.assembler.tool('ffmpeg'),args,{cwd:work,signal:controller.signal,timeout:2*3600000,onLine:line=>{const m=/^out_time_us=(\d+)/.exec(line);if(m)this.update(c,{track:i+1,progress:Math.min(94,Math.round((item.start+Number(m[1])/1e6)/c.total*94))});}});
+     args.splice(args.indexOf('-t'),0,'-ar','48000','-ac','2');return args;};
+     const effectiveCpu=await runRenderCpu(this.runner,this.assembler.tool('ffmpeg'),buildArgs,{cwd:work,signal:controller.signal,timeout:2*3600000,onLine:line=>{const m=/^out_time_us=(\d+)/.exec(line);if(m)this.update(c,{track:i+1,progress:Math.min(94,Math.round((item.start+Number(m[1])/1e6)/c.total*94))});}},cpuProfile,cpu=>this.update(c,{effectiveCpuProfile:cpu}));this.update(c,{effectiveCpuProfile:effectiveCpu});
      check(statSync(segment).size<=this.config.maxBytes,'Segmento acima do limite de arquivo configurado.');
     }
     writeFileSync(join(work,'list.txt'),c.items.map((item,i)=>`file '${i}.mp4'\nduration ${item.plan.duration}`).join('\n'));const output=join(work,'collection.mp4');this.update(c,{progress:95});

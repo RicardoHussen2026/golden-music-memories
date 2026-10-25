@@ -1,5 +1,7 @@
 # Montar vídeo local — V2.4
 
+**Atualização vigente — 2.9.3 ativa localmente:** perfil automático CPU4/filtros2 somente com8processadores lógicos/3GiB livres; demais mantêmCPU2/filtros1. Opção conservadora preservada, fallback único por falha de threads e reaproveitamento de renders legados. Não muda encoder/preset/CRF, capas, chamadas ou áudio, nem refaz resultados existentes. Leia [desempenho, parâmetros e limites](DESEMPENHO_RENDER.md). A amostra opcional de movimento estático é separada dos finais e não foi aplicada ao catálogo. Os estados2.9.1/2.9.0 abaixo são históricos.
+
 **Atualização incremental 25/10/2026 — 2.9.1 somente isolada:** Substituir clipe no Estúdio e Manter enquadramento original concluídos/testados, supersedendo as pendências anteriores abaixo. Troca conserva fonte/finais/histórico e campos, invalidando prévia exibida; conteúdo proporcional com margens simples sem crop/stretch/blur, resolução do preset e recodificação com overlays. Backend80/80, montagem28, histórico22 e versão10. Checkpoint2.9.0 preservado. Pacote acumulado em .cache/painel-next/workspace; relatório em docs/ENTREGA_MONTAGEM_HISTORICO.md. Não ativar/recarregar produção sem coordenação expressa. Raiz2.8 e operacional2.7.2 preservados.
 
 ## Pacote isolado 2.9.0 — preparado, ainda não operacional
