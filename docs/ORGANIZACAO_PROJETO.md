@@ -4,17 +4,19 @@
 
 **Entrega visual complementar concluída — 25/10/2026:** fonte002 preservada; YouTube horizontal V2 e TikTok V3 com fundo desfocado aprovados no acervo, sem substituir versões anteriores. Capas3s, CTAs30/70/110 e áudio conferidos. A tentativa TikTok anterior cancelada aos80% foi preservada; a nova tentativa expressamente autorizada concluiu sem alteração dos limites existentes. Causa histórica não determinada. Amostra de movimento suave8s concluída, opcional e separada dos finais; avaliação editorial pendente, sem impedir desempenho. Explorer confirmado aberto após liberação nativa. Nenhuma postagem externa.
 
-## Prioridades vigentes — vinhetas e coleção criativa, 26/10/2026
+## Prioridades vigentes — evolução da montagem, 26/10/2026
 
 Pedido confirmado: vinhetas opcionais no início/final. Ampliação autorizada: criar e integrar 12 capas nostálgicas (quatro por década 70/80/90), três vinhetas sonoras e biblioteca de chamadas/comerciais MP3/MP4 com posição/duração/volume. Publicar o software e as artes, sem postagem em plataformas sociais. Raiz/Git/branch conferidos; associação refeita por operação oficial (listagem ainda diverge). Um executor mutante; revisão/pesquisa auxiliares somente leitura. Operação 8877 preservada durante preparação.
 
 | Prioridade | Trabalho | Estado concreto e próximo passo |
 |---|---|---|
 | 1 | Biblioteca Vinhetas e montagem opcional no início/fim | IMPLEMENTADO E TESTADO. Biblioteca, início/fim, MP3+imagem, áudio, silêncio, duração exata e sequência. UI e rascunho/remoção conferidos; avaliação humana estética separada |
-| 2 | Doze capas premium nostálgicas, quatro por década | CONCLUÍDO LOCALMENTE. 12 fundos originais (4/4/4), filtros, editor preservado e composição horizontal própria; PNG exportado/aberto e biblioteca conferidos |
-| 3 | Três vinhetas sonoras nostálgicas | CONCLUÍDO LOCALMENTE. Três sons originais de 5 s, seis MP4 Full HD e download MP3. Integridade, áudio e instalação idempotente testados |
+| 2 | Doze capas premium nostálgicas, quatro por década | CONCLUÍDO E PUBLICADO. 12 fundos originais (4/4/4), filtros, editor preservado e composição horizontal própria; PNG exportado/aberto e biblioteca conferidos |
+| 3 | Três vinhetas sonoras nostálgicas | CONCLUÍDO E PUBLICADO. Três sons originais de 5 s, seis MP4 Full HD e download MP3. Integridade, áudio e instalação idempotente testados |
 | 4 | Chamadas/comerciais MP3 e MP4 com posição/duração/volume | IMPLEMENTADO E TESTADO. Biblioteca, sobreposição opcional com trecho/horário/volume/fade e tela/canto; rascunho, lixeira e render de 9 s pela UI conferidos |
-| 5 | Testes finais, ativação local, versão, commit/push/deploy | EM PUBLICAÇÃO. 19 testes principais e 8 complementares passaram. Operação 8877 conferida ociosa; ativação, commit/push e hashes públicos em seguida. Ver NOSTALGIA_VINHETAS_COMERCIAIS_V221.md |
+| 5 | Testes finais, ativação local, versão, commit/push/deploy | CONCLUÍDO. 2.21 ativa, commit 4d35fc7 nas duas branches, Pages 40278643702 success; 40 hashes públicos e UI local/pública conferidos. Dados reais preservados. Ver NOSTALGIA_VINHETAS_COMERCIAIS_V221.md |
+
+| 6 | Evoluir a janela Preparar vídeo para publicar | PRÓXIMO. Pedido recebido após a 2.21: hierarquia visual, edição clara, prévia e ações acessíveis, menos mensagens repetidas e correções comprovadas; preservar todos os controles e integrações |
 
 ### Histórico — motor Python e aberturas 2.20 concluídos
 
