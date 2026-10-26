@@ -15,7 +15,7 @@ Pedido atual: pasta escolhida pelo usuário, limpeza recuperável, seleção e a
 | 3 | Testes isolados, percurso visual, ativação local e evidências | CONCLUÍDO LOCALMENTE. Dez testes específicos, dois do núcleo e três catálogo/montagem; UI desktop/390 px, reprodução e download por hash. Ver BAIXADOR_V217.md |
 | 4 | Entrega dos lotes com nomes musicais e informações da fonte | CONCLUÍDO E TESTADO. 50 fixtures com nomes únicos na mesma pasta, índice CSV/JSON, originais independentes e metadados para catalogação |
 | 5 | Aba financeira exclusiva Golden Music Memories | IMPLEMENTADO E ATIVADO LOCALMENTE 2.18.0. Sete testes financeiros e percurso real de UI com valores sintéticos, edição concorrente e 390 px; sem lançamentos fictícios na operação. Validação humana pendente. Ver FINANCEIRO_V218.md |
-| 6 | Versão final, commit, push e deploy do software | EM PREPARAÇÃO AUTORIZADA. Destino confirmado: GitHub Pages, raiz de main. Regressões aprovadas; revisar seleção de arquivos, publicar e conferir versão pública |
+| 6 | Versão final, commit, push e deploy do software | CONCLUÍDO. Software db1079c enviado às duas branches; Pages 40265380312 success. Dez hashes públicos iguais ao Git, UI pública 2.18.0 / b57a3b5a070d e formulário financeiro conferidos. Node/dados continuam locais; nenhuma postagem de vídeos |
 
 ### Histórico — entregas locais concluídas, 25/10/2026
 

@@ -40,3 +40,9 @@ O backup completo existente inclui os lançamentos automaticamente. O leitor ago
 Registros gerenciais manuais em reais; sem banco, contabilidade fiscal, conversão automática, sincronização entre origens ou importação de comissões das plataformas. Nenhum lançamento fictício foi inserido no painel operacional. Validação visual em navegador redimensionado não equivale a teste em aparelho físico. Testes reais de downloads externos continuam com o proprietário, conforme sua orientação.
 
 O GitHub Pages publica a interface estática. Serviço Node, FFmpeg, acervo e baixador continuam na operação local em `127.0.0.1:8877`. Situação de ativação/publicação final é registrada na lista oficial e em CONTINUIDADE.md.
+
+## Publicação confirmada
+
+Software `db1079cc0e6b0e5769e9c51b58daef0fa6ec9a66` enviado por push atômico às branches existentes. [GitHub Pages 40265380312](https://github.com/RicardoHussen2026/golden-music-memories/actions/runs/40265380312): build, deploy e report-build-status concluídos com sucesso. Dez arquivos públicos HTTP 200 com SHA-256 idêntico aos blobs Git, incluindo painel, três módulos financeiros, baixador, CSS, SW e build-info.
+
+Navegador público abriu Financeiro e Nova receita na versão 2.18.0 / interface b57a3b5a070d, sem gravar dados fictícios. A captura operacional mostra zero lançamentos. O serviço local carregou backend ea74eacababd; 165 clipes, 20 produções, filas, saídas e hashes anteriores preservados. Evidências em `.cache/financeiro-v218/public-hashes.json`, `financeiro-publicado.png` e `financeiro-operacional.png`. Validação editorial humana e testes de fontes externas do baixador permanecem separados desta comprovação de software.
