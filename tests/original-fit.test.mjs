@@ -6,14 +6,14 @@ import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {planVideo,videoArguments} from '../server/runtime/video-assembly.mjs';
 
-test('original preserva preset, capas e chamadas; legado contém desfoque e recorte explícito permanece',()=>{
+test('original preserva preset e chamadas; miniatura separada; legado contém desfoque e recorte explícito permanece',()=>{
  for(const destination of ['youtube','tiktok']){
   const p=planVideo({destination,fit:'original',coverSeconds:3,timing:'manual',calls:[{key:'like',order:1,start:3,duration:1}]},5);
   const args=videoArguments({input:'fixture',cover:'cover.png',arts:{like:'like.png'},output:'out.mp4',plan:p}),graph=args[args.indexOf('-filter_complex')+1];
-  assert.equal(p.fit,'original');assert.ok(graph.includes('force_original_aspect_ratio=decrease,pad='));assert.ok(!graph.includes('boxblur')&&!graph.includes('crop='));assert.ok(graph.includes('[covered]')&&graph.includes('[likeout]'));assert.equal(p.calls[0].start,3);assert.equal(p.width,destination==='youtube'?1920:1080);
+  assert.equal(p.fit,'original');assert.ok(graph.includes('force_original_aspect_ratio=decrease,pad='));assert.ok(!graph.includes('boxblur')&&!graph.includes('crop='));assert.ok(!graph.includes('[covered]')&&graph.includes('[likeout]'));assert.equal(p.calls[0].start,3);assert.equal(p.width,destination==='youtube'?1920:1080);
  }
  assert.equal(planVideo({destination:'youtube',calls:[]},5).fit,'contain');assert.equal(planVideo({destination:'youtube',fit:'crop',calls:[]},5).fit,'crop');
- assert.throws(()=>planVideo({destination:'youtube',coverSeconds:3,calls:[]},1),/abertura/);
+ assert.equal(planVideo({destination:'youtube',coverSeconds:3,calls:[]},1).coverSeconds,0);
  assert.throws(()=>planVideo({destination:'youtube',coverSeconds:0,timing:'manual',calls:[{key:'like',order:1,start:4,duration:2}]},5),/não cabe/);
 });
 

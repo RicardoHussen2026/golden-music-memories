@@ -1,5 +1,7 @@
 # Catálogo de clipes e preparação de postagens — 2.11.0
 
+**Regra vigente 2.23 — 26/10/2026:** capas são imagens separadas para miniatura/download e nunca são inseridas nas novas montagens. Não existe duração de capa. A abertura visual começa junto da música; o clipe avança por baixo e aparece no instante correspondente, sem reiniciar áudio. Somente a vinheta inicial, quando escolhida explicitamente, precede a música. MP3 usa imagem de fundo própria, independente da miniatura. Arquivos já concluídos mantêm o conteúdo original. Esta regra substitui as descrições históricas de capa incorporada e áudio depois da abertura. [Entrega e verificações](CAPAS_ABERTURA_V223.md).
+
 **Atualização 2.13.0:** pesquisa integrada a165 fichas,162 anos/gêneros. O ano passa a ser referência musical editável, com filtros de década/ano/gênero e fontes nos detalhes. Orientações anteriores de deixar todos os anos vazios são superadas por esta aplicação autorizada. [Guia e resultado atual](INTEGRACAO_PESQUISA_CLIPES_V213.md).
 
 Entrega local de 25/10/2026, na raiz oficial `C:\Users\RicardoPC\Documents\Codex\Golden Music Memories\golden-music-memories`, branch `desenvolvimento/validacao-local-p6`.

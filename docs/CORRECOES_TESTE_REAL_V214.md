@@ -1,5 +1,7 @@
 # Correções do ensaio audiovisual — versão 2.14.0
 
+**Regra vigente 2.23 — 26/10/2026:** capas são imagens separadas para miniatura/download e nunca são inseridas nas novas montagens. Não existe duração de capa. A abertura visual começa junto da música; o clipe avança por baixo e aparece no instante correspondente, sem reiniciar áudio. Somente a vinheta inicial, quando escolhida explicitamente, precede a música. MP3 usa imagem de fundo própria, independente da miniatura. Arquivos já concluídos mantêm o conteúdo original. Esta regra substitui as descrições históricas de capa incorporada e áudio depois da abertura. [Entrega e verificações](CAPAS_ABERTURA_V223.md).
+
 Implementação e ativação local em 25/10/2026, noite de Brasília (26/10 UTC). Pedido: transformar os achados Q01–Q11 do ensaio anterior em melhorias verificadas. A autorização nova supera a restrição a propostas daquele ensaio. Nenhuma postagem externa ou publicação do software na web foi feita nesta etapa.
 
 ## Resultado e disponibilidade

@@ -1,5 +1,7 @@
 ## Destinos e formatos — V2.6.0, 25/10/2026
 
+**Regra vigente 2.23 — 26/10/2026:** capas são imagens separadas para miniatura/download e nunca são inseridas nas novas montagens. Não existe duração de capa. A abertura visual começa junto da música; o clipe avança por baixo e aparece no instante correspondente, sem reiniciar áudio. Somente a vinheta inicial, quando escolhida explicitamente, precede a música. MP3 usa imagem de fundo própria, independente da miniatura. Arquivos já concluídos mantêm o conteúdo original. Esta regra substitui as descrições históricas de capa incorporada e áudio depois da abertura. [Entrega e verificações](CAPAS_ABERTURA_V223.md).
+
 ## Histórico e avisos — candidato isolado 2.9.0
 
 Preparado/testado, sem ativação na operação atual. Publicações reúne registros deste navegador e fatos do serviço local quando acessível, distinguindo legado sem conta. Escolha explicitamente conta/canal (rótulo local, não autorização externa), confira última postagem/data/link, intervalo de aviso e vídeo final já pronto. Reutilizar MP4 não exige render novo. Para repostagem recente, marque a decisão explícita antes de abrir o upload; o aviso não controla ações feitas fora do painel. Padrão inicial editável 7 dias, por plataforma/conta, sem alterar cooldown da rotina.

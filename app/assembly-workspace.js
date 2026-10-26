@@ -3,7 +3,6 @@ import {POST_DESTINATIONS} from './destinations.js';
 export function validateAssemblyInputs(form,get,mode){
  for(const field of form.elements){
   if(!field.willValidate||field.closest('#assembly-cover-tools,#assembly-opening-tools'))continue;
-  if(field===get('coverSeconds')&&!get('cover').value)continue;
   if(field===get('targetSeconds')&&get('durationMode')?.value!=='exact')continue;
   if(field===get('sampleStart')&&mode!=='sample')continue;
   if([get('cropX'),get('cropY')].includes(field)&&get('fit').value!=='crop')continue;
@@ -34,14 +33,12 @@ export function mountAssemblyWorkspace({root,form,get,collection,settings}){
  if(collection)sourceGroup.append(element('p','',collection.items.length+' clipes na ordem escolhida. Ajuste os trechos em Edição e áudio.'));
  help(sourceGroup,'Importar arquivo deste computador',field('local')).hidden=!!collection;
  const destination=group(panels[0],'Destino e formato');move(destination,get('destination').closest('.destination-picker'));help(destination,'Orientações do destino',get('destination-note'));
- const cover=group(panels[1],'Capa');move(cover,field('cover'),get('cover-compat'),get('cover-pad-label'),get('cover-choices'),get('cover-tools'));
- const duration=element('div');move(duration,field('coverSeconds'));help(duration,'Como capa e música se combinam',get('cover-seconds-help'));cover.append(duration);
+ const cover=group(panels[1],'Capa / miniatura separada');move(cover,field('cover'),get('cover-compat'),get('cover-choices'),get('cover-tools'));
  const intro=group(panels[1],'Abertura');move(intro,get('intro-note').closest('section'));move(panels[1],get('bumpers'));
  const cut=group(panels[2],collection?'Faixas e duração':'Trecho do clipe');move(cut,get('trim-tools'));get('trim-tools').open=true;
- if(collection){const music=field('musicFromStart'),note=music?.nextElementSibling;move(cut,music,note);}
  const framing=group(panels[2],'Imagem');move(framing,field('fit'),get('fit-note'),get('crop-tools'));
  help(framing,'Movimento para vídeo de imagem fixa',field('staticMotion'),get('static-source-label'),get('motion-note'));
- const audio=group(panels[2],'Áudio');const audioLabel=field('normalizeAudio'),audioNote=audioLabel.nextElementSibling;move(audio,audioLabel,audioNote);
+ const audio=group(panels[2],'Áudio');const audioLabel=field('normalizeAudio'),audioNote=audioLabel.nextElementSibling;move(audio,audioLabel,audioNote,field('audio-visual'));
  get('calls-help').textContent='Adicione as artes e ajuste quando cada uma aparece. Os horários contam desde o início do vídeo final.';
  const calls=group(panels[3],'Curtidas, inscrição e outras chamadas');move(calls,get('calls-help'),get('add-choice').closest('.actions'),get('sequence'),get('call-distribution'));
  get('calls-heading').remove();move(panels[3],get('commercials'));
@@ -65,9 +62,9 @@ export function mountAssemblyWorkspace({root,form,get,collection,settings}){
  for(const button of form.querySelectorAll('[data-track-preview]'))button.addEventListener('click',()=>{workspace.classList.add('show-live');view.textContent='Voltar à edição';});
  const chosen=id=>get(id)?.selectedOptions?.[0]?.textContent||'Não selecionado';
  function update(){if(!form.isConnected)return;const s=settings(),local=get('local').files[0],hasCover=!!get('cover').value;
-  duration.hidden=!hasCover;get('intro-note').hidden=!get('intro').value&&!collection;
-  get('crop-tools').hidden=get('fit').value!=='crop';field('audio-cover').hidden=!!collection||!(get('audio-cover').checked||(get('source-preview').readyState>0&&get('source-preview').videoWidth===0)||local&&(/audio\//.test(local.type)||/\.(mp3|m4a|wav|flac|ogg)$/i.test(local.name)));
-  const rows=[['Destino',POST_DESTINATIONS[get('destination').value]?.label||'Escolha o destino'],['Fonte',collection?collection.items.length+' clipes':local?.name||chosen('source')],['Capa',hasCover?chosen('cover'):'Sem capa'],['Abertura',get('intro').value?chosen('intro'):'Sem abertura'],['Vinhetas',[s.bumperStartId?'No início':'',s.bumperEndId?'No final':''].filter(Boolean).join(' e ')||'Sem vinhetas'],['Chamadas',s.calls.length+' visuais · '+(s.commercials||[]).length+' áudios/comerciais'],['Áudio',s.normalizeAudio?'Volume equilibrado por medição':'Manter áudio da fonte']];review.replaceChildren(...rows.flatMap(([label,value])=>[element('dt','',label),element('dd','',value)]));
+  get('intro-note').hidden=!get('intro').value&&!collection;
+  get('crop-tools').hidden=get('fit').value!=='crop';field('audio-visual').hidden=!!collection||!((get('source-preview').readyState>0&&get('source-preview').videoWidth===0)||local&&(/audio\//.test(local.type)||/\.(mp3|m4a|wav|flac|ogg)$/i.test(local.name)));
+  const rows=[['Destino',POST_DESTINATIONS[get('destination').value]?.label||'Escolha o destino'],['Fonte',collection?collection.items.length+' clipes':local?.name||chosen('source')],['Miniatura',hasCover?chosen('cover'):'Sem miniatura'],['Abertura',get('intro').value?chosen('intro'):'Sem abertura'],['Vinhetas',[s.bumperStartId?'No início':'',s.bumperEndId?'No final':''].filter(Boolean).join(' e ')||'Sem vinhetas'],['Chamadas',s.calls.length+' visuais · '+(s.commercials||[]).length+' áudios/comerciais'],['Áudio',s.normalizeAudio?'Volume equilibrado por medição':'Manter áudio da fonte']];review.replaceChildren(...rows.flatMap(([label,value])=>[element('dt','',label),element('dd','',value)]));
   const rendered=!!get('result').querySelector('video');resultTitle.hidden=!rendered;sourceView.querySelector('summary').textContent=rendered?'Consultar fonte e enquadramento':'Fonte e enquadramento';
   if(!workspace.classList.contains('show-live'))view.textContent=rendered?'Ver resultado':'Ver prévia';get('thumbnail').disabled=!hasCover||get('export').disabled;
   const msg=get('message').textContent,percent=msg.match(/(?:Montando|Cancelando|Recebendo|Medindo|Conferindo)[^%]*?(\d+)%/);progress.hidden=!percent;if(percent)progress.value=Math.min(100,Number(percent[1]));

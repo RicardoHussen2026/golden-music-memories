@@ -10,7 +10,7 @@ import {randomUUID} from 'node:crypto';
 import {check,stamp} from './store.mjs';
 import {fileHash} from './media.mjs';
 import {runProcess} from './source-import.mjs';
-import {planVideo,videoArguments,artNames} from './video-assembly.mjs';
+import {planVideo,videoArguments,artNames,OPENING_POLICY} from './video-assembly.mjs';
 import {POST_DESTINATIONS,destinationIssues} from '../../app/destinations.js';
 import {selectRenderCpu,runRenderCpu} from './render-cpu.mjs';
 export function concatArguments(list,output,segments){
@@ -37,6 +37,7 @@ export class Collections{
   }return {candidates:rows,unavailable};
  }
  async save(input){
+  input={...input,coverSeconds:0,musicFromStart:true,openingPolicy:OPENING_POLICY};
   check(!this.preparing,'Aguarde a conferência atual.',409);this.preparing=true;
   try{
    check(typeof input.title==='string'&&input.title.trim()&&input.title.length<=160,'Informe título até 160 caracteres.');
@@ -52,15 +53,15 @@ export class Collections{
     const source=this.assembler.source(item.sourceKind,item.sourceId,p.id),measured=await this.assembler.probe(source.path);
     check(!seenSongs.has(p.songId)&&!seenHashes.has(source.hash),'A seleção repete uma música ou o mesmo arquivo.');seenSongs.add(p.songId);seenHashes.add(source.hash);
     const trim=trimRange(item,measured.duration);
-    const cover=this.assembler.image(once?(index===0?input.coverId:null):item.coverId,p.id,'cover');if(!cover&&!once)issues.push(`Faixa ${index+1}: associe a capa correspondente antes de renderizar.`);if(!measured.audioCodec)issues.push(`Faixa ${index+1}: fonte sem áudio.`);
-    const base=POST_DESTINATIONS[input.destination].base;if(!once&&cover&&measured.duration<3)issues.push(`Faixa ${index+1}: menor que 3 s, não comporta a abertura padrão.`);
+    const cover=this.assembler.image(once?(index===0?input.coverId:null):item.coverId,p.id,'cover');if(!measured.audioCodec)issues.push(`Faixa ${index+1}: fonte sem áudio.`);
+    const base=POST_DESTINATIONS[input.destination].base;
     // Target-duration eligibility is checked on the full collection, not on each segment.
     const intro=once&&index===0&&input.introId?this.assembler.intros.get(input.introId):null;
-    const coverSeconds=cover?(once?Number(input.coverSeconds??3):3):0;
-    const musicFromStart=once&&index===0&&input.musicFromStart===true;
-    const prefix=once&&index===0&&!musicFromStart?coverSeconds+(intro?.duration||0):0;
+    const coverSeconds=0;
+    const musicFromStart=true;
+    const prefix=0;
     const plan=planVideo({destination:base==='shorts'?'tiktok':base,coverSeconds,calls:once?[]:item.calls||[],timing:item.timing||'relative',animated:item.animated!==false,fit:once?input.fit:item.fit||'contain',cropX:once?input.cropX:item.cropX,cropY:once?input.cropY:item.cropY},Math.round((trim.duration+prefix)*30)/30);
-    if(once){plan.sourceDuration=trim.duration;plan.musicStart=prefix;plan.prefixCover=!musicFromStart;plan.musicFromStart=musicFromStart;if(intro){const info=await this.assembler.probe(intro.path);check(info.width===plan.width&&info.height===plan.height&&Math.abs(info.videoDuration-intro.duration)<.08,'Abertura incompatível ou alterada.');plan.intro={id:intro.id,hash:intro.sha256,duration:intro.duration,label:intro.label};plan.prefixIntro=!musicFromStart;if(musicFromStart)check(coverSeconds+intro.duration<=trim.duration,'A faixa inicial é menor que a capa e a intro.');}if(cover){const image=this.store.get('render_input',input.coverId);check(Math.abs(image.width/image.height-plan.width/plan.height)<=.06||input.coverAspectAcknowledged===true,'Confirme a capa inteira com faixas ou escolha o formato correto.');}}
+    if(intro){const info=await this.assembler.probe(intro.path);check(info.width===plan.width&&info.height===plan.height&&Math.abs(info.videoDuration-intro.duration)<.08,'Abertura incompatível ou alterada.');check(intro.duration<=trim.duration,'A faixa inicial é menor que a abertura.');plan.intro={id:intro.id,hash:intro.sha256,duration:intro.duration,label:intro.label};}
 
     plan.trimStart=trim.start;plan.sourceDuration=trim.duration;plan.normalizeAudio=input.normalizeAudio===true;plan.audioCopy=false;plan.audioPresent=!!measured.audioCodec;
     const slots={...(index===0&&bumperSelection.bumperStart?{bumperStart:bumperSelection.bumperStart}:{}),...(index===input.items.length-1&&bumperSelection.bumperEnd?{bumperEnd:bumperSelection.bumperEnd}:{})};if(bumperSeconds(slots)){plan.sourceAudioPresent=!!measured.audioCodec;addBumpers(plan,slots);plan.audioPresent=plan.audioPresent||!!slots.bumperStart?.audio||!!slots.bumperEnd?.audio;}
@@ -81,14 +82,14 @@ export class Collections{
    }
 const commercialSelection=this.assembler.commercials.selection(input.commercials,total);for(const item of items){const rows=splitCommercials(commercialSelection,item.start,item.plan.duration);if(rows.length){item.plan.commercials=rows;item.plan.audioCopy=false;}}
 issues.push(...destinationIssues(input.destination,{duration:total}));if(!items.length)issues.push('Seleção sem mídia real.');
-   const c={id:old?.id||randomUUID(),revision:(old?.revision||0)+1,title:input.title.trim(),destination:input.destination,targetSeconds:input.targetSeconds,mode:input.mode||'varied',theme:String(input.theme||'').slice(0,100),items,total,difference:total-input.targetSeconds,wholeTracks:items.every(i=>!i.trimStart&&Math.abs(i.trimEnd-i.sourceDuration)<.02),durationMode:input.durationMode||'whole',preview:input.preview===true,openingMode:once?'once':'per-track',openingSettings:once?{commercials:input.commercials||[],bumperStartId:input.bumperStartId||null,bumperEndId:input.bumperEndId||null,bumperStartAudio:input.bumperStartAudio!==false,bumperEndAudio:input.bumperEndAudio!==false,coverId:input.coverId||null,introId:input.introId||null,coverSeconds:input.coverSeconds||0,musicFromStart:input.musicFromStart===true,calls:input.calls||[],timing:input.timing||'relative'}:null,issues,state:'draft',createdAt:old?.createdAt||stamp(),updatedAt:stamp()};this.store.put('collection',c.id,c);return c;
+   const c={id:old?.id||randomUUID(),openingPolicy:OPENING_POLICY,revision:(old?.revision||0)+1,title:input.title.trim(),destination:input.destination,targetSeconds:input.targetSeconds,mode:input.mode||'varied',theme:String(input.theme||'').slice(0,100),items,total,difference:total-input.targetSeconds,wholeTracks:items.every(i=>!i.trimStart&&Math.abs(i.trimEnd-i.sourceDuration)<.02),durationMode:input.durationMode||'whole',preview:input.preview===true,openingMode:once?'once':'per-track',openingSettings:once?{commercials:input.commercials||[],bumperStartId:input.bumperStartId||null,bumperEndId:input.bumperEndId||null,bumperStartAudio:input.bumperStartAudio!==false,bumperEndAudio:input.bumperEndAudio!==false,coverId:input.coverId||null,introId:input.introId||null,coverSeconds:0,musicFromStart:true,calls:input.calls||[],timing:input.timing||'relative'}:null,issues,state:'draft',createdAt:old?.createdAt||stamp(),updatedAt:stamp()};this.store.put('collection',c.id,c);return c;
   }finally{this.preparing=false;}
  }
- sample(id,start=0){const original=this.get(id);start=Number(start);check(Number.isFinite(start)&&start>=0&&start<original.total,'Início da amostra fora da sequência.');const end=Math.min(original.total,start+8),items=original.items.filter(i=>i.start<end&&i.start+i.plan.duration>start).map(i=>({...i,plan:{...i.plan,sample:{start:Math.max(0,start-i.start),duration:Math.min(end,i.start+i.plan.duration)-Math.max(start,i.start)}},start:Math.max(0,i.start-start)}));const c={...original,id:randomUUID(),sample:true,parentCollectionId:id,title:original.title+' · amostra',items,total:end-start,state:'draft',issues:[],revision:1,createdAt:stamp(),updatedAt:stamp()};this.store.put('collection',c.id,c);return c;}
+ sample(id,start=0){const original=this.get(id);check(original.openingPolicy===OPENING_POLICY,'Seleção antiga: use a seleção em nova edição para aplicar abertura junto da música e capa somente como miniatura.',409);start=Number(start);check(Number.isFinite(start)&&start>=0&&start<original.total,'Início da amostra fora da sequência.');const end=Math.min(original.total,start+8),items=original.items.filter(i=>i.start<end&&i.start+i.plan.duration>start).map(i=>({...i,plan:{...i.plan,sample:{start:Math.max(0,start-i.start),duration:Math.min(end,i.start+i.plan.duration)-Math.max(start,i.start)}},start:Math.max(0,i.start-start)}));const c={...original,id:randomUUID(),sample:true,parentCollectionId:id,title:original.title+' · amostra',items,total:end-start,state:'draft',issues:[],revision:1,createdAt:stamp(),updatedAt:stamp()};this.store.put('collection',c.id,c);return c;}
 
  async start(id,revision){
   check(!this.closed&&!this.preparing&&!this.running.size&&!this.assembler.preparing&&!this.assembler.running.size,'Aguarde a montagem/conferência ativa.',409);
-  const c=this.get(id);check(c.revision===revision,'Seleção mudou; confira antes de iniciar.',409);check(['draft','failed','cancelled','interrupted'].includes(c.state),'Coletânea indisponível para nova execução.',409);check(!c.issues.length,c.issues.join(' '));
+  const c=this.get(id);check(c.openingPolicy===OPENING_POLICY,'Seleção antiga: use a seleção em nova edição para aplicar abertura junto da música e capa somente como miniatura.',409);check(c.revision===revision,'Seleção mudou; confira antes de iniciar.',409);check(['draft','failed','cancelled','interrupted'].includes(c.state),'Coletânea indisponível para nova execução.',409);check(!c.issues.length,c.issues.join(' '));
   this.assembler.space(64*1048576);const controller=new AbortController(),work=join(this.directory,'job-'+c.id);mkdirSync(work,{recursive:true});this.update(c,{state:'rendering',progress:0,error:null});
   const promise=Promise.resolve().then(async()=>{let watch,storageError;
    try{
