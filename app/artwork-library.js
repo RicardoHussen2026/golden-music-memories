@@ -5,7 +5,7 @@ import {escapeHTML as e} from './quality.js';
 
 export async function uploadArtwork(file,notify=()=>{}){
  const image=/^image\/(png|jpeg|webp)$/.test(file.type);
- if(!image&&!/\.(mp4|mkv|mov|webm)$/i.test(file.name||''))throw Error('Escolha PNG/JPG/WebP ou MP4/MKV/MOV/WebM.');
+ if(!image&&!/\.(mp4|mkv|mov|webm|mp3|m4a|wav|flac|ogg)$/i.test(file.name||''))throw Error('Escolha imagem, vídeo ou áudio MP3/M4A/WAV/FLAC/OGG.');
  let row=await api('/artworks/inputs',{method:'POST',data:{kind:image?'image':'video',name:file.name||'arte.png',size:file.size}});
  try{while(row.offset<file.size){notify('Carregando arquivo: '+Math.floor(row.offset/file.size*100)+'%');row=await api('/assembly/inputs/'+row.id,{method:'PUT',bytes:file.slice(row.offset,row.offset+4*1048576),offset:row.offset});}return await api('/assembly/inputs/'+row.id+'/complete',{method:'POST',data:{}});}
  catch(error){try{await api('/assembly/inputs/'+row.id+'/cancel',{method:'POST',data:{}});}catch{}throw error;}
@@ -13,7 +13,7 @@ export async function uploadArtwork(file,notify=()=>{}){
 export async function createArtwork(input,{notify=()=>{},onStart=()=>{}}={}){
  let item=await api('/artworks',{method:'POST',data:input});onStart(item);
  while(item.state==='rendering'){
-  notify('Preparando '+(item.kind==='intro'?'abertura':'capa')+': '+(item.progress||0)+'%');
+  notify('Preparando '+(item.kind==='intro'?'abertura':item.kind==='bumper'?'vinheta':item.kind.endsWith('-call')?'chamada/comercial':'capa')+': '+(item.progress||0)+'%');
   await new Promise(r=>setTimeout(r,600));item=(await api('/artworks')).items.find(a=>a.id===item.id);
   if(!item)throw Error('Registro da arte indisponível. Atualize a biblioteca.');
  }

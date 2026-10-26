@@ -4,7 +4,7 @@ export const clockTime=n=>{const s=Math.max(0,Math.floor(n||0));return (s>=3600?
 export function sourceQuality({width=0,height=0}={}){const short=Math.min(width,height);return {short,label:!short?'Resolução a conferir':short>=1080?'Fonte 1080p ou superior':short>=720?'Fonte HD':short>=480?'Fonte SD':'Fonte de baixa resolução',upscaled:short>0&&short<1080};}
 export function trimRange(input,duration){const start=Number(input.trimStart||0),end=input.trimEnd===undefined||input.trimEnd===null||input.trimEnd===''?duration:Number(input.trimEnd);if(!Number.isFinite(start)||!Number.isFinite(end)||start<0||end>duration+.02||end-start<1)throw Error('Escolha entrada e saída dentro da fonte, com pelo menos 1 segundo.');return {start,end:Math.min(end,duration),duration:Math.min(end,duration)-start};}
 export function collectionChapters(c){
- const tracks=c.items.map(i=>({at:Math.floor(i.start+(i.plan.musicStart||0)),label:i.artist+' — '+i.title}));
+ const tracks=c.items.map(i=>({at:Math.floor(i.start+(i.plan.musicStart||0)+(i.plan.bumperStart?.duration||0)),label:i.artist+' — '+i.title}));
  const chapters=tracks.map((t,i)=>({...t,at:i===0?0:t.at}));
  const valid=chapters.length>=3&&chapters.every((t,i)=>(chapters[i+1]?.at??c.total)-t.at>=10);
  return {valid,label:valid?'Capítulos do YouTube (abertura junto da primeira faixa)':'Lista de faixas — não atende aos requisitos de capítulos',text:(valid?chapters:tracks).map(t=>clockTime(t.at)+' '+t.label).join('\n')};

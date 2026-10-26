@@ -1,3 +1,4 @@
+import {installBundledBranding} from './bundled-branding.mjs';
 import {ArtworkLibrary} from './artwork-library.mjs';
 import {MediaDownloader} from './media-downloader.mjs';
 import {sendPostingThumbnail} from './posting-thumbnail.mjs';
@@ -46,6 +47,7 @@ export function createApplication(config=configuration(),options={}){
   const mediaDownloader=new MediaDownloader(store,config,assembler,clipLibrary,options.mediaDownloader);
   const historicalCovers=new HistoricalCovers(options.historicalCoversDirectory||resolve(root,'acervo/capas-historicas'));
   const artworks=new ArtworkLibrary(store,config,assembler);
+  if(options.bundledBranding!==false)installBundledBranding(artworks,options.brandingDirectory);
   const collections=new Collections(store,config,assembler,options.collections);
   const renderQueue=new RenderQueue(store,assembler,collections);
   let mutations=0;
@@ -105,13 +107,15 @@ export function createApplication(config=configuration(),options={}){
         if(path==='/api/artworks'&&req.method==='GET')return reply({items:artworks.list(),intros:assembler.intros.list()});
         if(path==='/api/artworks/inputs'&&req.method==='POST')return reply(artworks.begin(await jsonBody(req)),201);
         if(path==='/api/artworks'&&req.method==='POST')return reply(await artworks.start(await jsonBody(req)),202);
+        const artTrash=/^\/api\/artworks\/(art-[a-f\d-]{36})\/(trash|restore)$/.exec(path);
+        if(artTrash&&req.method==='POST'){check(!collections.running.size,'Aguarde a sequência em andamento.',409);return reply(artworks.trash(artTrash[1],artTrash[2]==='restore'));}
         const artCancel=/^\/api\/artworks\/(art-[a-f\d-]{36})\/cancel$/.exec(path);
         if(artCancel&&req.method==='POST')return reply(artworks.cancel(artCancel[1]));
-        const artFile=/^\/api\/artworks\/(art-[a-f\d-]{36})\/(file|thumbnail)$/.exec(path);
+        const artFile=/^\/api\/artworks\/(art-[a-f\d-]{36})\/(file|thumbnail|audio)$/.exec(path);
         if(artFile&&req.method==='GET'){
-          const {path:file,item}=artworks.file(artFile[1],artFile[2]==='thumbnail'),info=await stat(file);let start=0,end=info.size-1,status=200;
+          const {path:file,item}=artworks.file(artFile[1],artFile[2]==='thumbnail',artFile[2]==='audio'),info=await stat(file);let start=0,end=info.size-1,status=200;
           if(req.headers.range){const m=/^bytes=(\d+)-(\d*)$/.exec(req.headers.range);check(m,'Faixa inválida.',416);start=Number(m[1]);end=m[2]?Math.min(end,Number(m[2])):end;check(start<=end&&start<info.size,'Faixa fora do arquivo.',416);status=206;}
-          const headers={'Content-Type':({'.mp4':'video/mp4','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp'})[extname(file)],'Accept-Ranges':'bytes','Content-Length':end-start+1,'Cache-Control':'no-store'};
+          const headers={'Content-Type':({'.mp3':'audio/mpeg','.m4a':'audio/mp4','.mp4':'video/mp4','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp'})[extname(file)],'Accept-Ranges':'bytes','Content-Length':end-start+1,'Cache-Control':'no-store'};
           if(status===206)headers['Content-Range']='bytes '+start+'-'+end+'/'+info.size;
           if(url.searchParams.has('download'))headers['Content-Disposition']="attachment; filename*=UTF-8''"+encodeURIComponent(item.label+extname(file)).replace(/'/g,'%27');
           res.writeHead(status,headers);createReadStream(file,{start,end}).on('error',()=>res.destroy()).pipe(res);return;

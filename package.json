@@ -1,6 +1,6 @@
 {
   "name": "golden-music-memories",
-  "version": "2.20.0",
+  "version": "2.21.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -49,7 +49,9 @@
     "test:quality": "node --test tests/quality-workflow.test.mjs",
     "test:finance": "node --test tests/finance.test.mjs",
     "test:downloader": "node --test tests/media-downloader.test.mjs tests/downloader-workspace.test.mjs tests/downloader-playlists.test.mjs",
-    "test:artworks": "node --test tests/artwork-library.test.mjs"
+    "test:artworks": "node --test tests/artwork-library.test.mjs",
+    "test:bumpers": "node --test tests/bumpers.test.mjs",
+    "test:branding": "node --test --test-concurrency=1 tests/bumpers.test.mjs tests/commercials.test.mjs tests/nostalgia-branding.test.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",

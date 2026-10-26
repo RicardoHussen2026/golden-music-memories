@@ -10,8 +10,9 @@ export async function alignContainer(assembler,input,output,duration,signal){
  check(Math.abs(measured.duration-duration)<.002,'O arquivo final não atingiu a duração exata; resultado não aprovado.');
  return measured;
 }
-export async function verifyEncodedAudio(assembler,path,signal){
- const measurement=await measureAudio(assembler,{path,hash:fileHash(path)},{signal});
+export async function verifyEncodedAudio(assembler,path,signal,{expectedSilence=false}={}){
+ const measurement=await measureAudio(assembler,{path,hash:fileHash(path)},{signal,allowSilence:expectedSilence});
+ if(measurement.silent)return {silent:true,integrated:null,truePeak:null,measuredAt:measurement.measuredAt};
  check(measurement.truePeak<=-1.5,'Pico do AAC final acima de −1,5 dBTP. Arquivo não aprovado; reveja o volume.');
  return {integrated:measurement.integrated,truePeak:measurement.truePeak,measuredAt:measurement.measuredAt};
 }

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "cm0lJ0952T2Hwt83HvAW",
+    "slug": "golden-70-memoria-analogica",
+    "label": "Golden 70 · Memória Analógica",
+    "prompt": "Original 5-second musical sonic logo, warm 1970s nostalgia. Tiny vinyl needle click, rich electric piano major ninth chord, muted guitar, warm bass pickup, dry drum fill, original rising three-note vibraphone motif and soft tape echo. Elegant, uplifting, tactile analog sound, professional stereo mix, clean musical ending within 5 seconds. Instrumental only, no speech, voices, known songs or artist imitation.",
+    "generator": "ElevenLabs Sound Effects v2",
+    "duration": 5,
+    "date": "2026-10-26"
+  },
+  {
+    "id": "Q0duegaHe1SqNb8qrhYu",
+    "slug": "golden-80-pulso-de-luz",
+    "label": "Golden 80 · Pulso de Luz",
+    "prompt": "Original 5-second musical sonic logo, nostalgic 1980s radio. Tiny cassette click, lush analog polysynth chord, glassy FM bell three-note rising motif, restrained electronic tom fill and gated snare, round synth bass, short stereo plate reverb. Elegant, wistful and uplifting, polished mix, complete musical resolution by 5 seconds. No speech, vocals, alarms, existing tunes or artist imitation.",
+    "generator": "ElevenLabs Sound Effects v2",
+    "duration": 5,
+    "date": "2026-10-26"
+  },
+  {
+    "id": "qiqsHsrbZqZa2kvKTPtg",
+    "slug": "golden-90-groove-digital",
+    "label": "Golden 90 · Groove Digital",
+    "prompt": "Original 5-second musical sonic logo, refined 1990s late-night FM nostalgia. Tiny CD player click, silky digital electric piano, warm sampled bass, crisp restrained breakbeat snare and shuffled hi-hat, bright original three-note mallet motif with shimmering pad. Professional stereo mix and clean short musical ending. Instrumental only: no speech, vocals, rap, recognizable songs or brand melodies.",
+    "generator": "ElevenLabs Sound Effects v2",
+    "duration": 5,
+    "date": "2026-10-26"
+  }
+]

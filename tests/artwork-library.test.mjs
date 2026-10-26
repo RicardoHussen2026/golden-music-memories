@@ -15,7 +15,7 @@ test('biblioteca de capas/aberturas: upload, geração, download, montagem e ori
  const ff=resolve('.cache/import-tools/ffmpeg.exe'),image=join(root,'cover.png'),video=join(root,'source.mp4');
  await runProcess(ff,['-v','error','-f','lavfi','-i','color=c=gold:s=640x360','-frames:v','1',image]);
  await runProcess(ff,['-v','error','-f','lavfi','-i','testsrc2=size=640x360:rate=30:duration=4','-f','lavfi','-i','sine=frequency=440:duration=4','-c:v','libx264','-preset','ultrafast','-c:a','aac','-shortest',video]);
- const config=configuration({GMM_DATA_DIR:join(root,'db'),GMM_PORT:'0',GMM_LOCAL_ACCESS:'true',GMM_MIN_FREE_MIB:'0',GMM_RENDER_CPU_PROFILE:'conservative'}),app=createApplication(config,{clipDirectory:join(root,'clips')});await app.listen();config.origin='http://127.0.0.1:'+app.server.address().port;
+ const config=configuration({GMM_DATA_DIR:join(root,'db'),GMM_PORT:'0',GMM_LOCAL_ACCESS:'true',GMM_MIN_FREE_MIB:'0',GMM_RENDER_CPU_PROFILE:'conservative'}),app=createApplication(config,{bundledBranding:false,clipDirectory:join(root,'clips')});await app.listen();config.origin='http://127.0.0.1:'+app.server.address().port;
  const headers={Origin:config.origin,'X-GMM-Request':'1','Content-Type':'application/json'};
  const req=async(path,data)=>{const r=await fetch(config.origin+'/api'+path,{headers,method:data?'POST':'GET',body:data?JSON.stringify(data):undefined});const result=await r.json();assert.ok(r.ok,JSON.stringify(result));return result;};
  const finished=async id=>{while(app.artworks.running.has(id))await pause(100);const j=app.artworks.get(id);assert.equal(j.state,'completed',JSON.stringify(j));return j;};
