@@ -1,3 +1,4 @@
+import {mountAssemblyArtworks} from './assembly-artworks.js';
 import {textCallArt} from './call-art.js';
 import {displayDuration,editedSequence} from './sequence-edit.js';
 import {mountStudioQuality} from './studio-quality.js';
@@ -54,6 +55,7 @@ export async function openVideoAssembly(showDialog,pid,{replaceClip=false,prefer
  }
  if(collection){get('saved-choice').closest('.actions').hidden=true;get('trash').hidden=true;get('outputs').hidden=true;get('outputs').previousElementSibling.hidden=true;get('generated-trash').hidden=true;}
  await mountStudioQuality({root,form,get,song,pid,collection,covers,settings,apply:applyQuality,notify:message,start});
+ await mountAssemblyArtworks({get,pid,covers,intros,reloadCovers,introOptions,lock,alive,notify:message,invalidate:()=>{dirty=true;collectionJobId=null;get('result').innerHTML='';lastShown=null;jobId=null;}});
  form.addEventListener('input',()=>{if(!busy){dirty=true;collectionJobId=null;get('result').innerHTML='';lastShown=null;jobId=null;}});
 await tick();
 }

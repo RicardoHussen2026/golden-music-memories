@@ -7,7 +7,7 @@ import {pipeline} from 'node:stream/promises';
 import {Transform} from 'node:stream';
 import {check,stamp} from './store.mjs';
 
-const groups=['media','sources','assembly','collections'];
+const groups=['media','sources','assembly','collections','artworks'];
 const inside=(root,path)=>resolve(path).startsWith(resolve(root)+sep);
 const safe=p=>typeof p==='string'&&p.length<500&&!p.includes('\\')&&!p.includes(':')&&p.split('/').every(x=>x&&x!=='.'&&x!=='..');
 const abort=signal=>signal?.throwIfAborted();
@@ -18,6 +18,7 @@ function references(db){const rows=db.prepare('SELECT kind,id,data FROM objects'
  if(r.kind==='source_blob')out.push({path:'sources/'+v.file,hash:v.hash});
  if(r.kind==='source_asset')check(get('source_blob',v.hash)&&get('production',v.productionId),'Referência de fonte inválida.');
  if(r.kind==='render_input'&&v.state==='complete')out.push({path:'assembly/'+v.file,hash:v.hash});
+ if(r.kind==='artwork'&&v.state==='completed'){if(v.inputId)check(get('render_input',v.inputId),'Arte sem arquivo de origem.');out.push({path:'artworks/'+v.file,hash:v.sha256},{path:'artworks/'+v.thumbnail,hash:v.thumbnailHash||null});}
  if(r.kind==='render_asset')check(get('media',v.mediaId)&&get('production',v.productionId),'Referência de render inválida.');
  if(r.kind==='render_job'&&v.state==='completed'){check(get('production',v.productionId),'Render sem produção.');if(v.mediaId)check(get('media',v.mediaId),'Render sem mídia.');else out.push({path:'assembly/'+r.id+'.mp4',hash:null});}
  if(r.kind==='collection'&&v.state==='completed')out.push({path:'collections/'+r.id+'.mp4',hash:v.hash});

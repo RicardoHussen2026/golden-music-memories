@@ -1,3 +1,4 @@
+import {ArtworkLibrary} from './artwork-library.mjs';
 import {MediaDownloader} from './media-downloader.mjs';
 import {sendPostingThumbnail} from './posting-thumbnail.mjs';
 import {saveCollectionPosting} from './collection-posting.mjs';
@@ -44,10 +45,11 @@ export function createApplication(config=configuration(),options={}){
   const clipLibrary=new ClipLibrary(store,options.clipDirectory||resolve(root,'acervo'),assembler.directory);assembler.clipLibrary=clipLibrary;
   const mediaDownloader=new MediaDownloader(store,config,assembler,clipLibrary,options.mediaDownloader);
   const historicalCovers=new HistoricalCovers(options.historicalCoversDirectory||resolve(root,'acervo/capas-historicas'));
+  const artworks=new ArtworkLibrary(store,config,assembler);
   const collections=new Collections(store,config,assembler,options.collections);
   const renderQueue=new RenderQueue(store,assembler,collections);
   let mutations=0;
-  const storageBackups=new StorageBackups(store,config,{version:RUNNING_BUILD.version,canStart:()=>mutations<=1&&!config.network&&!config.worker&&!mediaDownloader.running&&!mediaDownloader.importing.size&&!sourceImporter.running.size&&!assembler.running.size&&!collections.running.size&&!collections.preparing&&!store.list('render_input').some(r=>r.state==='receiving')&&!store.list('media').some(m=>['receiving','downloading'].includes(m.state))&&!store.db.prepare('SELECT id FROM jobs WHERE lease_until>? LIMIT 1').get(Date.now())});
+  const storageBackups=new StorageBackups(store,config,{version:RUNNING_BUILD.version,canStart:()=>mutations<=1&&!artworks.running.size&&!config.network&&!config.worker&&!mediaDownloader.running&&!mediaDownloader.importing.size&&!sourceImporter.running.size&&!assembler.running.size&&!collections.running.size&&!collections.preparing&&!store.list('render_input').some(r=>r.state==='receiving')&&!store.list('media').some(m=>['receiving','downloading'].includes(m.state))&&!store.db.prepare('SELECT id FROM jobs WHERE lease_until>? LIMIT 1').get(Date.now())});
   drive.needsCache=()=>['youtube','tiktok'].flatMap(p=>scheduler.candidates(p,Date.now()).slice(0,5).map(m=>m.id));
   const cycle=async()=>{if(storageBackups.busy||!continuity.status().active)return;const steps=[...(config.network?[()=>drive.tick()]:[]),...(config.worker?[()=>scheduler.tick(),()=>worker.tick()]:[])];for(const step of steps){try{await step();}catch(error){store.put('ops_event','last-error',{id:'last-error',at:stamp(),message:'Uma etapa foi interrompida. Consulte os diagnósticos e as tarefas.',code:error.code||'PROCESSING_ERROR'});}}};
   const salt=randomBytes(32),passwordHash=scryptSync(config.password,salt,32),loginFailures=new Map();let interval,pendingWorker=null;
@@ -99,6 +101,20 @@ export function createApplication(config=configuration(),options={}){
           const download=/^\/api\/media-downloader\/([a-f\d-]{36})\/files\/(\d+)$/.exec(path);
           if(download&&req.method==='GET'){const {path:filePath,file}=mediaDownloader.file(download[1],Number(download[2])),info=await stat(filePath);let start=0,end=info.size-1,status=200;if(req.headers.range){const m=/^bytes=(\d+)-(\d*)$/.exec(req.headers.range);check(m,'Faixa inválida.',416);start=Number(m[1]);end=m[2]?Math.min(end,Number(m[2])):end;check(start<=end&&start<info.size,'Faixa fora do arquivo.',416);status=206;}const mime={'.mp4':'video/mp4','.webm':file.kind==='audio'?'audio/webm':'video/webm','.mkv':'video/x-matroska','.m4a':'audio/mp4','.opus':'audio/ogg','.vtt':'text/vtt; charset=utf-8','.srt':'text/plain; charset=utf-8'}[extname(filePath)]||'application/octet-stream';const headers={'Content-Type':mime,'Content-Length':end-start+1,'Accept-Ranges':'bytes','Cache-Control':'no-store'};if(status===206)headers['Content-Range']='bytes '+start+'-'+end+'/'+info.size;if(url.searchParams.has('download'))headers['Content-Disposition']="attachment; filename*=UTF-8''"+encodeURIComponent(file.name).replace(/'/g,'%27');res.writeHead(status,headers);createReadStream(filePath,{start,end}).on('error',()=>res.destroy()).pipe(res);return;}
           return reply({error:'Download não encontrado.'},404);
+        }
+        if(path==='/api/artworks'&&req.method==='GET')return reply({items:artworks.list(),intros:assembler.intros.list()});
+        if(path==='/api/artworks/inputs'&&req.method==='POST')return reply(artworks.begin(await jsonBody(req)),201);
+        if(path==='/api/artworks'&&req.method==='POST')return reply(await artworks.start(await jsonBody(req)),202);
+        const artCancel=/^\/api\/artworks\/(art-[a-f\d-]{36})\/cancel$/.exec(path);
+        if(artCancel&&req.method==='POST')return reply(artworks.cancel(artCancel[1]));
+        const artFile=/^\/api\/artworks\/(art-[a-f\d-]{36})\/(file|thumbnail)$/.exec(path);
+        if(artFile&&req.method==='GET'){
+          const {path:file,item}=artworks.file(artFile[1],artFile[2]==='thumbnail'),info=await stat(file);let start=0,end=info.size-1,status=200;
+          if(req.headers.range){const m=/^bytes=(\d+)-(\d*)$/.exec(req.headers.range);check(m,'Faixa inválida.',416);start=Number(m[1]);end=m[2]?Math.min(end,Number(m[2])):end;check(start<=end&&start<info.size,'Faixa fora do arquivo.',416);status=206;}
+          const headers={'Content-Type':({'.mp4':'video/mp4','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp'})[extname(file)],'Accept-Ranges':'bytes','Content-Length':end-start+1,'Cache-Control':'no-store'};
+          if(status===206)headers['Content-Range']='bytes '+start+'-'+end+'/'+info.size;
+          if(url.searchParams.has('download'))headers['Content-Disposition']="attachment; filename*=UTF-8''"+encodeURIComponent(item.label+extname(file)).replace(/'/g,'%27');
+          res.writeHead(status,headers);createReadStream(file,{start,end}).on('error',()=>res.destroy()).pipe(res);return;
         }
         if(path.startsWith('/api/clips')){
           check(config.host==='127.0.0.1'&&['127.0.0.1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress),'Biblioteca disponível somente neste computador.',403);
@@ -253,6 +269,6 @@ export function createApplication(config=configuration(),options={}){
     }
   });
   server.requestTimeout=60000;server.headersTimeout=15000;
-  return {server,store,providers,worker,library,drive,scheduler,continuity,mediaDownloader,sourceImporter,assembler,collections,storageBackups,listen:()=>new Promise(resolve=>server.listen(config.port,config.host,()=>{interval=setInterval(()=>{if(!pendingWorker)pendingWorker=cycle().finally(()=>pendingWorker=null);},1000);resolve(server.address());})),close:async()=>{clearInterval(interval);await renderQueue.close();await mediaDownloader.close();await storageBackups.close();await sourceImporter.close();await collections.close();await assembler.close();await new Promise(resolve=>server.close(resolve));await pendingWorker;store.close();}};
+  return {server,store,providers,worker,library,drive,scheduler,continuity,mediaDownloader,sourceImporter,assembler,artworks,collections,storageBackups,listen:()=>new Promise(resolve=>server.listen(config.port,config.host,()=>{interval=setInterval(()=>{if(!pendingWorker)pendingWorker=cycle().finally(()=>pendingWorker=null);},1000);resolve(server.address());})),close:async()=>{clearInterval(interval);await renderQueue.close();await artworks.close();await mediaDownloader.close();await storageBackups.close();await sourceImporter.close();await collections.close();await assembler.close();await new Promise(resolve=>server.close(resolve));await pendingWorker;store.close();}};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){const config=configuration(),app=createApplication(config,{log:event=>console.error(JSON.stringify(event))});await app.listen();console.log(`Golden Music Memories · ${config.origin}/painel.html · publicação externa ${config.publishing?'habilitada por configuração':'desativada'}`);for(const signal of ['SIGINT','SIGTERM'])process.once(signal,async()=>{await app.close();process.exit(0);});}

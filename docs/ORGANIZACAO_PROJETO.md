@@ -4,7 +4,21 @@
 
 **Entrega visual complementar concluída — 25/10/2026:** fonte002 preservada; YouTube horizontal V2 e TikTok V3 com fundo desfocado aprovados no acervo, sem substituir versões anteriores. Capas3s, CTAs30/70/110 e áudio conferidos. A tentativa TikTok anterior cancelada aos80% foi preservada; a nova tentativa expressamente autorizada concluiu sem alteração dos limites existentes. Causa histórica não determinada. Amostra de movimento suave8s concluída, opcional e separada dos finais; avaliação editorial pendente, sem impedir desempenho. Explorer confirmado aberto após liberação nativa. Nenhuma postagem externa.
 
-## Prioridades vigentes — baixador e financeiro, 26/10/2026
+## Prioridades vigentes — motor Python do baixador, 26/10/2026
+
+Pedido: substituir execução CLI por API oficial YoutubeDL, playlists extensas, histórico, metadados/capa e progresso, preservando interface e recursos existentes. Raiz/branch limpas conferidas; associação do chat refeita por operação oficial, listagem ainda diverge. Um único executor, sem delegação. Testes externos continuam com o titular.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Python API, MP4 H.264/AAC, metadados, thumbnail e worker | CONCLUÍDO E TESTADO. Capa/tags verificadas, áudio compatível idêntico, conversão seletiva conferida |
+| 2 | Playlists 500+, fila individual, histórico e retomada | CONCLUÍDO E TESTADO. 501 entradas sintéticas, deduplicação/retomada/reinício; entrega plana preservada |
+| 3 | Testes internos, versão, ativação e documentação de execução | CONCLUÍDO E ATIVADO NA 2.20. 19 específicos; UI desktop/390 px e reprodução MP4. Motor pronto localmente; ver BAIXADOR_PYTHON_V219.md |
+| 4 | Ferramenta Aberturas, criar/carregar/baixar e reutilizar capas próprias | CONCLUÍDO E ATIVADO NA 2.20. 45 testes finais, UI desktop/390 px e montagem 5 s; dez originais e dados reais preservados; ver ABERTURAS_CAPAS_V220.md |
+| 5 | Commit, push e publicação final | EM EXECUÇÃO. Itens 3–4 concluídos, local ativado/conferido; branches remotas sem divergência, preparar commit e envio |
+
+### Histórico — entrega 2.18 concluída
+
+### Prioridades encerradas — baixador e financeiro, 26/10/2026
 
 Pedido atual: pasta escolhida pelo usuário, limpeza recuperável, seleção e ações em lote, outras fontes públicas compatíveis e interface limpa. Nome Baixador YouTube preservado. Este chat é o único executor mutante; revisão auxiliar somente leitura. Raiz/branch e alterações anteriores conferidas, associação refeita pela operação oficial (listagem ainda diverge). Reversão de código em `.cache/baixador-v217/antes/`. Testes externos serão feitos pelo titular.
 

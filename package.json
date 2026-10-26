@@ -1,6 +1,6 @@
 {
   "name": "golden-music-memories",
-  "version": "2.18.0",
+  "version": "2.20.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -47,7 +47,9 @@
     "test:legacy-catalog": "node tests/search.cjs && node tests/catalog.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs && node tests/post-audit.cjs && node --test tests/server.test.mjs && node tests/server-ui.cjs && node --test tests/operations.test.mjs && node tests/operations-ui.cjs",
     "test:clip-research": "node --test tests/clip-research.test.mjs",
     "test:quality": "node --test tests/quality-workflow.test.mjs",
-    "test:finance": "node --test tests/finance.test.mjs"
+    "test:finance": "node --test tests/finance.test.mjs",
+    "test:downloader": "node --test tests/media-downloader.test.mjs tests/downloader-workspace.test.mjs tests/downloader-playlists.test.mjs",
+    "test:artworks": "node --test tests/artwork-library.test.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",

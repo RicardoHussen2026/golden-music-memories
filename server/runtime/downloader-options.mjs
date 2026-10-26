@@ -9,8 +9,8 @@ export function downloaderURL(value){
  check(typeof value==='string'&&value.length<=2048,'Cole um link individual de uma fonte compatível.');let u;try{u=new URL(value.trim());}catch{check(false,'Link inválido. Cole o endereço completo do vídeo.');}
  const source=sources.find(s=>s.hosts.includes(u.hostname));
  check(u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&source,'Use HTTPS de uma das fontes compatíveis.');
- if(source.youtube){const id=u.hostname==='youtu.be'?u.pathname.slice(1):u.pathname==='/watch'?u.searchParams.get('v'):/^\/(shorts|embed)\//.test(u.pathname)?u.pathname.split('/')[2]:null;
-  check(/^[\w-]{11}$/.test(id||''),'Cole um vídeo individual; playlists e canais não são aceitos.');return `https://${u.hostname==='music.youtube.com'?'music.youtube.com':'www.youtube.com'}/watch?v=${id}`;}
+ if(source.youtube){if(u.pathname==='/playlist'){const list=u.searchParams.get('list');check(/^[\w-]{3,150}$/.test(list||''),'Informe uma playlist válida.');return 'https://www.youtube.com/playlist?list='+list;}const id=u.hostname==='youtu.be'?u.pathname.slice(1):u.pathname==='/watch'?u.searchParams.get('v'):/^\/(shorts|embed)\//.test(u.pathname)?u.pathname.split('/')[2]:null;
+  check(/^[\w-]{11}$/.test(id||''),'Cole o link de um vídeo ou /playlist?list= para uma playlist. Canais não são aceitos.');return `https://${u.hostname==='music.youtube.com'?'music.youtube.com':'www.youtube.com'}/watch?v=${id}`;}
  check(new RegExp('^(?:'+source.path+')$').test(u.pathname),'Cole o link direto de um vídeo. Perfis, playlists e publicações com vários arquivos não são aceitos.');
  if(source.watchQuery&&/^\/watch\/?$/.test(u.pathname))check(/^\d+$/.test(u.searchParams.get('v')||''),'Use o link direto do vídeo do Facebook.');
  u.hash='';for(const key of [...u.searchParams.keys()])if(!source.query?.includes(key))u.searchParams.delete(key);return u.href;

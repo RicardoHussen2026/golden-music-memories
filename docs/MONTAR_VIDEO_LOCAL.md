@@ -1,5 +1,7 @@
 # Montar vídeo local — V2.4
 
+**26/10/2026 — 2.20.0 ativa e conferida localmente:** motor oficial yt-dlp via Python API, playlists extensas e histórico; ferramentas Aberturas e Minhas capas com criação, upload, download e variantes reutilizáveis dentro do fluxo existente. 19 testes específicos do baixador e 45 testes finais de biblioteca/regressão aprovados; percurso UI e MP4 sintético de 5 s conferidos. Interface 8a1d5df164e2 e backend d190d0a5f925 carregados em 127.0.0.1:8877; 165 clipes, 20 produções, histórico e quatro hashes de entregas preservados. Publicação do software em execução. [Guia, evidências e limites](ABERTURAS_CAPAS_V220.md).
+
 **Artes 2.15.1:** oito PNGs premium transparentes integrados ao seletor existente, sem mudanças funcionais; renders sintéticos Full HD horizontal/vertical conferidos. Detalhes em docs/ARTES_CHAMADAS_V2151.md. Próxima etapa: reforma de Meu acervo conforme tabela oficial.
 
 **Miniaturas2.14.1:** nas postagens individuais e coletivas, use Baixar miniatura para obter a capa vinculada ao vídeo, ou Escolher miniatura para uma imagem local. Download coletivo/individual conferido por bytes e imagem; serviço/interface ativos localmente. Detalhes em MINIATURAS_POSTAGEM_V2141.md. Sem nova renderização ou postagem externa.
