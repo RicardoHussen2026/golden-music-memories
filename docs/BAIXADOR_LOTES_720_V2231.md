@@ -61,3 +61,9 @@ O acompanhamento desta conversa está agendado a cada hora (`acompanhar-lotes-do
 - `acervo/LOTE_002_720_2026-10-26/03_CONTROLE/CONFERENCIA_500.json`: verificação da seleção seguinte, ainda não equivalente a 500 arquivos disponíveis.
 
 A revisão humana visual é por amostras. Não há garantia de todos os frames sem marcas, nem avaliação auditiva humana integral de todos os vídeos. Referências de ano, datas de filmagem e versões permanecem distintas. Não houve postagem de vídeos nas redes. Mídia, estado e dados privados não são sincronizados por Git.
+
+## Publicação do software e ponto de continuidade
+
+Commit `77174fefdd74cb982d8d076bf3434b8078f690c3` enviado atomicamente às branches `main` e `desenvolvimento/validacao-local-p6`. [Pages 40321896766](https://github.com/RicardoHussen2026/golden-music-memories/actions/runs/40321896766) concluído com success; 13 arquivos públicos coincidem por SHA-256 com o commit. Navegador público confirmou 2.23.1 / e1594265b369, opções 720p/1080p e limite de 500. O endereço público distribui a interface estática; o motor, a fila e os arquivos operam no PC em 127.0.0.1:8877. Não foi reiniciado o serviço durante a publicação.
+
+Às 09h24 (Brasília), a API registrou 166 concluídos, um baixando e 140 aguardando no primeiro lote; o controlador já havia integrado tecnicamente 159 (67 referências dos anos 70 e 92 dos anos 80) e separado cinco fontes por identidade duvidosa. Os 228 IDs anteriores, os registros antigos do baixador e o histórico das 20 produções permaneciam iguais. Evidência privada: `.cache/expansao-720/CONFERENCIA_ATUAL.json`. A contagem continuará mudando; a conclusão dos lotes e a aprovação editorial não estão declaradas.
