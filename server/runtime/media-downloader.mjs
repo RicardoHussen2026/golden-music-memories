@@ -1,0 +1,69 @@
+import {existsSync,mkdirSync,statSync,statfsSync,realpathSync,readdirSync,createReadStream} from 'node:fs';
+import {join,resolve,basename,extname,sep} from 'node:path';
+import {randomUUID} from 'node:crypto';
+import {check,stamp} from './store.mjs';
+import {runProcess} from './source-import.mjs';
+import {fileHash} from './media.mjs';
+import {musicMetadata,deliverFiles,deliveryFile,writeDeliveryIndex} from './downloader-delivery.mjs';
+import {downloaderURL,sourceName,sources,failureInfo,writableFolder,pickFolder} from './downloader-options.mjs';
+export {downloaderURL} from './downloader-options.mjs';
+
+const pending=new Set(['queued','downloading','cancelling']);
+export class MediaDownloader{
+ constructor(store,config,assembler,clips,{runner=runProcess,python=resolve('.cache/media-downloader-env',process.platform==='win32'?'Scripts/python.exe':'bin/python'),bridge=resolve('server/media-downloader/bridge.py'),folderPicker=pickFolder}={}){
+  Object.assign(this,{store,config,assembler,clips,runner,python,bridge,folderPicker});this.directory=join(config.directory,'media-downloader');mkdirSync(this.directory,{recursive:true});this.running=null;this.closed=false;this.importing=new Set();
+  for(const j of this.jobs())if(pending.has(j.state))this.update(j,{state:'paused',error:'Serviço reiniciado. Use Retomar para continuar a fila.'});
+ }
+ jobs(){return this.store.list('media_download').sort((a,b)=>a.createdAt.localeCompare(b.createdAt));}
+ get(id){const j=this.store.get('media_download',id);check(j,'Download não encontrado.',404);return j;}
+ update(j,patch){Object.assign(j,patch,{updatedAt:stamp()});this.store.put('media_download',j.id,j);return j;}
+ args(){return [this.bridge,'--tools',this.assembler.toolsDirectory,'--node',process.execPath];}
+ async availability(){if(this.engineStatus&&Date.now()-this.engineCheckedAt<30000)return this.engineStatus;if(!existsSync(this.python))return {ready:false,message:'Instale o motor local com scripts/install-media-downloader.ps1.'};try{this.engineStatus=JSON.parse(await this.runner(this.python,['-X','utf8',...this.args(),'--check'],{timeout:15000}));this.engineCheckedAt=Date.now();return this.engineStatus;}catch{return {ready:false,message:'Motor indisponível. Execute scripts/install-media-downloader.ps1 e confira Python/FFmpeg.'};}}
+ settings(){return {folder:this.directory,paused:false,...this.store.get('media_downloader_settings','default')};}
+ destination(j){return j.outputRoot||this.directory;}
+ workFolder(j){return join(this.destination(j),...(j.layout==='flat'?['_Golden Processamento']:[]),j.id);}
+ index(format='csv'){check(['csv','json'].includes(format),'Formato de índice inválido.');const root=this.settings().folder;writeDeliveryIndex(root,this.jobs());return join(root,'_Golden Informações','INDICE_DOWNLOADS.'+format);}
+ async status(){const settings=this.settings();return {tools:await this.availability(),...settings,defaultFolder:this.directory,sources:[...new Set(sources.map(s=>s.label))],jobs:this.jobs().map(j=>({...j,source:sourceName(j.url),outputRoot:this.destination(j),failure:j.state==='failed'?failureInfo(j.error):null}))};}
+ configure(input){check(!this.closed,'Serviço encerrando.',503);const settings=this.settings();if('folder'in input)settings.folder=writableFolder(input.folder||this.directory);if('paused'in input){check(typeof input.paused==='boolean','Estado da fila inválido.');settings.paused=input.paused;}this.store.put('media_downloader_settings','default',settings);this.pump();return settings;}
+ async chooseFolder(input={}){return this.folderPicker(input.path||this.settings().folder);}
+ clear(id){const j=this.get(id);check(['completed','failed','cancelled'].includes(j.state)&&!this.importing.has(id),'Conclua ou cancele este download antes de limpar.',409);return this.update(j,{clearedAt:stamp()});}
+ restore(id){return this.update(this.get(id),{clearedAt:null});}
+ batch(input){check(['clear','restore','cancel','resume'].includes(input.action),'Ação inválida.');check(Array.isArray(input.ids)&&input.ids.length>0&&input.ids.length<=1000,'Selecione de 1 a 1.000 registros.');const results=[];for(const id of new Set(input.ids)){try{const job=this[input.action](id);results.push({id,ok:true,state:job.state});}catch(error){results.push({id,ok:false,error:error.message});}}return {results,changed:results.filter(r=>r.ok).length};}
+ enqueue(input){
+  check(!this.closed,'Serviço encerrando.',503);check(existsSync(this.python),'Instale o motor local antes de baixar.',503);
+  const values=Array.isArray(input.urls)?input.urls:String(input.urls||'').split(/\r?\n/).filter(v=>v.trim());check(values.length>0&&values.length<=100,'Informe de 1 a 100 links por envio.');
+  const urls=[...new Set(values.map((value,index)=>{try{return downloaderURL(value);}catch(error){error.message=`Link ${index+1}: ${error.message}`;throw error;}}))],mode=input.mode||'video',container=mode==='audio'?'mkv':input.container||'mkv',subtitles=mode==='audio'?false:input.subtitles!==false;check(['video','audio'].includes(mode)&&['mkv','mp4'].includes(container),'Escolha modo e formato válidos.');
+  const old=this.jobs(),existing=url=>old.find(j=>j.url===url&&j.mode===mode&&(mode==='audio'||j.container===container&&j.subtitles===subtitles)&&(pending.has(j.state)||j.state==='paused'));
+  const added=urls.filter(url=>!existing(url)).length;check(old.filter(j=>pending.has(j.state)||j.state==='paused').length+added<=100,'A fila já tem muitos itens. Conclua ou cancele alguns antes de adicionar.');
+  const outputRoot=added?writableFolder(this.settings().folder):this.settings().folder;
+  const jobs=urls.map(url=>{const previous=existing(url);if(previous)return previous;
+   const j={id:randomUUID(),url,mode,container,subtitles,outputRoot,layout:'flat',state:'queued',progress:0,createdAt:stamp(),files:[]};return this.update(j,{});});this.pump();return {jobs,added,duplicates:values.length-added};
+ }
+ space(folder=this.directory){const disk=statfsSync(folder);check(Number(disk.bavail)*Number(disk.bsize)>this.config.minFreeBytes,'Espaço livre insuficiente.');}
+ async pump(){if(this.closed||this.running||this.settings().paused)return;const j=this.jobs().find(j=>j.state==='queued');if(!j)return;const controller=new AbortController(),running={id:j.id,controller,promise:null};this.running=running;
+  running.promise=(async()=>{let watch,limitError;try{
+   const destination=this.destination(j);this.space(destination);const output=this.workFolder(j);mkdirSync(output,{recursive:true});this.update(j,{state:'downloading',error:null,progress:0,phase:'Conectando à fonte'});let report,lastError,lastProgress=0;
+   const bytesIn=p=>readdirSync(p,{withFileTypes:true}).reduce((n,e)=>n+(e.isDirectory()?bytesIn(join(p,e.name)):statSync(join(p,e.name)).size),0);
+   watch=setInterval(()=>{try{this.space(destination);check(bytesIn(output)<=this.config.maxBytes*2,'Download ultrapassou o limite de tamanho configurado.');}catch(e){limitError=e.message;controller.abort();}},1000);
+   await this.runner(this.python,['-X','utf8','-u',...this.args(),'--url',j.url,'--output',output,'--mode',j.mode,'--container',j.container,'--max-bytes',String(this.config.maxBytes),...(j.subtitles?[]:['--no-subs'])],{signal:controller.signal,timeout:4*3600000,maxOutput:32*1048576,onLine:line=>{let e;try{e=JSON.parse(line);}catch{return;}if(e.type==='complete')report=e.report;if(e.type==='error')lastError=String(e.message).replace(/https?:\/\/\S+/g,'[fonte]').slice(-1800);if(e.type==='started')this.update(j,{phase:'Baixando vídeo/áudio'});if(e.type==='progress'&&Date.now()-lastProgress>500){lastProgress=Date.now();this.update(j,{progress:Number.isFinite(e.percent)?Math.max(0,Math.min(99,e.percent)):null,phase:e.percent>=100?'Unindo e verificando arquivos':'Baixando fluxo atual'});}}}).catch(e=>{throw Error(limitError||lastError||e.message);});
+   check(report?.files?.length,'O motor não entregou um arquivo completo.');const files=[];
+   for(const item of [...report.files.map(f=>({...f,kind:j.mode==='audio'?'audio':'video'})),...(report.subtitles||[]).map(path=>({path,kind:'subtitle'}))]){
+    const path=this.safePath(j,item.path),size=statSync(path).size;check(size>0&&size<=this.config.maxBytes,'Arquivo vazio ou acima do limite.');files.push({path,name:basename(path),file:path.slice(resolve(this.destination(j)).length+1),kind:item.kind,size,hash:fileHash(path),duration:Number(item.media?.format?.duration)||null,streams:item.media?.streams?.map(s=>({type:s.codec_type,codec:s.codec_name,width:s.width,height:s.height}))||[]});
+   }
+   j.metadata=musicMetadata(report.metadata,files[0].name,j.url);const delivered=j.layout==='flat'?deliverFiles(j,files,destination):files.map(({path,...file})=>file);this.update(j,{state:'completed',completedAt:stamp(),files:delivered,metadata:j.metadata,progress:100,phase:'Concluído',reencoded:report.reencoded===true,indexWarning:null});
+   if(j.layout==='flat')try{writeDeliveryIndex(destination,this.jobs());}catch{this.update(j,{indexWarning:'Vídeo pronto. Não foi possível atualizar o índice nesta pasta; baixe o índice pelo painel para tentar novamente.'});}
+  }catch(e){this.update(j,{state:this.closed?'paused':controller.signal.aborted&&!limitError?'cancelled':'failed',error:e.message,phase:null});}finally{clearInterval(watch);this.running=null;if(!this.closed)queueMicrotask(()=>this.pump());}})();
+ }
+ safePath(j,file){const root=realpathSync.native(this.workFolder(j)),path=realpathSync.native(process.platform==='win32'&&file.startsWith('\\\\?\\')?file.slice(4):file);check(path.startsWith(root+sep),'Arquivo fora deste download.',403);return path;}
+ file(id,index){const j=this.get(id),f=j.files?.[index];check(j.state==='completed'&&f,'Arquivo não disponível.',404);const path=j.layout==='flat'?deliveryFile(this.destination(j),f.file):this.safePath(j,join(this.destination(j),f.file));check(statSync(path).size===f.size,'Arquivo alterado. Confira o download.');return {path,file:f};}
+ cancel(id){const j=this.get(id);check(pending.has(j.state)||j.state==='paused','Download já encerrado.',409);if(this.running?.id===id){this.update(j,{state:'cancelling'});this.running.controller.abort();}else this.update(j,{state:'cancelled',phase:null});return j;}
+ resume(id){const j=this.get(id);check(['paused','failed','cancelled'].includes(j.state),'Este download não pode ser retomado.',409);check(this.jobs().filter(j=>pending.has(j.state)||j.state==='paused').length-(j.state==='paused'?1:0)<100,'A fila já tem muitos itens.',409);this.update(j,{state:'queued',error:null,phase:null,clearedAt:null});this.pump();return j;}
+ async importClip(id,input){
+  const year=input.year?Number(input.year):null;check(year===null||Number.isInteger(year)&&year>=1900&&year<=2100,'Confira o ano da música ou deixe em branco.');
+  check(!this.importing.has(id),'Importação em andamento.',409);const j=this.get(id);if(j.clipId)return {id:j.clipId,duplicate:true};const index=j.files.findIndex(f=>f.kind==='video');check(index>=0,'Somente vídeos podem entrar no catálogo de clipes.');const {path,file}=this.file(id,index);
+  this.importing.add(id);let upload;try{check(fileHash(path)===file.hash,'Arquivo alterado. Confira o download.');upload=this.assembler.begin({productionId:'clip-library',purpose:'video',name:file.name,size:file.size},{libraryIngest:true});let offset=0;for await(const chunk of createReadStream(path,{highWaterMark:4*1048576})){this.assembler.append(upload.id,offset,chunk);offset+=chunk.length;}await this.assembler.complete(upload.id);
+   const result=this.clips.register({inputId:upload.id,title:input.title,artist:input.artist,collection:input.collection||'Baixador YouTube',genre:input.genre||''});if(!result.duplicate){const row=this.store.get('clip_library',result.id);this.store.put('clip_library',result.id,{...row,year,decade:year?Math.floor(year/10)*10:null,album:j.metadata?.album||'',downloadMetadata:j.metadata||null,review:['Metadados recebidos do baixador; dados da fonte podem precisar de conferência.']});}try{await this.clips.makeThumbnail(result.id,this.assembler);}catch{}this.update(j,{clipId:result.id});if(j.layout==='flat')try{writeDeliveryIndex(this.destination(j),this.jobs());}catch{}return result;
+  }catch(e){if(upload&&this.store.get('render_input',upload.id)?.state==='receiving')this.assembler.cancelInput(upload.id);throw e;}finally{this.importing.delete(id);}
+ }
+ async close(){this.closed=true;this.running?.controller.abort();await this.running?.promise;}
+}

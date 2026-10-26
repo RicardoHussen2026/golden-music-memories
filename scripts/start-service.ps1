@@ -11,6 +11,7 @@ New-Item -ItemType Directory -Force -Path $gmmRun | Out-Null
 $gmmPidFile = Join-Path $gmmRun 'process.json'
 if (Test-Path -LiteralPath $gmmPidFile) {
     $gmmPrevious = Get-Content -LiteralPath $gmmPidFile -Raw | ConvertFrom-Json
+    if ($gmmPrevious.startedAt -is [DateTime]) { $gmmPrevious.startedAt = $gmmPrevious.startedAt.ToUniversalTime().ToString('o') }
     $gmmProcess = Get-Process -Id $gmmPrevious.pid -ErrorAction SilentlyContinue
     if ($gmmProcess -and $gmmProcess.StartTime.ToUniversalTime().ToString('o') -eq $gmmPrevious.startedAt) {
         Write-Output 'Serviço já iniciado. Abra http://127.0.0.1:8877/painel.html'

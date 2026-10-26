@@ -1,11 +1,11 @@
 {
   "name": "golden-music-memories",
-  "version": "2.9.9",
+  "version": "2.18.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
-    "test": "node tests/search.cjs && node tests/catalog.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs && node tests/post-audit.cjs && node --test tests/server.test.mjs && node tests/server-ui.cjs && node --test tests/operations.test.mjs && node tests/operations-ui.cjs",
+    "test": "node tests/catalog.cjs && node --test --test-concurrency=1 tests/server.test.mjs tests/operations.test.mjs tests/local-access.test.mjs tests/storage-backup.test.mjs tests/clip-library.test.mjs tests/cover-opening.test.mjs tests/video-assembly.test.mjs tests/collections.test.mjs tests/generated-trash.test.mjs tests/destinations.test.mjs && node tests/clip-catalog-ui.mjs",
     "service": "node --env-file-if-exists=.env server/runtime/http.mjs",
     "test:service": "node --test tests/server.test.mjs",
     "test:service:ui": "node tests/server-ui.cjs",
@@ -41,7 +41,13 @@
     "test:catalog-filters": "node --test tests/catalog-filters.test.mjs && node tests/catalog-filters-ui.cjs",
     "test:static-motion": "node --test tests/static-motion.test.mjs && node tests/static-motion-ui.cjs",
     "test:historical-covers": "node --test tests/historical-covers.test.mjs && node tests/historical-covers-ui.cjs",
-    "test:catalog-families": "node --test tests/catalog-families.test.mjs tests/catalog-family-policy.test.mjs && node tests/catalog-families-ui.cjs"
+    "test:catalog-families": "node --test tests/catalog-families.test.mjs tests/catalog-family-policy.test.mjs && node tests/catalog-families-ui.cjs",
+    "test:intros": "node --test tests/intros.test.mjs && node tests/intros-ui.mjs",
+    "test:clips": "node --test tests/clip-library.test.mjs && node tests/clip-catalog-ui.mjs",
+    "test:legacy-catalog": "node tests/search.cjs && node tests/catalog.cjs && node tests/acceptance.cjs && node tests/repertorio.cjs && node tests/templates.cjs && node tests/publishing.cjs && node tests/ux.cjs && node tests/publication-ui.cjs && node tests/post-audit.cjs && node --test tests/server.test.mjs && node tests/server-ui.cjs && node --test tests/operations.test.mjs && node tests/operations-ui.cjs",
+    "test:clip-research": "node --test tests/clip-research.test.mjs",
+    "test:quality": "node --test tests/quality-workflow.test.mjs",
+    "test:finance": "node --test tests/finance.test.mjs"
   },
   "devDependencies": {
     "playwright": "1.62.1",

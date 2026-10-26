@@ -10,7 +10,7 @@ export const POST_DESTINATIONS={
  rumble:{platform:'rumble',label:'Rumble · vídeo horizontal',format:'16:9',base:'youtube',note:'Preset H.264/AAC 1920×1080. Confira limites da conta e opções de licença antes do envio.'},
  odysee:{platform:'odysee',label:'Odysee · vídeo horizontal',format:'16:9',base:'youtube',note:'MP4 H.264/AAC, 1920×1080. Odysee recomenda bitrate abaixo de 8 Mbps; conferir arquivo e conta.'}
 };
-export const UPLOAD_PAGES={youtube:'https://www.youtube.com/upload',tiktok:'https://www.tiktok.com/tiktokstudio/upload',facebook:'https://www.facebook.com/',instagram:'https://www.instagram.com/',rumble:'https://rumble.com/upload',odysee:'https://odysee.com/'};
+export const UPLOAD_PAGES={youtube:'https://www.youtube.com/upload',tiktok:'https://www.tiktok.com/tiktokstudio/upload',facebook:'https://www.facebook.com/reels/create/',instagram:'https://www.instagram.com/',rumble:'https://rumble.com/upload.php',odysee:'https://odysee.com/$/upload'};
 export const destinationOf=pub=>pub.destination||({youtube:'youtube',tiktok:'tiktok',facebook:'facebook',instagram:'instagram',rumble:'rumble',odysee:'odysee'}[pub.platform]);
 export function destinationIssues(id,{duration,width,height}={}){
  const d=POST_DESTINATIONS[id];if(!d)return ['Destino desconhecido.'];const issues=[];

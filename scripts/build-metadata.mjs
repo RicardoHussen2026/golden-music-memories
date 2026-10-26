@@ -9,6 +9,6 @@ export function buildMetadata(root=projectRoot){
  const version=JSON.parse(readFileSync(join(root,'package.json'),'utf8')).version;
  if(typeof version!=='string'||!/^\d+\.\d+\.\d+(?:[-+][\w.-]+)?$/.test(version))throw Error('package.json precisa de uma versão válida.');
  const frontend=['painel.html','index.html','manifest.webmanifest',...['app','data','templates','vendor'].flatMap(folder=>files(root,folder))];
- const backend=[...files(root,'server/runtime'),'app/media-names.js','app/destinations.js','scripts/build-metadata.mjs'];
+ const backend=[...files(root,'server/runtime'),...files(root,'server/media-downloader').filter(p=>!p.includes('__pycache__')&&!p.endsWith('.pyc')),'app/media-names.js','app/destinations.js','app/clip-metadata.js','app/quality.js','scripts/build-metadata.mjs'];
  return {version,interfaceBuild:fingerprint(root,version,frontend),backendBuild:fingerprint(root,version,backend)};
 }

@@ -3,6 +3,7 @@ $gmmRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $gmmPidFile = Join-Path $gmmRoot '.cache\launcher\process.json'
 if (-not (Test-Path -LiteralPath $gmmPidFile)) { Write-Output 'Nenhum processo iniciado pelo launcher foi registrado.'; exit 0 }
 $gmmPrevious = Get-Content -LiteralPath $gmmPidFile -Raw | ConvertFrom-Json
+    if ($gmmPrevious.startedAt -is [DateTime]) { $gmmPrevious.startedAt = $gmmPrevious.startedAt.ToUniversalTime().ToString('o') }
 $gmmProcess = Get-Process -Id $gmmPrevious.pid -ErrorAction SilentlyContinue
 if ($gmmProcess) {
     if ($gmmPrevious.root -ne $gmmRoot -or $gmmProcess.StartTime.ToUniversalTime().ToString('o') -ne $gmmPrevious.startedAt) { throw 'Identidade do processo divergente. Nenhum processo foi encerrado.' }

@@ -1,0 +1,11 @@
+[
+  {"id":"youtube","label":"YouTube / Music","hosts":["youtube.com","www.youtube.com","m.youtube.com","music.youtube.com","youtu.be"],"youtube":true},
+  {"id":"vimeo","label":"Vimeo","hosts":["vimeo.com","www.vimeo.com","player.vimeo.com"],"path":"/(?:video/|channels/[^/]+/)?[0-9]+(?:/[a-fA-F0-9]+)?/?","query":["h"]},
+  {"id":"dailymotion","label":"Dailymotion","hosts":["dailymotion.com","www.dailymotion.com"],"path":"/video/[a-zA-Z0-9]+/?"},
+  {"id":"dailymotion","label":"Dailymotion","hosts":["dai.ly"],"path":"/[a-zA-Z0-9]+/?"},
+  {"id":"tiktok","label":"TikTok","hosts":["tiktok.com","www.tiktok.com"],"path":"/@[^/]+/video/[0-9]+/?"},
+  {"id":"tiktok","label":"TikTok","hosts":["vm.tiktok.com","vt.tiktok.com"],"path":"/[a-zA-Z0-9]+/?"},
+  {"id":"instagram","label":"Instagram Reels","hosts":["instagram.com","www.instagram.com"],"path":"/reels?/[a-zA-Z0-9_-]+/?"},
+  {"id":"facebook","label":"Facebook","hosts":["facebook.com","www.facebook.com","m.facebook.com","web.facebook.com"],"path":"/(?:watch/?|[^/]+/videos/[0-9]+/?)","query":["v"],"watchQuery":true},
+  {"id":"x","label":"X / Twitter","hosts":["x.com","www.x.com","twitter.com","www.twitter.com","mobile.twitter.com"],"path":"/[^/]+/status/[0-9]+/?"}
+]

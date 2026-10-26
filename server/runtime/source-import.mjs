@@ -32,7 +32,7 @@ export function formatChoices(info){
 }
 export function baseArguments(){return ['--ignore-config','--no-plugin-dirs','--no-cache-dir','--no-cookies','--no-cookies-from-browser','--no-playlist','--no-remote-components','--no-js-runtimes','--js-runtimes','node:'+process.execPath,'--socket-timeout','20','--retries','1','--fragment-retries','1','--extractor-retries','1','--no-warnings','--color','never'];}
 // No shell, inherited credentials, user-provided flags, plugins or config files.
-export function runProcess(executable,args,{signal,onLine,cwd,timeout=120000,maxOutput=16*1024*1024}={}){return new Promise((resolvePromise,reject)=>{
+export function runProcess(executable,args,{signal,onLine,cwd,timeout=120000,maxOutput=16*1024*1024,captureStderr=false}={}){return new Promise((resolvePromise,reject)=>{
  const env=Object.fromEntries(['SystemRoot','WINDIR','TEMP','TMP','PATH','PATHEXT','LANG'].filter(k=>process.env[k]).map(k=>[k,process.env[k]]));
  const child=spawn(executable,args,{shell:false,windowsHide:true,cwd,env,stdio:['ignore','pipe','pipe']});let output='',pending='',errorText='',failure=null,settled=false;
  const stop=reason=>{if(failure)return;failure=new Error(reason);if(process.platform==='win32'&&child.pid){const killer=spawn(join(process.env.SystemRoot||'C:\\Windows','System32','taskkill.exe'),['/PID',String(child.pid),'/T','/F'],{shell:false,windowsHide:true,stdio:'ignore'});killer.on('error',()=>child.kill());}else child.kill('SIGKILL');};
@@ -42,7 +42,7 @@ export function runProcess(executable,args,{signal,onLine,cwd,timeout=120000,max
  child.stdout.on('data',b=>{if(output.length+b.length>maxOutput){stop('Resposta excedeu o limite seguro.');return;}output+=b.toString();pending+=b.toString();const lines=pending.split(/\r?\n/);pending=lines.pop();for(const l of lines)onLine?.(l);});
  child.stderr.on('data',b=>{errorText=(errorText+b.toString()).slice(-8192);});
  child.on('error',()=>done(new Error('Ferramenta local indisponível. Confira a instalação de yt-dlp e FFmpeg.')));
- child.on('close',code=>{if(pending)onLine?.(pending);if(failure)return done(failure);if(code!==0){const denied=/sign in|login|cookies|private|members|premium|drm|403|429|blocked|not available|unavailable|age.restrict/i.test(errorText);const error=new Error(denied?'A fonte recusou o acesso ou exige autenticação/proteção. O painel não contorna esse bloqueio.':'Não foi possível concluir com os formatos escolhidos. Inspecione novamente; confira conexão e ferramentas locais.');if(/pthread_create|thread creation failed|failed to create thread/i.test(errorText))error.code='RENDER_THREAD_RESOURCE';return done(error);}done(null,output);});
+ child.on('close',code=>{if(pending)onLine?.(pending);if(failure)return done(failure);if(code!==0){const denied=/sign in|login|cookies|private|members|premium|drm|403|429|blocked|not available|unavailable|age.restrict/i.test(errorText);const error=new Error(denied?'A fonte recusou o acesso ou exige autenticação/proteção. O painel não contorna esse bloqueio.':'Não foi possível concluir com os formatos escolhidos. Inspecione novamente; confira conexão e ferramentas locais.');if(/pthread_create|thread creation failed|failed to create thread/i.test(errorText))error.code='RENDER_THREAD_RESOURCE';return done(error);}done(null,captureStderr?output+errorText:output);});
  });}
 export class SourceImporter{
  constructor(store,config,{runner=runProcess,toolsDirectory=resolve('.cache/import-tools')}={}){

@@ -4,7 +4,147 @@
 
 **Entrega visual complementar concluída — 25/10/2026:** fonte002 preservada; YouTube horizontal V2 e TikTok V3 com fundo desfocado aprovados no acervo, sem substituir versões anteriores. Capas3s, CTAs30/70/110 e áudio conferidos. A tentativa TikTok anterior cancelada aos80% foi preservada; a nova tentativa expressamente autorizada concluiu sem alteração dos limites existentes. Causa histórica não determinada. Amostra de movimento suave8s concluída, opcional e separada dos finais; avaliação editorial pendente, sem impedir desempenho. Explorer confirmado aberto após liberação nativa. Nenhuma postagem externa.
 
-## Prioridades vigentes - atualização de 25/10/2026
+## Prioridades vigentes — baixador e financeiro, 26/10/2026
+
+Pedido atual: pasta escolhida pelo usuário, limpeza recuperável, seleção e ações em lote, outras fontes públicas compatíveis e interface limpa. Nome Baixador YouTube preservado. Este chat é o único executor mutante; revisão auxiliar somente leitura. Raiz/branch e alterações anteriores conferidas, associação refeita pela operação oficial (listagem ainda diverge). Reversão de código em `.cache/baixador-v217/antes/`. Testes externos serão feitos pelo titular.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Destino persistente por download, limpeza/restauração e controle da fila | CONCLUÍDO E ATIVADO 2.17.0. Seis erros reais limpos recuperavelmente; mídia, IDs, vínculos e pasta padrão preservados |
+| 2 | Fontes adicionais, erros úteis e ações em lote em interface compacta | CONCLUÍDO E TESTADO. Sete fontes, validação compartilhada, filtros, paginação e ações em lote; teste externo pelo titular |
+| 3 | Testes isolados, percurso visual, ativação local e evidências | CONCLUÍDO LOCALMENTE. Dez testes específicos, dois do núcleo e três catálogo/montagem; UI desktop/390 px, reprodução e download por hash. Ver BAIXADOR_V217.md |
+| 4 | Entrega dos lotes com nomes musicais e informações da fonte | CONCLUÍDO E TESTADO. 50 fixtures com nomes únicos na mesma pasta, índice CSV/JSON, originais independentes e metadados para catalogação |
+| 5 | Aba financeira exclusiva Golden Music Memories | IMPLEMENTADO E ATIVADO LOCALMENTE 2.18.0. Sete testes financeiros e percurso real de UI com valores sintéticos, edição concorrente e 390 px; sem lançamentos fictícios na operação. Validação humana pendente. Ver FINANCEIRO_V218.md |
+| 6 | Versão final, commit, push e deploy do software | EM PREPARAÇÃO AUTORIZADA. Destino confirmado: GitHub Pages, raiz de main. Regressões aprovadas; revisar seleção de arquivos, publicar e conferir versão pública |
+
+### Histórico — entregas locais concluídas, 25/10/2026
+
+Integração expressamente autorizada do MediaDownloader.rar como ferramenta interna, nome **Baixador YouTube**. Titular fará teste real; executar somente testes internos com mídia própria/sintética. Outros chats sem operação mutante ativa; associação oficial realizada, divergência histórica da listagem registrada. Preservar dados e trabalhos anteriores.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Instalar núcleo Python recebido e integrar ao serviço local | CONCLUÍDO LOCALMENTE. Ambiente isolado, núcleo original e fila persistente; entregue na 2.15.0 e mantido na 2.16.0 |
+| 2 | Ferramenta interna na navegação, arquivos e acervo | CONCLUÍDO E TESTADO. Ferramenta interna, vídeo/áudio, formato, progresso/cancelamento e inclusão explícita no catálogo |
+| 3 | Testes internos, ativação local e entrega | TESTES INTERNOS E ATIVAÇÃO CONCLUÍDOS. 3 testes aprovados; UI desktop/390 px e dados preservados. Ver BAIXADOR_YOUTUBE_V215.md. Teste real exclusivamente pelo titular |
+| 4 | Artes das oito chamadas conforme Botões Neon 3D para Redes Sociais.png | CONCLUÍDO LOCALMENTE. Oito PNGs transparentes refinados; dois renders Full HD com oito chamadas, áudio preservado. Entregues na 2.15.1 e mantidas na 2.16.0. Ver ARTES_CHAMADAS_V2151.md; revisão estética humana separada |
+| 5 | Reforma de Meu acervo | CONCLUÍDO LOCALMENTE. 2.16.0, cartões compactos, prévia sob demanda, busca/filtros/paginação e seleção exata de MP4; seis testes, UI desktop/390 px e download por hash. Dados preservados. Ver MEU_ACERVO_V216.md; avaliação humana separada |
+
+### Histórico — miniaturas nas postagens
+
+## Prioridades anteriores — miniaturas nas postagens, 25/10/2026
+
+Raiz/branch e alterações existentes conferidas; associação oficial do chat ao projeto confirmada, divergência da listagem registrada. Outro chat consulta o acervo em leitura. Preservar formulário aberto, mídia, produções e código anterior.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Baixar miniatura ao lado do MP4 nas postagens individuais e coletivas | CONCLUÍDO. Capa exata do render disponível nas duas postagens; seleção manual opcional, sem nova renderização |
+| 2 | Validar download e ativar localmente | CONCLUÍDO LOCALMENTE.2.14.1/interface20fa6070e489/backend449bbfc257d0. Downloads real coletivo/individual com hashes idênticos; teste de integração aprovado. Ver MINIATURAS_POSTAGEM_V2141.md; upload/revisão humana separados |
+
+### Histórico — correções do ensaio real
+
+## Prioridades anteriores — correções do ensaio real, 25/10/2026
+
+Titular autorizou implementar e testar Q01–Q11. Este chat conduz alterações do painel; pesquisa musical ativa está fora do repositório, em pasta isolada, sem alterações do aplicativo. Raiz/Git/branch conferidos; associação corrigida pela operação oficial, divergência histórica de listagem registrada. Estado anterior dos arquivos tocados em `.cache/correcoes-v214/antes/`, sem copiar bancos abertos. Preservar produções, fontes, rascunhos e entregas anteriores.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Q01/Q02/Q10: duração exata, bordas por faixa, início musical explícito | CONCLUÍDO E TESTADO. Cortes por faixa, modo exato, início musical explícito. Finais 7/52/60/3600 s; hora sintética 32×18. Fonte real 60 s sem preto/silêncio ≥150 ms. Coletânea antiga preservada, precisa de nova edição para retirar suas pausas |
+| 2 | Q03/Q04: download e áudio codificado | ÁUDIO CONCLUÍDO: AAC real −16,13 LUFS / −2,21 dBTP, 48 kHz. DOWNLOAD TESTADO: MP4 operacional de 120.968.523 bytes baixado pelo botão do acervo; SHA-256 idêntico. Nome coletivo correto |
+| 3 | Q05–Q09/Q11: amostras, rascunho, nomes/capas, chamadas, exportação | CONCLUÍDO E TESTADO. Amostra 4 s/intervalo8–12, exportação12 s, áudio herdado sem sobrescrever escolha, capa legível, textos das chamadas, rótulos e aprovação sem novo render. 390 px sem transbordamento |
+| 4 | Regressões, mídia final, ativação local e relatório | CONCLUÍDO LOCALMENTE. 2.14.0/interface584a69dc0662/backend2d7c89569843; 27 testes Node e percursos UI. Formulário do usuário preservado; fontes e entregas anteriores mantidas. Relatório CORRECOES_TESTE_REAL_V214.md. Revisão humana integral e reedição do vídeo antigo separadas; sem publicação web/social |
+
+### Histórico — ensaio real concluído
+
+### Ensaio real e duas entregas audiovisuais, 25/10/2026
+
+Pedido executado a partir do texto anexado: TikTok vertical de duração normal e YouTube horizontal de exatamente60min, ambos com capa/intro e chamadas aos30/35/40s. Titular confirmou uso do acervo atual para preparar os arquivos, sem postagem externa. Preservar projetos anteriores. Ajustar apenas as configurações das novas produções; alterações de código/infraestrutura/globais permanecem propostas. Outros chats inativos; associação oficial retornou o projeto correto, divergência histórica da listagem registrada.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Selecionar fontes, capas, intros e configurações; medir condições iniciais | CONCLUÍDO. Serviço 2.13.0; 165 clipes/10 intros; nenhum render ativo inicialmente. TikTok Big in Japan; 14 faixas distintas para YouTube, previsão 3599,999957 s incluindo capa/intro. 15 fontes decodificadas e SHA-256 preservado |
+| 2 | Produzir TikTok e YouTube60min com arquivos reais | CONCLUÍDO TECNICAMENTE. TikTok 239,533333 s, 1080×1920, 120.968.523 bytes; duas capas PNG. YouTube nativo 3600,010351 s; entrega 3600,000000 s por remux externo sem recodificação, payloads idênticos, 1920×1080, 1.771.065.766 bytes. Render longo 1833,299 s; fontes e versão nativa preservadas; nenhuma postagem |
+| 3 | Validar mídia inteira tecnicamente e amostras audiovisuais; entregar relatório e melhorias | ENSAIO CONCLUÍDO, QUALIDADE EDITORIAL PARCIAL. Dois finais decodificados integralmente sem erros; 32 correlações de áudio e 18 de imagem; CTAs 30/35/40 s, capas/intros e 13 transições conferidas. A sequência conserva pausas/pretos das fontes e não cumpre integralmente o acabamento contínuo. Relatório e quatro arquivos em acervo/ENTREGAS_TESTE_REAL_2026-10-25/; resumo em docs/TESTE_REAL_VIDEOS_V213.md. Audição/revisão humana integral pendente |
+| 4 | Q01–Q11: duração exata nativa, edição de bordas, download, áudio e clareza de interface | PROPOSTAS, NÃO IMPLEMENTADAS EM CÓDIGO neste ensaio conforme o roteiro. Correções manuais aplicadas: duração do derivado, áudio do rascunho, acesso local aos arquivos e nomes de entrega. Futuro trabalho deve priorizar bordas sem cortar música audível. Código/versão/flags, catálogo 165, intros 10 e quatro produções anteriores iguais; sem operação mutante de render pendente |
+
+### Histórico — integração de metadados concluída
+
+### Integração de informações dos clipes — 25/10/2026
+
+O titular autorizou integrar as informações com flexibilidade. Aplicar títulos, artistas, anos de referência e gêneros propostos, preservando fontes/ressalvas e escolhas manuais. Não exigir nova pesquisa para usar o catálogo. Campos desconhecidos continuam editáveis. Outros chats estavam inativos; associação solicitada pela operação oficial retornou o projeto correto, com divergência histórica da listagem registrada.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Receber pesquisa vinculada aos 165 IDs e preservar originais | CONCLUÍDO. 165 pesquisas associadas; 162 anos/gêneros, 70 títulos e 18 artistas atualizados. IDs, 184 origens e mídia preservados |
+| 2 | Organizar interface por ano, década e gênero | CONCLUÍDO E TESTADO. Filtros combináveis, referências editáveis, fontes nos detalhes e preservação de ajustes manuais, inclusive campos apagados |
+| 3 | Validar e aplicar no serviço/navegador operacional | CONCLUÍDO LOCALMENTE. 2.13.0 carregada, interface31709a4c3f0d/backend008a4a975a81. 20 testes Node e percurso UI; 165/165 registros comparados. 10 intros, 4 produções, 8 finais na interface e 2 rascunhos mantidos. Relatório INTEGRACAO_PESQUISA_CLIPES_V213.md. Três anos a completar futuramente; uso liberado, avaliação humana separada. Sem postagem externa |
+
+### Histórico — correções da auditoria concluídas, 25/10/2026
+
+O titular autorizou aplicar todos os itens de AUDITORIA_QUALIDADE_V211.md. Condução mutante deste chat. O chat de pesquisa de anos/gêneros está ativo em leitura e relatório separado, com instrução explícita de não alterar o projeto. Raiz/Git/branch conferidos, alterações anteriores preservadas. A associação oficial retornou o projeto correto; a inconsistência histórica da listagem permanece registrada. Segurança, backup, Drive e postagem externa não fazem parte desta implementação.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | F01–F07: resultados, acabamento, rascunhos, biblioteca e publicações | IMPLEMENTADO E TESTADO. Os sete critérios reproduzidos no fluxo isolado; ver CORRECOES_QUALIDADE_V212.md |
+| 2 | M01–M06: qualidade, áudio opcional, cortes, prévias/presets, curadoria e capítulos | IMPLEMENTADO E TESTADO. Qualidade nativa, medição/ajuste opcional, cortes, amostras, rascunhos, curadoria e capítulos. Originais preservados; revisão humana por vídeo |
+| 3 | M07–M08 e C01: resultados, fila, fluxo único e planejamento editorial/comercial | IMPLEMENTADO. Métricas manuais, comparação por formato/destino/período, fila local, presets e campos editoriais/comerciais. Nenhuma receita ou elegibilidade presumida |
+| 4 | Verificação, documentação e ativação local | CONCLUÍDO LOCALMENTE. 2.12.0 carregada: interface 41edf6226113/backend 04af5835f763. Nenhum job/formulário interrompido. 165 clipes, 10 intros, 4 produções, 6 finais do serviço preservados; UI reúne 8 finais e mantém os 2 rascunhos. Testes e limites em CORRECOES_QUALIDADE_V212.md. Aprovação editorial humana por vídeo, sem bloquear uso da atualização |
+
+### Histórico da auditoria de diagnóstico
+
+Solicitação atual do titular: identificar erros, falhas e melhorias para produzir e postar vídeos com facilidade, praticidade e qualidade, com objetivo comercial. Segurança e backup estão expressamente fora desta vistoria. Auditoria de diagnóstico, sem aplicar correções, publicar conteúdo ou alterar produções reais.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Auditar jornada, qualidade audiovisual, organização e preparação de postagem | CONCLUÍDO. Sete falhas reproduzidas, oito melhorias e um ponto comercial. Percurso de oito áreas, renders sintéticos Full HD de 11 s e 22,921354 s, inventário de 165 fontes e oito amostras reais de áudio. Segurança e backup não vistoriados |
+| 2 | Entregar diagnóstico e melhorias por impacto | CONCLUÍDO. docs/AUDITORIA_QUALIDADE_V211.md traz reprodução, evidências, impacto e critérios de aceite. Nada corrigido nesta rodada. Revisão do diagnóstico pelo titular pendente |
+| 3 | Correções propostas e expansões | AGUARDAR DECISÃO. Ordem sugerida: F01/F03/F05/F07; depois F02/F04/F06; qualidade audiovisual M01–M04/M06; decisão comercial C01 e produtividade M05/M07/M08. Drive e automação externa continuam adiados |
+
+### Entrega anterior — catálogo de clipes e produção simplificada
+
+Nova solicitação do titular neste chat substitui a pausa somente para integrar a coletânea Flashback e simplificar a preparação individual/longa no painel existente. Retirar o catálogo antigo da seleção ativa, preservando cópia recuperável e referências de produções/histórico. Plataforma, capa, abertura e chamadas independentes; prévia e saída no formato escolhido; link para envio manual. Coletânea longa: uma capa e uma abertura opcionais somente no começo, clipes completos em sequência (confirmado pelo titular). Preparar crescimento por coleções/gêneros, sem prometer recursos infinitos ou ativar publicação automática.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Receber continuidade e integrar biblioteca real ao Catálogo | CONCLUÍDO LOCALMENTE. 165 clipes ativos/184 origens; 2.011 cadastros anteriores arquivados fora da seleção ativa, com IDs recuperáveis. 4 produções, 13 anexos, 2 publicações e 4 reservas integralmente preservados. Backups e 165 hashes conferidos. Relatório: CATALOGO_CLIPES_V211.md |
+| 2 | Publicar: preparação individual simples | IMPLEMENTADO E TESTADO. Clipe associado → plataforma/formato → capa/intro/chamadas opcionais → prévia real → aprovação → textos com MP4 selecionado e atalho de envio. Nenhuma postagem externa; revisão editorial humana permanece por postagem |
+| 3 | Produção longa e expansão do acervo | IMPLEMENTADO E TESTADO. Ordem editável, clipes completos, uma capa/intro opcionais no começo, chamadas no tempo global, recuperação e rascunhos. Importação de novos clipes/coleções/gêneros e deduplicação por hash. Sem teto fixo de 20/100 faixas; limites técnicos de 12h, disco/arquivo/destino. Ensaio real com 20 fontes sintéticas; não representa 20 músicas reais renderizadas |
+| 4 | Testes e ativação local coordenada | CONCLUÍDO LOCALMENTE. 2.11.0 carregada em 127.0.0.1:8877, interface d5f79ff08241/backend 4d1c3e76ae5f. Suíte final npm test: 88 testes Node +12 verificações de catálogo +24 UI/segurança, sem falhas; intros: 20 verificações reais +21 UI (coberturas sobrepostas). Backups navegador antes/depois e snapshot serviço verificados; 23 arquivos operacionais preservados. Validação humana da edição real pendente. Sem commit/push/deploy/postagem |
+| 5 | Auditoria geral, Google Drive e publicação automática | PARADOS/ADIADOS. Nenhuma retomada, credencial, abertura de rede ou envio. Tarefa atual encerrada; aguardar solicitação. |
+
+### Quadro anterior de intros — histórico de continuidade
+
+**Escopo ativo somente intros e a entrega Take On Me expressamente solicitada.** Nova autorização limitada substitui a espera apenas para inspecionar os 10 MP4 de Desktop/Nova pasta/intro, propor nomes e integrar escolha independente de capa/intro na montagem em candidato local. Originais, acervo parado, entregas 2.9.9 e MP4 aprovados preservados. Nada de Drive, auditoria geral, tarefas canceladas ou publicação automática. Nenhuma publicação externa autorizada nesta tarefa.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Intros opcionais na montagem de vídeo | CANDIDATO 2.10.0 TESTADO, NÃO ATIVADO. Dez intros inspecionadas e copiadas com hashes/manifesto; originais intactos. Passaram 25 verificações reais de render/transição, 7 de bordas, 21 de UI, 32 regressões do fluxo e 16 regressões Node aplicáveis (coberturas sobrepostas). Escolhas de capa/intro independentes, MP3 com visual explícito e Sem intro preservando legado. Nomes, evidências, limites e procedimento em MONTAR_VIDEO_LOCAL.md. Entrega real Take On Me concluída em dois formatos, associada ao grupo existente pelo painel 2.9.9; fonte e 2.011 cadastros preservados, 22 verificações técnicas +17 de backup/vínculos aprovadas. Aprovação humana pendente; primeiro som aos6,07s por silêncio original preservado. Aguardar comando antes de ativar/publicar 2.10.0 ou retomar outra tarefa. Ver MONTAR_VIDEO_LOCAL.md e .cache/edicao-aha/FINAL.json |
+| 2 | Auditoria geral | PARADA por ordem do titular, preservada no checkpoint22checksUI; não retomar nesta tarefa |
+| 3 | Integração Google Drive | ADIADA, nenhum cadastro/público/OAuth/Picker/credencial/token/upload adicional; candidato18testes e rascunho preservados |
+| 4 | Publicação automática | PENDENTE, NÃO EXECUTAR. Nenhuma postagem social, credencial, gasto ou abertura de rede |
+
+<details><summary>Fila anterior substituída — apenas histórico, sem autorização para execução</summary>
+
+### Prioridades anteriores — atualização de 25/10/2026, após direção das 18:02 UTC
+
+**Lista oficial única — três itens. Acervo PARADO por decisão do titular.** Preservar todos os registros, arquivos, vínculos e entregas 2.9.9. A pausa anterior foi substituída somente para executar Drive e depois auditoria. Publicação automática continua pendente e não será executada. Novas credenciais/OAuth/acesso persistente e envio real exigem autorização específica; o backup externo anterior foi cancelado, não é parte do Drive atual. Nova publicação de software, se necessária, depende de aprovação específica.
+
+| Prioridade | Trabalho | Estado concreto e próximo passo |
+|---|---|---|
+| 1 | Concluir integração Google Drive | PRIORIDADE ATUAL: clienteWeb especificamente autorizado, mas Google exige branding/público; seleção Externo negada pela revisão automática por faltar aprovação dessa etapa. Não repetida, cliente/segredo ainda não criados. Conta ric.hussen@gmail.com, projeto My First Project e raiz/4filhos confirmados em leitura. Candidato drive.file/Picker/vínculo ID preparado com18 testes isolados, sem alterar2.9.9;40 testes base mockados anteriores aprovados. Aguardar aprovação de públicoTestes antes de retomar cadastro; chavePicker, escopos/token e uploadTXT continuam separados e não autorizados. Sem acesso amplo/backup/acervo alterado. Ver ACERVO_PROGRAMACAO.md |
+| 2 | Auditoria geral finita do painel | PAUSADA EM CHECKPOINT após22 verificações UI isoladas, sem exceções/transbordamento nos percursos testados. Titular priorizou concluir conexãoDrive agora; preservar evidências e retomar auditoria depois. Cobrir abas, funções e fluxos, especialmente geração/qualidade de vídeo, usabilidade e poluição visual, sem alterar dados do acervo parado ou MP4 aprovados. Relatório completo com evidências, severidade/impacto, cobertura testada/falhou/não testada, sugestões e critérios de aceite. Principal apresenta relatório e nova lista priorizada no chat ANTES de iniciar correções resultantes. Não reativar pendências canceladas |
+| 3 | Integrações de publicação automática | PENDENTE, NÃO EXECUTAR nesta rodada. Flags externas e rotina preservadas; nenhuma postagem social, nova credencial, conta ou gasto |
+
+</details>
+
+### Cancelamentos e retirada de escopo — histórico preservado, não são fila de execução
+
+Por ordem do titular, foram canceladas as antigas pendências 1 a 6: revisão dos 40 grupos do legado, importação das 500 músicas, respectivas capas, restante da biblioteca histórica/Bateria2, revisão editorial/rankings/gêneros/temas e cópia externa do backup composto. Diagnósticos, candidatos, índices e backups anteriores continuam guardados; não revisar, importar, corrigir ou remover dados para cumprir esses itens. A correção Take On Me e demais entregas 2.9.9 permanecem instaladas, sem rollback.
+
+O tratamento dos dez vídeos GMM_REVISAO_TOTAL_V02 foi excluído da lista. ZIP/MP4 e documentação de inspeção ficam preservados; retirar da fila não autoriza exclusão física ou aplicação das artes.
+
+<details><summary>Lista anterior de dez itens — somente registro histórico substituído pela lista vigente</summary>
+
+### Prioridades anteriores - atualização de 25/10/2026
 
 **Lista oficial única — dez pendências. Prioridade geral do legado permanece aberta pela revisão restante.** Publicação do software 2.9.9 concluída e verificada local/pública; a correção Take On Me está concluída, mas os 40 grupos/82 registros restantes continuam pendentes, separados e sinalizados. Catálogo operacional 2.011 e mídias preservados. **AGUARDAR orientação do titular antes de iniciar revisão ou qualquer outra pendência.**
 
@@ -20,6 +160,8 @@
 | 8 | Integrações de publicação | PARCIAL: backend/mocks revisados, sem contas/envios reais; destinos manuais preservados. Flags externas OFF e rotina preservada. Credenciais/homologação dependem de autorização; YouTube Music sem upload genérico |
 | 9 | Auditoria geral finita do painel, todas as abas/funções/fluxos | REGISTRADA POR SOLICITAÇÃO DO TITULAR, NÃO INICIADA. Priorizar geração de vídeo, fluxo, qualidade, funcionalidade, usabilidade e poluição visual. Relatório completo com evidências, severidade/impacto, critérios de aceite e cobertura testado/falhou/não testado; separar defeitos de sugestões, sem inventar achados. Consolidar lista numerada por prioridade sem duplicar concluídos/pendências. Principal apresenta a lista no chat ANTES de executar achados; depois inicia primeira correção/melhoria autorizada sem novo continue. Testes com fixtures/amostras, sem alterar MP4 aprovados; manter aprovações específicas de custo/acesso persistente/ações externas. Escopo e término definidos, sem auditoria infinita |
 | 10 | Pacote GMM_REVISAO_TOTAL_V02 | ÚLTIMO: ZIP localizado e documentos/estrutura inspecionados em leitura;10MP4+3apoios,sem áudio conforme manifesto. Nada extraído/executado/substituído; aplicação e validação visual ainda não realizadas nem inferidas da inspeção. Separado de capas históricas/500músicas. Ver TEMPLATES.md |
+
+</details>
 
 ## Entregas concluídas anteriores - fora da fila pendente
 

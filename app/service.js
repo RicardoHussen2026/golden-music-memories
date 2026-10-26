@@ -10,9 +10,9 @@ async function openLocalSession(){
   if(!localSession)localSession=api('/session/local',{method:'POST',data:{}}).finally(()=>{localSession=null;});
   return localSession;
 }
-export async function api(path,{method='GET',data,bytes,offset,signal}={}){
+export async function api(path,{method='GET',data,bytes,offset,signal,timeoutMs=60000}={}){
   if(localPaused&&!['/health','/session','/session/local'].includes(path))throw Error('Acesso pausado nesta aba. Retome em Configurações.');
-  const request=()=>fetch('/api'+path,{method,credentials:'same-origin',cache:'no-store',headers:{'X-GMM-Request':'1',...(data?{'Content-Type':'application/json'}:{}),...(bytes?{'Content-Type':'application/octet-stream','X-Upload-Offset':String(offset)}:{})},body:bytes||(data?JSON.stringify(data):undefined),signal:signal?AbortSignal.any([signal,AbortSignal.timeout(path==='/health'?2000:60000)]):AbortSignal.timeout(path==='/health'?2000:60000)});
+  const request=()=>fetch('/api'+path,{method,credentials:'same-origin',cache:'no-store',headers:{'X-GMM-Request':'1',...(data?{'Content-Type':'application/json'}:{}),...(bytes?{'Content-Type':'application/octet-stream','X-Upload-Offset':String(offset)}:{})},body:bytes||(data?JSON.stringify(data):undefined),signal:signal?AbortSignal.any([signal,AbortSignal.timeout(path==='/health'?2000:timeoutMs)]):AbortSignal.timeout(path==='/health'?2000:timeoutMs)});
   let response=await request();
   if(response.status===401&&!path.startsWith('/session')&&!localPaused){
     const health=await api('/health');snapshot={...snapshot,...health};

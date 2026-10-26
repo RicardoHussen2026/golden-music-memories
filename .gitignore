@@ -11,6 +11,7 @@ acervo/
 uploads/
 backups/
 *.backup.zip
+.codex-remote-attachments/
 
 # Segredos e configurações particulares
 *.pem

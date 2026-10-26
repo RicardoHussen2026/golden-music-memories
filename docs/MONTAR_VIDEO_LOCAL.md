@@ -1,5 +1,16 @@
 # Montar vídeo local — V2.4
 
+**Artes 2.15.1:** oito PNGs premium transparentes integrados ao seletor existente, sem mudanças funcionais; renders sintéticos Full HD horizontal/vertical conferidos. Detalhes em docs/ARTES_CHAMADAS_V2151.md. Próxima etapa: reforma de Meu acervo conforme tabela oficial.
+
+**Miniaturas2.14.1:** nas postagens individuais e coletivas, use Baixar miniatura para obter a capa vinculada ao vídeo, ou Escolher miniatura para uma imagem local. Download coletivo/individual conferido por bytes e imagem; serviço/interface ativos localmente. Detalhes em MINIATURAS_POSTAGEM_V2141.md. Sem nova renderização ou postagem externa.
+
+**Atualização 2.14.0 — 25/10/2026:** no estúdio de sequência, abra Qualidade e edição → Editar bordas e duração. Ajuste entrada/saída por faixa e, se necessário, Terminar na duração exata (3600s =1h; última faixa pode ser encurtada). Escolha Áudio durante capa e intro. Texto opcional nas chamadas evita preparar PNG externo; PNG escolhido tem prioridade. A medição AAC final é exibida quando equilibrar volume está ativo. [Fluxo, testes e limites](CORRECOES_TESTE_REAL_V214.md). Originais e finais existentes preservados; não há retirada automática de cenas escuras.
+
+**Atualização 2.12.0 — qualidade e produtividade:** o fluxo principal começa no Catálogo → Publicar ou Montar sequência. Agora há rascunho retomável, entrada/saída para corte individual, amostra de até 8 s, ajuste opcional de volume medido por fonte, comparação de capas, linha do tempo, padrões por destino e fila de montagens. Finais aparecem no Meu acervo; coletâneas têm registro por destino em Publicações. [Roteiro e validação completos](CORRECOES_QUALIDADE_V212.md). Abertura e capa permanecem opcionais. Os modos antigos descritos abaixo são históricos/legados identificados; não substituem este fluxo.
+
+**Atualização local 2.11.0 — 25/10/2026:** catálogo real de 165 clipes, preparação individual/longa e novas coleções. Ver [entrega e guia atual](CATALOGO_CLIPES_V211.md). Catálogo legado retirado da seleção ativa com referências recuperáveis; demais dados preservados. Sequências novas usam capa/intro opcionais apenas no começo e clipes completos. Rotina externa não ativada. Biblioteca `acervo/` precisa de preservação própria, além do backup do navegador e do serviço.
+
+
 **Atualização vigente — 2.9.3 ativa localmente:** perfil automático CPU4/filtros2 somente com8processadores lógicos/3GiB livres; demais mantêmCPU2/filtros1. Opção conservadora preservada, fallback único por falha de threads e reaproveitamento de renders legados. Não muda encoder/preset/CRF, capas, chamadas ou áudio, nem refaz resultados existentes. Leia [desempenho, parâmetros e limites](DESEMPENHO_RENDER.md). A amostra opcional de movimento estático é separada dos finais e não foi aplicada ao catálogo. Os estados2.9.1/2.9.0 abaixo são históricos.
 
 **Atualização incremental 25/10/2026 — 2.9.1 somente isolada:** Substituir clipe no Estúdio e Manter enquadramento original concluídos/testados, supersedendo as pendências anteriores abaixo. Troca conserva fonte/finais/histórico e campos, invalidando prévia exibida; conteúdo proporcional com margens simples sem crop/stretch/blur, resolução do preset e recodificação com overlays. Backend80/80, montagem28, histórico22 e versão10. Checkpoint2.9.0 preservado. Pacote acumulado em .cache/painel-next/workspace; relatório em docs/ENTREGA_MONTAGEM_HISTORICO.md. Não ativar/recarregar produção sem coordenação expressa. Raiz2.8 e operacional2.7.2 preservados.
@@ -114,3 +125,73 @@ Entrega única em `acervo/Entregas/The-Emotions-Cause-I-Love-You-1979/`, ignorad
 Rodapé: V2.4.0, interface `5561062f4f54`, backend `e5a211950729`. As artes mudaram o hash da interface, sem exigir interromper o serviço. Publicação/rede/worker continuam OFF; não houve postagem, push ou deploy. Original e rascunho de capa do proprietário preservados.
 
 Bloqueio de entrega externa: a revisão automática negou a preparação do terceiro helper necessário ao fluxo de upload Library, com motivo “helper amplo para materializar downloads Library e ler credenciais ... escopo desnecessário”. O helper negado não foi criado/executado; os dois helpers auxiliares salvos parcialmente foram removidos sem execução. Não houve upload iniciado, credenciais lidas ou tentativa de contorno por outra rota. Library permanece não enviada, status negado na preparação; entrega local dos arquivos está concluída. Menor ação para o proprietário: abrir os MP4s na pasta acima para validar; se quiser tê-los no chat/Library, anexá-los manualmente. Não afirmar links Library criados.
+
+
+## Intros opcionais — candidato local, 25/10/2026
+
+**Preparado, não ativado:** 2.10.0, interface 36b8d81a7a69, backend a29ed904b590. Operacional continua 2.9.9 / interface 8e3c066ca510 / backend dd821933af77, health HTTP 200 conferido sem reiniciar/recarregar o titular. Publicação não realizada nem autorizada nesta tarefa.
+
+Origem explícita: C:\Users\RicardoPC\Desktop\Nova pasta\intro. Dez MP4, dez hashes distintos, cinco pares vertical/horizontal; 30 fps, H.264, AAC estéreo 44,1 kHz. Todos os pixels de início/meio/fim inspecionados; áudio analisado integralmente em silêncio digital (piso -91 dB). Duração abaixo é a do fluxo de vídeo; o contêiner pode ter pequena cauda AAC. Não confundir estes arquivos com V02.
+
+| Original preservado | Cópia em acervo/intros | Vídeo | Dimensões |
+|---|---|---:|---|
+| display youtube.mp4 | intro-cd-botao-play-16x9-v1.mp4 | 3.900 s | 1920×1080 |
+| display.mp4 | intro-cd-botao-play-9x16-v1.mp4 | 3.933 s | 1080×1920 |
+| k7 tiktok.mp4 | intro-k7-tecla-play-9x16-v1.mp4 | 3.967 s | 1080×1920 |
+| mp4 9 16 .mp4 | intro-player-portatil-dock-9x16-v1.mp4 | 4.033 s | 1080×1920 |
+| mp4 youtube.mp4 | intro-player-portatil-dock-16x9-v1.mp4 | 3.967 s | 1920×1080 |
+| vitrola tiktok.mp4 | intro-vitrola-agulha-dourada-9x16-v1.mp4 | 3.933 s | 1080×1920 |
+| vitrola yiktok.mp4 | intro-vitrola-agulha-retro-9x16-v1.mp4 | 3.333 s | 1080×1920 |
+| vitrola youtube.mp4 | intro-vitrola-agulha-retro-16x9-v1.mp4 | 3.333 s | 1920×1080 |
+| vitrola youtube1.mp4 | intro-vitrola-agulha-dourada-16x9-v1.mp4 | 3.933 s | 1920×1080 |
+| youtune k7.mp4 | intro-k7-tecla-play-16x9-v1.mp4 | 3.833 s | 1920×1080 |
+
+Cópias verificadas byte a byte por SHA-256, com miniaturas e manifest.json reversível; nenhum original renomeado/excluído. Pasta acervo/ já é privada/ignorada pelo Git. Manifesto não é servido publicamente; arquivos são resolvidos por ID, hash e caminhos locais limitados, em rotas de montagem com as proteções existentes de loopback/sessão/Host/Origin. A biblioteca não confere direitos de uso.
+
+### Comportamento preparado
+
+- Montar vídeo mantém Capa de abertura e adiciona Intro após a capa, com Sem intro, miniatura/player silenciado e variantes incompatíveis desativadas/explicadas. Seleções são independentes e persistem no preset; mudar fonte/intro invalida a prévia exibida sem excluir finais.
+- Com intro: capa primeiro; ao terminar a capa começam juntos a música e a intro. Durante a intro, a timeline do videoclipe avança; após sua duração real, revela o clipe no instante correspondente. A intro termina com fade visual de 0,2 s incluído em sua duração, sem reinício/duplicação do áudio. Não há mix do áudio da intro.
+- Total com intro = duração da fonte musical + tempo da capa; intro substitui imagem do início musical, não acrescenta sua duração ao final. Sem capa, a música começa em zero. Fonte menor que intro ou sem áudio é rejeitada claramente; não se corta/estica a intro para caber.
+- Sem intro mantém o fluxo anterior: música desde zero, capa sobreposta nos primeiros segundos, duração original. Tempos das chamadas continuam absolutos desde o início do vídeo final; não são deslocados silenciosamente.
+- MP3 e outros áudios locais passam a ser aceitos. Requer capa escolhida e confirmação explícita de usá-la como imagem durante toda a música, inclusive quando capa de abertura tem 0 s. Reutiliza enquadramento/imagem inteira e movimento existente quando explicitamente configurados; não escolhe visual por inferência. Não há geração automática de imagens.
+- Render inclui hash/ID/duração da intro e visual do áudio na assinatura; mudar intro não reutiliza resultado anterior. Aprovar prévia continua sem nova renderização. Lista de jobs passa a ser ordenada por criação antes de recuperar os últimos quinze, evitando que a ordem aleatória dos UUIDs exiba tentativa antiga.
+
+### Evidências e limites
+
+20 verificações de render real, 5 de início/transição real, 7 de bordas/validação, 21 de UI nova e 32 do fluxo anterior passaram. Regressões Node aplicáveis: capa2, enquadramento2, lixeira4, movimento5 e coletâneas3 =16 testes; não somar como cobertura independente. A concatenação longa diminuta pré-existente passou (32×18, 1 fps); não é homologação de intro em coletânea ou Full HD longo. Testes de navegador usam transporte de render mockado; os testes FFmpeg reais são separados. Falhas iniciais ERR_NETWORK_ACCESS_DENIED/EPERM no ambiente restrito foram resolvidas por execução nativa aprovada, sem mudança de segurança do produto ou enfraquecimento de assertivas.
+
+Vídeo e MP3 de teste são sintéticos e isolados. CD horizontal e K7 horizontal/vertical foram renderizados; todos os dez modelos/formatos foram inspecionados, mas não houve render de cada combinação. Frames e áudio do início/transição/final conferidos; dez pares original/cópia e dois finais Isley aprovados mantêm hashes. Catálogo, IndexedDB do titular, SQLite operacional e MP4 aprovados não alterados.
+
+Evidências privadas: .cache/intros-20261025/CHECKPOINT.json, inventory-names.json, integrity.json, test-*-results.json, ui-desktop.png, ui-mobile.png, candidate.patch. Amostras sintéticas: teste-videoclipe-intro.mp4, teste-mp3-intro.mp4, teste-vertical-intro.mp4. Não são novos vídeos do titular.
+
+### Ativação ainda não executada
+
+1. Coordenar com o titular e conferir jobs, downloads e formulários; não interromper tarefa ativa.
+2. Conferir Git/raiz/projeto e hashes de baseline do CHECKPOINT.json para preservar alterações posteriores. Backup consistente de SQLite+mídia/configuração protegida e backup separado do navegador; incluir também acervo/intros com manifest.json. Esta pasta não entra automaticamente no backup SQLite nem no Git.
+3. Revisar/aplicar somente os sete arquivos do candidate.patch; git apply --check antes de escrever. Preparação versionada em package.json2.10.0; executar npm.cmd run version:build após aplicar e conferir hashes esperados. Nenhum segundo aplicativo/clone foi criado: candidato contém apenas arquivos alterados.
+4. Ativar local somente em momento coordenado, mesma origem/porta8877; confirmar frontend/backend2.10.0 e preservar dados/sessão. Se qualquer divergência de baseline/build, parar a ativação e reconciliar, sem reset.
+5. Conferir escolha/prévia de intro e MP3 no painel atualizado com mídia de teste. Avaliação humana final permanece separada; não gerar/alterar os finais já aprovados. Publicação externa exige aprovação específica.
+
+Drive, auditoria, acervo e demais tarefas continuam parados/adiados; nenhuma foi retomada.
+
+## Entrega real de aprovação — a-ha / Take On Me, 25/10/2026
+
+Pedido específico do titular atendido com o candidato isolado 2.10.0, sem ativar/publicar software. Operacional 2.9.9 / interface 8e3c066ca510 / backend dd821933af77 conferido HTTP200. Fonte local original.mkv identificada na pasta indicada pelo titular: AV1 2880×2160, 4:3, 24 fps, Opus estéreo, 243,981 s; hash 921ff90138decb36bd9690424f89474d4b73e2327cf4d54ff31b6ecc05d07ee8. Nenhum download externo.
+
+Sorteio preservado em .cache/edicao-aha/SELECTION.json: capa Vinil clássico premium, 3 s em cada proporção; intro CD vertical (3,933 s) no TikTok e K7 horizontal (3,833 s) no YouTube. Após a capa, intro e timeline musical começam juntas, clipe avança por baixo da intro; mantém imagem inteira e fundo desfocado. Sem novas CTAs ou cortes da fonte. Áudio Opus convertido para AAC; não é cópia sem perdas. Ano omitido na capa.
+
+| Entrega | Dimensões | FPS | Contêiner | Bytes | SHA-256 |
+|---|---|---:|---:|---:|---|
+| a-ha - Take On Me - TikTok - V1.mp4 | 1080×1920 | 30 | 246.981 s | 261822145 | ea30717b4f235b649e4c6ffe19849cd0707507a496e8872a9cd1ba186467a0c7 |
+| a-ha - Take On Me - YouTube horizontal - V1.mp4 | 1920×1080 | 30 | 246.981 s | 361235393 | a4808d9cb40799afaf90789cf6802913636e341c10f53a58762803c47da3ceeb |
+
+Arquivos em acervo/entregas/Take On Me, com capas, MANIFESTO.json, VALIDACAO.json e LEIA-ME.txt. Originais e finais Isley aprovados mantêm hashes; nenhuma substituição. 22 verificações técnicas passaram (decode completo das fontes/saídas, scan de preto, áudio e imagens em amostras, capa/intro, duração, formato e hash); frames conferidos visualmente. Players de Meu acervo carregaram ambos MP4 sem erro, com 246,981 s. Verificação de verde é amostral, não auditoria de todos os pixels de todas as frames.
+
+**Propriedade do original preservada:** silêncio inicial 3,07175 s; primeiro som nos finais aos 6,07175 s após a capa. Preto original 0–1 s e 238,25–243,917 s; trecho final foi preservado. Teste de correlação inicial não se aplica a zeros; corrigido para exigir silêncio contra silêncio. Amostras musicais têm correlação acima de 0,998 e diferença medida de cerca de 1 ms. Não houve novo render para alterar o início; qualquer corte editorial exige orientação do titular.
+
+Registro pela UI existente 2.9.9: produção 97fc78c0-bc71-42fa-acaa-7fbd315497fb, songId mb-cefbb28e-55a7-49a0-90e7-6f6448c9095f, pertencente à família reviewed:take-on-me:a-ha:v1. Referência de canção de 1985, sem certificação da gravação/mix; não vinculada por inferência à versão1984 ou extended. Prefixo1 é do registro legado e foi explicado nas notas, sem renomear os cadastros. Fonte, duas capas e dois finais anexados; etapa Pronto para revisão. Catálogo permanece com 2.011 registros, sem sexta entrada Take On Me. Meu acervo mostra dois formatos da mesma produção.
+
+Backup do navegador antes (14) e depois (15), cópias privadas .cache/edicao-aha/browser-before.zip e browser-after.zip; CRC/hash e17 verificações de vínculos/bytes passaram. Perfil antes:2011 músicas/3 produções/8 anexos/1 publicação; depois:2011/4/13/1. Registros anteriores preservados; snapshot SQLite operacional não foi alterado por essa importação de anexos no navegador. Backup novo foi conferido, sem restauração sobre produção. Nenhuma credencial, rede, flag externa ou publicação social alterada.
+
+Evidências detalhadas: .cache/edicao-aha/FINAL.json, SOURCE.json, RENDER.json, VALIDACAO.json, browser-after.json e acervo-operacional.png. Aprovação humana pendente. **Aguardar comando; não retomar outras pendências.**

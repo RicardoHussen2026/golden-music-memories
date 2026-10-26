@@ -1,7 +1,7 @@
 import {validatePublishedEntry} from './repost-policy.js';
 import {openDB,uid,now} from './db.js';
 import {destinationOf,finalRoleAllowed} from './destinations.js';
-const fields=['destination','title','description','hashtags','finalAssetId','localRenderAssetId','localRenderJobId','options','status','plannedAt','publishedAt','url','metrics','editorial','postingAccountId','postingAccountLabel','finalFileHash','repostDecision','serviceMediaId','servicePublicationId'];
+const fields=['businessGoal','editorialFormat','editorialValue','monetization','currency','measuredAt','destination','title','description','hashtags','finalAssetId','localRenderAssetId','localRenderJobId','options','status','plannedAt','publishedAt','url','metrics','editorial','postingAccountId','postingAccountLabel','finalFileHash','repostDecision','serviceMediaId','servicePublicationId'];
 const editable=p=>JSON.stringify(fields.map(key=>p[key]));
 export async function saveEditorialPublication(next,baseline,facts,productionBaseline){
  const db=await openDB();return new Promise((resolve,reject)=>{
