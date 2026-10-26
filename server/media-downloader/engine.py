@@ -42,7 +42,7 @@ class EventLogger:
         self.emit({'type': 'error', 'message': str(message)[-1800:]})
 
 
-def options(output, node, tools, emit, archive=None, mode='video', container='mp4', subtitles=True, max_bytes=8589934592):
+def options(output, node, tools, emit, archive=None, mode='video', container='mp4', subtitles=True, max_bytes=8589934592, max_height=None):
     """Leave YouTube client choice and HTTP headers to maintained yt-dlp defaults."""
     last_progress = 0
     def progress(data):
@@ -58,8 +58,15 @@ def options(output, node, tools, emit, archive=None, mode='video', container='mp
               'downloadedBytes': data.get('downloaded_bytes'), 'totalBytes': total,
               'phase': 'Processando arquivo' if data.get('status') == 'finished' else 'Baixando fluxo atual'})
 
+    if max_height not in (None, 720, 1080):
+        raise ValueError('Escolha qualidade original, 720p ou 1080p.')
+    selection = MP4_FORMAT if mode == 'video' and container == 'mp4' else 'bv+ba/b' if mode == 'video' else 'ba/b[acodec!=none][vcodec=none]'
+    if mode == 'video' and max_height:
+        limit = f'[height<={max_height}]'
+        selection = f'bestvideo[ext=mp4]{limit}+bestaudio[ext=m4a]/best[ext=mp4]{limit}/best{limit}' if container == 'mp4' else f'bv{limit}+ba/b{limit}'
     return {
-        'format': MP4_FORMAT if mode == 'video' and container == 'mp4' else 'bv+ba/b' if mode == 'video' else 'ba/b[acodec!=none][vcodec=none]',
+        'format': selection,
+        'format_sort': ['res', 'fps', 'vcodec:h264', 'acodec:aac'] if mode == 'video' and max_height == 720 else [],
         'merge_output_format': container,
         'outtmpl': str(Path(output) / '%(title).120B [%(id)s].%(ext)s'),
         'download_archive': str(archive) if archive else None,
@@ -153,7 +160,7 @@ class DeliveryReportPP(PostProcessor):
         return [], info
 
 
-def download(req, tools, node, archive, emit, max_bytes=8589934592, ydl_factory=GoldenYoutubeDL):
+def download(req, tools, node, archive, emit, max_bytes=8589934592, ydl_factory=GoldenYoutubeDL, max_height=None):
     """Runs in the bridge worker. One panel queue item is one video."""
     req.validate()
     output = Path(req.output).resolve()
@@ -171,7 +178,7 @@ def download(req, tools, node, archive, emit, max_bytes=8589934592, ydl_factory=
                     return report
     emit({'type': 'started'})
     reports = []
-    opts = options(output, node, tools, emit, archive, req.mode, req.container, req.subtitles, max_bytes)
+    opts = options(output, node, tools, emit, archive, req.mode, req.container, req.subtitles, max_bytes, max_height)
     with ydl_factory(opts) as ydl:
         if req.mode == 'video':
             if req.container == 'mp4':

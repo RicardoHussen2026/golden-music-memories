@@ -42,6 +42,7 @@ class APITest(unittest.TestCase):
         subprocess.run([FF, '-v', 'error', '-f', 'lavfi', '-i', 'testsrc2=size=320x180:rate=25:duration=1', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=1', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-shortest', str(cls.media)], check=True)
         subprocess.run([FF, '-v', 'error', '-i', str(cls.media), '-c:v', 'libvpx-vp9', '-deadline', 'realtime', '-c:a', 'libopus', str(cls.root / 'source.webm')], check=True)
         subprocess.run([FF, '-v', 'error', '-f', 'lavfi', '-i', 'color=c=gold:s=640x360', '-frames:v', '1', str(cls.root / 'cover.png')], check=True)
+        subprocess.run([FF, '-v', 'error', '-f', 'lavfi', '-i', 'testsrc2=size=1280x720:rate=25:duration=0.5', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=0.5', '-c:v', 'libx264', '-preset', 'ultrafast', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-shortest', str(cls.root / 'quality720.mp4')], check=True)
         cls.server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(QuietHTTP, directory=str(cls.root)))
         cls.server_thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
         cls.server_thread.start()
@@ -52,6 +53,11 @@ class APITest(unittest.TestCase):
             _VALID_URL = r'goldenfixture:(?P<id>[a-z]+)'
             def _real_extract(self, url):
                 identity = self._match_id(url)
+                if identity == 'quality':
+                    return {'id':identity,'title':'Qualidade sintética','thumbnail':origin+'/cover.png','formats':[
+                        {'format_id':'720','url':origin+'/quality720.mp4','ext':'mp4','vcodec':'h264','acodec':'aac','width':1280,'height':720},
+                        {'format_id':'av1-720','url':origin+'/missing-av1-720.mp4','ext':'mp4','vcodec':'av01.0.05M.08','acodec':'aac','width':1280,'height':720},
+                        {'format_id':'1080','url':origin+'/missing1080.mp4','ext':'mp4','vcodec':'h264','acodec':'aac','width':1920,'height':1080}]}
                 ext = 'webm' if identity == 'incompatible' else 'mp4'
                 return {'id': identity, 'title': 'Faixa de teste', 'track': 'Canção', 'artist': 'Banda Golden', 'album': 'Álbum sintético', 'release_year': 1984,
                         'thumbnail': origin + '/cover.png', 'formats': [{'url': origin + '/source.' + ext, 'ext': ext, 'vcodec': 'vp9' if ext == 'webm' else 'h264', 'acodec': 'opus' if ext == 'webm' else 'aac', 'width': 320, 'height': 180}]}
@@ -107,6 +113,24 @@ class APITest(unittest.TestCase):
         self.assertTrue(result['thumbnailEmbedded'])
         self.assertAlmostEqual(float(media['format']['duration']), 1, delta=.1)
         subprocess.run([FF, '-v', 'error', '-i', result['files'][0]['path'], '-f', 'null', '-'], check=True)
+
+    def test_720_does_not_request_the_larger_format(self):
+        req=FixtureRequest('goldenfixture:quality',str(self.root/'quality'),'mp4','video',False)
+        report=engine.download(req,TOOLS,NODE,None,lambda e:None,ydl_factory=self.factory,max_height=720)
+        streams=report['files'][0]['media']['streams']
+        video=next(s for s in streams if s['codec_type']=='video' and not s.get('disposition',{}).get('attached_pic'))
+        self.assertEqual((video['width'],video['height']),(1280,720))
+        self.assertFalse(report['reencoded'])
+
+    def test_native_preference_keeps_resolution_and_frame_rate(self):
+        def fmt(identity,height,codec,fps=25):
+            return {'format_id':identity,'url':'https://example.invalid/'+identity+'.mp4','ext':'mp4','width':height*16//9,'height':height,'vcodec':codec,'acodec':'aac','fps':fps}
+        scenarios=[([fmt('native360',360,'avc1.42001e'),fmt('native720',720,'avc1.4d401f'),fmt('av1720',720,'av01.0.05M.08')],'native720'),([fmt('native360',360,'avc1.42001e'),fmt('av1720',720,'av01.0.05M.08')],'av1720'),([fmt('native720',720,'avc1.4d401f'),fmt('av1720',720,'av01.0.05M.08',30)],'av1720')]
+        for formats,expected in scenarios:
+            opts=engine.options(self.root,NODE,TOOLS,lambda e:None,subtitles=False,max_height=720)
+            with engine.GoldenYoutubeDL(opts) as ydl:
+                info=ydl.process_ie_result({'id':'sorting','title':'Seleção sintética','formats':formats},download=False)
+            self.assertEqual(info['format_id'],expected)
 
     def test_failed_final_validation_does_not_mark_archive(self):
         archive = self.root / 'failed_history.txt'

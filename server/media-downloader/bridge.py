@@ -44,6 +44,7 @@ def main():
     parser.add_argument('--mode', default='video')
     parser.add_argument('--no-subs', action='store_true')
     parser.add_argument('--max-bytes', default='8589934592')
+    parser.add_argument('--max-height', type=int, choices=[720,1080])
     args = parser.parse_args()
     os.environ['PATH'] = os.pathsep.join([args.tools, str(Path(args.node).parent), os.environ.get('PATH', '')])
     if args.check:
@@ -62,7 +63,7 @@ def main():
         if args.expand:
             engine.expand_playlist(req, args.tools, args.node, send)
         else:
-            engine.download(req, args.tools, args.node, args.archive, send, int(args.max_bytes))
+            engine.download(req, args.tools, args.node, args.archive, send, int(args.max_bytes), max_height=args.max_height)
     if not engine.threaded(task, emit):
         raise SystemExit(1)
 
