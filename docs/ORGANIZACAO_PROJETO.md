@@ -15,8 +15,8 @@ Pedido confirmado: vinhetas opcionais no início/final. Ampliação autorizada: 
 | 3 | Três vinhetas sonoras nostálgicas | CONCLUÍDO E PUBLICADO. Três sons originais de 5 s, seis MP4 Full HD e download MP3. Integridade, áudio e instalação idempotente testados |
 | 4 | Chamadas/comerciais MP3 e MP4 com posição/duração/volume | IMPLEMENTADO E TESTADO. Biblioteca, sobreposição opcional com trecho/horário/volume/fade e tela/canto; rascunho, lixeira e render de 9 s pela UI conferidos |
 | 5 | Testes finais, ativação local, versão, commit/push/deploy | CONCLUÍDO. 2.21 ativa, commit 4d35fc7 nas duas branches, Pages 40278643702 success; 40 hashes públicos e UI local/pública conferidos. Dados reais preservados. Ver NOSTALGIA_VINHETAS_COMERCIAIS_V221.md |
-
-| 6 | Evoluir a janela Preparar vídeo para publicar | PRÓXIMO. Pedido recebido após a 2.21: hierarquia visual, edição clara, prévia e ações acessíveis, menos mensagens repetidas e correções comprovadas; preservar todos os controles e integrações |
+| 6 | Evoluir a janela Preparar vídeo para publicar | IMPLEMENTADO, TESTADO E ATIVADO 2.22.0. Cinco áreas, prévia lateral, ações acessíveis, correções de rascunho/validação/coleção; 15 regressões e 2 testes adicionais, UI 390 px, renders 9/7 s. Publicação em fechamento; ver MONTAGEM_PREMIUM_V222.md |
+| 7 | Downloads separados para edição no CapCut | IMPLEMENTADO E ATIVADO 2.22.0. Downloads na montagem, por faixa e Catálogo → Ver clipe; cinco endpoints com bytes/hash/nome iguais. PNG baixado pela UI; clique manual MP4 ainda a conferir. Ver limites no relatório |
 
 ### Histórico — motor Python e aberturas 2.20 concluídos
 

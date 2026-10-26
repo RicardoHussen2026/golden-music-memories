@@ -38,6 +38,10 @@ test('biblioteca de capas/aberturas: upload, geração, download, montagem e ori
   // The existing renderer accepts a new opening without changing its timing policy.
   app.store.put('production','test',{id:'test',title:'Teste',artist:'Golden',songId:'fixture',version:1});
   app.store.put('render_input',v.id,{...app.store.get('render_input',v.id),productionId:'test'});
+  const sourceDownload=await fetch(config.origin+'/api/assembly/source-video?'+new URLSearchParams({kind:'input',id:v.id,productionId:'test',download:'1'}),{headers});
+  assert.equal(sourceDownload.status,200);assert.match(sourceDownload.headers.get('content-disposition'),/source\.mp4/);assert.deepEqual(Buffer.from(await sourceDownload.arrayBuffer()),readFileSync(video));
+  const openingDownload=await fetch(config.origin+'/api/assembly/intros/'+intro.id+'/video?download=1',{headers});
+  assert.equal(openingDownload.status,200);assert.match(openingDownload.headers.get('content-disposition'),/Abertura%20criada\.mp4/);assert.deepEqual(Buffer.from(await openingDownload.arrayBuffer()),readFileSync(app.artworks.file(intro.id).path));
   const prepared=await app.assembler.prepare({productionId:'test',sourceKind:'input',sourceId:v.id,destination:'youtube',introId:intro.id,calls:[],coverSeconds:0,fit:'original'});
   assert.equal(prepared.plan.intro.id,intro.id);
   await runProcess(ff,['-v','error','-i',app.artworks.file(intro.id).path,'-f','null','-']);
