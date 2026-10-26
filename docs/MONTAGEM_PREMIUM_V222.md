@@ -1,6 +1,6 @@
 # Montagem e materiais para edição externa — 2.22.0
 
-26/10/2026. Implementação e validação local concluídas; publicação do software em andamento. Interface `a2175e06100f`; backend `9f0c5a67013a`. O serviço está ativo em `http://127.0.0.1:8877/painel.html`, na origem já utilizada pelo proprietário.
+26/10/2026. Implementação, validação local e publicação do software concluídas. Interface `a2175e06100f`; backend `9f0c5a67013a`. O serviço está ativo em `http://127.0.0.1:8877/painel.html`, na origem já utilizada pelo proprietário.
 
 ## Entrega
 
@@ -42,7 +42,7 @@ Dados sintéticos, serviço e IndexedDB separados em `localhost:61398`; nenhum r
 - Percurso real da interface: criação de capa dentro da montagem, seleção de abertura/vinheta, PNG personalizado, fechamento/reabertura, trecho inválido e campos opcionais sem efeito, cinco abas, desktop e viewport de **390 px**. Sem overflow horizontal do diálogo; abas têm rolagem própria. PNG restaurado no seletor após recarregar.
 - Reprodução de uma fonte pausou a abertura em 1,009 s; a fonte terminou em 4 s. Nenhum erro de mídia no percurso isolado. No painel operacional, o primeiro clipe abriu com duração 292,548209 s e readyState 4.
 - Prévia individual Full HD de **9 s** (vinheta de 5 s + fonte de 4 s), com chamada, reproduziu até o fim sem erro. Áudio medido em −15,99 LUFS / −1,88 dBTP.
-- Sequência de duas fontes: prévia de **7 s** com duas chamadas; após retirar Curtir, exportação gerou **outro job**, com apenas Seguir aos 3 s. Final H.264/AAC, 1920×1080, 30 fps, áudio e vídeo com 7,000 s; reprodução completa e decodificação FFmpeg sem erros. Medição −16,01 LUFS / −11,18 dBTP.
+- Sequência de duas fontes: prévia de **7 s** com duas chamadas; após retirar Curtir, exportação gerou **outro job**, com apenas Seguir aos 3 s. Final H.264/AAC, 1920×1080, 30 fps, áudio e vídeo com 7,000 s; reprodução completa e decodificação FFmpeg sem erros. Quadros de 1,5 s (sem Curtir) e 3,5 s (Seguir visível) foram abertos e conferidos. Medição −16,01 LUFS / −11,18 dBTP.
 - Validação fracionária reproduzida no navegador: 3,548209 s apresentava stepMismatch; após correção, mesmo valor válido, sem arredondamento.
 - Cinco respostas de download comparadas por SHA-256: original do catálogo, faixa de sequência, abertura, vinheta MP4 e vinheta MP3. Todos os bytes e nomes coincidiram. Capa PNG também foi baixada pela interface.
 - Pacote exportado pela interface contém a referência e os **1.326.632 bytes** do PNG personalizado, com hash igual ao arquivo guardado.
@@ -62,4 +62,4 @@ As 12 capas nostálgicas e três vinhetas sonoras da 2.21 permanecem disponívei
 
 Antes do reinício não havia montagem, coletânea, download, upload ou criação de arte ativa. Depois, backend 2.22.0 e interface a2175e06100f foram conferidos. Mantidos **165 clipes, 20 produções, dez intros e seis variantes de vinheta**; hashes de histórico, coleções, fila, baixador, montagens, clipes e artes permaneceram iguais. Origem/porta e abas operacionais do titular preservadas. Código anterior recuperável no Git; mídia e dados privados não fazem parte do commit.
 
-Publicação: aguardando fechamento do commit/push e conferência do GitHub Pages. A hospedagem pública distribui a interface; FFmpeg, acervo, dados privados e downloads locais continuam no PC.
+Publicação confirmada: commit `b8058a2cca0163ee579372d840b6ec1a990a20b7` enviado às branches `main` e `desenvolvimento/validacao-local-p6`; GitHub Pages `40285003877` concluído com `success`. Treze arquivos públicos comparados por SHA-256 coincidiram com o commit, e a interface pública carregou 2.22.0 / a2175e06100f. A hospedagem pública distribui a interface; FFmpeg, acervo, dados privados e downloads locais continuam no PC.
