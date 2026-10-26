@@ -14,7 +14,7 @@ Pedido: substituir execução CLI por API oficial YoutubeDL, playlists extensas,
 | 2 | Playlists 500+, fila individual, histórico e retomada | CONCLUÍDO E TESTADO. 501 entradas sintéticas, deduplicação/retomada/reinício; entrega plana preservada |
 | 3 | Testes internos, versão, ativação e documentação de execução | CONCLUÍDO E ATIVADO NA 2.20. 19 específicos; UI desktop/390 px e reprodução MP4. Motor pronto localmente; ver BAIXADOR_PYTHON_V219.md |
 | 4 | Ferramenta Aberturas, criar/carregar/baixar e reutilizar capas próprias | CONCLUÍDO E ATIVADO NA 2.20. 45 testes finais, UI desktop/390 px e montagem 5 s; dez originais e dados reais preservados; ver ABERTURAS_CAPAS_V220.md |
-| 5 | Commit, push e publicação final | EM EXECUÇÃO. Itens 3–4 concluídos, local ativado/conferido; branches remotas sem divergência, preparar commit e envio |
+| 5 | Commit, push e publicação final | CONCLUÍDO. Software 89b3459 nas duas branches; Pages 40270319471 success. Doze hashes públicos e UI 2.20 conferidos; local e dados preservados. Revisão humana e download externo pelo titular |
 
 ### Histórico — entrega 2.18 concluída
 
